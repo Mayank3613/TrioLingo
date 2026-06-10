@@ -1,7 +1,9 @@
 import React from 'react';
 import { motion } from 'motion/react';
+import { useNavigate } from 'react-router-dom';
 import { useUserStore, getLevelTitle } from '../../stores/userStore';
 import { useStudyStore } from '../../stores/studyStore';
+import { useFSRSStore } from '../../stores/fsrsStore';
 import { Card } from '../../components/ui/Card';
 import { ProgressBar } from '../../components/ui/ProgressBar';
 import { Badge } from '../../components/ui/Badge';
@@ -37,7 +39,22 @@ function XPRing({ current, max, level }: { current: number; max: number; level: 
     <div className="relative w-32 h-32 flex-shrink-0">
       <svg viewBox="0 0 120 120" className="w-full h-full -rotate-90">
         {/* track */}
-        <circle cx="60" cy="60" r={radius} fill="none" stroke="var(--bg-tertiary)" strokeWidth="8" />
+        <circle cx="60" cy="60" r={radius} fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="7" />
+        {/* glow layer */}
+        <motion.circle
+          cx="60"
+          cy="60"
+          r={radius}
+          fill="none"
+          stroke="url(#xpGrad)"
+          strokeWidth="10"
+          strokeLinecap="round"
+          strokeDasharray={circumference}
+          initial={{ strokeDashoffset: circumference }}
+          animate={{ strokeDashoffset: offset }}
+          transition={{ duration: 1.2, ease: 'easeOut' }}
+          style={{ filter: 'blur(4px)', opacity: 0.5 }}
+        />
         {/* progress */}
         <motion.circle
           cx="60"
@@ -45,7 +62,7 @@ function XPRing({ current, max, level }: { current: number; max: number; level: 
           r={radius}
           fill="none"
           stroke="url(#xpGrad)"
-          strokeWidth="8"
+          strokeWidth="7"
           strokeLinecap="round"
           strokeDasharray={circumference}
           initial={{ strokeDashoffset: circumference }}
@@ -54,15 +71,15 @@ function XPRing({ current, max, level }: { current: number; max: number; level: 
         />
         <defs>
           <linearGradient id="xpGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#6366f1" />
-            <stop offset="100%" stopColor="#a78bfa" />
+            <stop offset="0%" stopColor="#fbbf24" />
+            <stop offset="100%" stopColor="#f59e0b" />
           </linearGradient>
         </defs>
       </svg>
       {/* center text */}
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="text-3xl font-black text-gradient-primary">{level}</span>
-        <span className="text-[10px] font-semibold uppercase tracking-wider" style={{ color: 'var(--text-tertiary)' }}>
+        <span className="text-3xl font-black text-white">{level}</span>
+        <span className="text-[10px] font-semibold uppercase tracking-wider text-white/60">
           Level
         </span>
       </div>
@@ -93,21 +110,21 @@ function StatCard({
       transition={{ delay, type: 'spring', stiffness: 260, damping: 20 }}
     >
       <Card hover padding="md">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 min-w-0">
           <div
             className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
             style={{ background: gradient || 'var(--bg-tertiary)' }}
           >
             {icon}
           </div>
-          <div>
-            <div className="text-xs font-medium" style={{ color: 'var(--text-tertiary)' }}>
+          <div className="min-w-0 flex-1">
+            <div className="text-[11px] font-medium truncate" style={{ color: 'var(--text-tertiary)' }}>
               {label}
             </div>
-            <div className="text-xl font-bold flex items-baseline gap-1" style={{ color: 'var(--text-primary)' }}>
+            <div className="text-lg font-bold flex items-baseline gap-1 truncate" style={{ color: 'var(--text-primary)' }}>
               {value}
               {suffix && (
-                <span className="text-xs font-medium" style={{ color: 'var(--text-tertiary)' }}>
+                <span className="text-[11px] font-medium" style={{ color: 'var(--text-tertiary)' }}>
                   {suffix}
                 </span>
               )}
@@ -126,12 +143,14 @@ function ActionCard({
   subtitle,
   gradient,
   delay,
+  onClick,
 }: {
   icon: React.ReactNode;
   title: string;
   subtitle: string;
   gradient: string;
   delay: number;
+  onClick?: () => void;
 }) {
   return (
     <motion.button
@@ -140,14 +159,15 @@ function ActionCard({
       transition={{ delay, type: 'spring', stiffness: 260, damping: 20 }}
       whileHover={{ scale: 1.04, y: -4 }}
       whileTap={{ scale: 0.97 }}
-      className="rounded-2xl p-5 text-left text-white cursor-pointer w-full"
+      className="rounded-2xl p-4 text-left text-white cursor-pointer w-full overflow-hidden"
       style={{ background: gradient, boxShadow: 'var(--shadow-lg)' }}
+      onClick={onClick}
     >
-      <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-3 bg-white/20">
+      <div className="w-9 h-9 rounded-xl flex items-center justify-center mb-2 bg-white/20 flex-shrink-0">
         {icon}
       </div>
-      <div className="text-sm font-bold">{title}</div>
-      <div className="text-xs opacity-80 mt-0.5">{subtitle}</div>
+      <div className="text-sm font-bold truncate">{title}</div>
+      <div className="text-[11px] opacity-80 mt-0.5 truncate">{subtitle}</div>
     </motion.button>
   );
 }
@@ -176,27 +196,39 @@ const RADAR_DATA = [
 /* ──────────── DASHBOARD ──────────── */
 export default function Dashboard() {
   const { profile } = useUserStore();
-  const { dailyGoals, recentActivity, reviewsDue, lessonsAvailable } = useStudyStore();
+  const { dailyGoals, recentActivity, lessonsAvailable } = useStudyStore();
+  const fsrs = useFSRSStore();
+  const navigate = useNavigate();
 
+  const reviewsDue = fsrs.getDueCount() + fsrs.getNewCards().length;
   const completedGoals = dailyGoals.filter((g) => g.current >= g.target).length;
   const dailyPct = dailyGoals.length > 0 ? Math.round((completedGoals / dailyGoals.length) * 100) : 0;
 
   return (
-    <div className="p-6 overflow-y-auto h-full pb-20 space-y-6">
+    <div className="p-6 overflow-y-auto h-full pb-20 space-y-5">
       {/* ── Hero Welcome ── */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="rounded-2xl p-6 flex items-center gap-6"
+        className="rounded-2xl p-5 flex items-center gap-5 relative overflow-hidden"
         style={{
-          background: 'var(--gradient-primary)',
-          boxShadow: 'var(--shadow-xl)',
+          background: 'var(--gradient-hero)',
+          boxShadow: '0 20px 40px -10px rgba(99, 102, 241, 0.3)',
         }}
       >
-        <XPRing current={profile.currentXP} max={profile.xpToNextLevel} level={profile.currentLevel} />
+        {/* Decorative elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full" style={{ background: 'rgba(255,255,255,0.06)' }} />
+          <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full" style={{ background: 'rgba(255,255,255,0.04)' }} />
+          <div className="absolute top-1/2 right-1/4 w-20 h-20 rounded-full" style={{ background: 'rgba(255,255,255,0.03)' }} />
+        </div>
 
-        <div className="text-white">
+        <div className="relative z-10 flex-shrink-0">
+          <XPRing current={profile.currentXP} max={profile.xpToNextLevel} level={profile.currentLevel} />
+        </div>
+
+        <div className="text-white relative z-10 min-w-0 flex-1">
           <motion.h1
             className="text-2xl font-bold"
             initial={{ opacity: 0, x: -20 }}
@@ -215,17 +247,17 @@ export default function Dashboard() {
           </motion.p>
 
           <motion.div
-            className="mt-3 flex items-center gap-4"
+            className="mt-3 flex items-center gap-2 flex-wrap"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
           >
-            <div className="flex items-center gap-1.5 bg-white/15 rounded-full px-3 py-1">
-              <Star size={14} />
+            <div className="flex items-center gap-1.5 bg-white/15 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/10">
+              <Star size={13} />
               <span className="text-xs font-semibold">{profile.currentXP} / {profile.xpToNextLevel} XP</span>
             </div>
-            <div className="flex items-center gap-1.5 bg-white/15 rounded-full px-3 py-1">
-              <TrendingUp size={14} />
+            <div className="flex items-center gap-1.5 bg-white/15 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/10">
+              <TrendingUp size={13} />
               <span className="text-xs font-semibold">{profile.totalXP} Total XP</span>
             </div>
           </motion.div>
@@ -233,7 +265,7 @@ export default function Dashboard() {
       </motion.div>
 
       {/* ── Stat Cards ── */}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         <StatCard
           icon={<Flame size={20} className="text-orange-400" />}
           label="Study Streak"
@@ -263,7 +295,7 @@ export default function Dashboard() {
       </div>
 
       {/* ── Two-Column: Daily Goals + Radar Chart ── */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Daily Goals */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -305,9 +337,9 @@ export default function Dashboard() {
                       {done ? <CheckCircle2 size={16} className="text-white" /> : goal.icon}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between">
+                      <div className="flex items-center justify-between gap-2">
                         <span
-                          className="text-sm font-medium"
+                          className="text-sm font-medium truncate"
                           style={{
                             color: done ? 'var(--text-tertiary)' : 'var(--text-primary)',
                             textDecoration: done ? 'line-through' : 'none',
@@ -315,7 +347,7 @@ export default function Dashboard() {
                         >
                           {goal.title}
                         </span>
-                        <span className="text-xs font-mono" style={{ color: 'var(--text-tertiary)' }}>
+                        <span className="text-xs font-mono flex-shrink-0" style={{ color: 'var(--text-tertiary)' }}>
                           {goal.current}/{goal.target}
                         </span>
                       </div>
@@ -380,13 +412,14 @@ export default function Dashboard() {
         >
           Quick Actions
         </motion.h2>
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
           <ActionCard
             icon={<Play size={20} />}
             title="Continue Lesson"
             subtitle="JLPT N5 · Verbs"
             gradient="linear-gradient(135deg, #6366f1, #8b5cf6)"
             delay={0.55}
+            onClick={() => navigate('/vocabulary')}
           />
           <ActionCard
             icon={<Layers size={20} />}
@@ -394,6 +427,7 @@ export default function Dashboard() {
             subtitle={`${reviewsDue} cards due`}
             gradient="linear-gradient(135deg, #ec4899, #f472b6)"
             delay={0.6}
+            onClick={() => navigate('/flashcards')}
           />
           <ActionCard
             icon={<Zap size={20} />}
@@ -401,6 +435,7 @@ export default function Dashboard() {
             subtitle="5 min quick quiz"
             gradient="linear-gradient(135deg, #22c55e, #4ade80)"
             delay={0.65}
+            onClick={() => navigate('/quiz')}
           />
           <ActionCard
             icon={<PenTool size={20} />}
@@ -408,6 +443,7 @@ export default function Dashboard() {
             subtitle="Stroke order drill"
             gradient="linear-gradient(135deg, #f59e0b, #fbbf24)"
             delay={0.7}
+            onClick={() => navigate('/kanji')}
           />
         </div>
       </div>

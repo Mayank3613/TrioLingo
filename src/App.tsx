@@ -59,11 +59,7 @@ function PlaceholderPage({
 
 /* ——— Lazy-wrapped placeholder pages ——— */
 const ReadingPage = React.lazy(() =>
-  Promise.resolve({
-    default: () => (
-      <PlaceholderPage title="Reading" icon="📖" description="Improve your Japanese reading comprehension with graded passages" />
-    ),
-  })
+  import('./features/reading/ReadingPage')
 );
 const ListeningPage = React.lazy(() =>
   Promise.resolve({
@@ -87,18 +83,10 @@ const WritingPage = React.lazy(() =>
   })
 );
 const FlashcardsPage = React.lazy(() =>
-  Promise.resolve({
-    default: () => (
-      <PlaceholderPage title="Flashcards" icon="🃏" description="Review with FSRS spaced-repetition flashcards" />
-    ),
-  })
+  import('./features/flashcards/FlashcardsPage')
 );
 const QuizPage = React.lazy(() =>
-  Promise.resolve({
-    default: () => (
-      <PlaceholderPage title="Quiz" icon="⚡" description="Test your knowledge with adaptive quizzes" />
-    ),
-  })
+  import('./features/quiz/QuizPage')
 );
 const MockExamPage = React.lazy(() =>
   Promise.resolve({
@@ -143,11 +131,7 @@ const SearchPage = React.lazy(() =>
   })
 );
 const ProfilePage = React.lazy(() =>
-  Promise.resolve({
-    default: () => (
-      <PlaceholderPage title="Profile" icon="👤" description="View and customize your learner profile" />
-    ),
-  })
+  import('./features/profile/ProfilePage')
 );
 
 /* ——— Loading fallback ——— */
