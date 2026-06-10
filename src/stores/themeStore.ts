@@ -46,12 +46,10 @@ export const useThemeStore = create<ThemeState>()(
     }),
     {
       name: 'triolingo-theme',
-      onRehydrate: () => {
-        return (state) => {
-          if (state) {
-            document.documentElement.setAttribute('data-theme', state.currentTheme);
-          }
-        };
+      onRehydrateStorage: () => (state) => {
+        if (state) {
+          document.documentElement.setAttribute('data-theme', state.currentTheme);
+        }
       },
     }
   )

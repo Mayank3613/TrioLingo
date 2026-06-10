@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { useUserStore } from '../../stores/userStore';
 import {
   Trophy,
   Lock,
@@ -8,10 +7,8 @@ import {
   Target,
   BookOpen,
   PenTool,
-  Headphones,
   MessageSquare,
   Flame,
-  Calendar,
   Sparkles,
 } from 'lucide-react';
 
@@ -79,7 +76,6 @@ const MOCK_ACHIEVEMENTS: Achievement[] = [
 
 export function AchievementsPage() {
   const [selectedCategory, setSelectedCategory] = React.useState('all');
-  const { profile } = useUserStore();
 
   const filteredAchievements = selectedCategory === 'all'
     ? MOCK_ACHIEVEMENTS

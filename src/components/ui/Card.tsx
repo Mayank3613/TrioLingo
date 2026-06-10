@@ -26,16 +26,8 @@ export function Card({
     lg: 'p-7',
   };
 
-  const Component = hover ? motion.div : 'div';
-  const motionProps = hover
-    ? {
-        whileHover: { y: -4, boxShadow: 'var(--shadow-xl)' },
-        transition: { type: 'spring', stiffness: 300, damping: 20 },
-      }
-    : {};
-
   return (
-    <Component
+    <motion.div
       className={clsx(
         'rounded-2xl transition-all duration-200',
         paddingClasses[padding],
@@ -54,9 +46,10 @@ export function Card({
         }),
       }}
       onClick={onClick}
-      {...motionProps}
+      whileHover={hover ? { y: -4, boxShadow: 'var(--shadow-xl)' } : undefined}
+      transition={hover ? { type: 'spring' as const, stiffness: 300, damping: 20 } : undefined}
     >
       {children}
-    </Component>
+    </motion.div>
   );
 }

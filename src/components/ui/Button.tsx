@@ -1,9 +1,10 @@
 import React from 'react';
-import { motion } from 'motion/react';
+import { motion, HTMLMotionProps } from 'motion/react';
 import { Loader2 } from 'lucide-react';
 import { clsx } from 'clsx';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends Omit<HTMLMotionProps<"button">, 'children'> {
+  children?: React.ReactNode;
   variant?: 'primary' | 'secondary' | 'ghost' | 'danger';
   size?: 'sm' | 'md' | 'lg';
   isLoading?: boolean;
@@ -60,7 +61,7 @@ export function Button({
     <motion.button
       whileHover={{ scale: disabled ? 1 : 1.02, y: disabled ? 0 : -1 }}
       whileTap={{ scale: disabled ? 1 : 0.97 }}
-      transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+      transition={{ type: 'spring' as const, stiffness: 400, damping: 17 }}
       className={clsx(
         'inline-flex items-center justify-center rounded-lg transition-all duration-200 cursor-pointer',
         'focus:outline-none focus:ring-2 focus:ring-offset-2',

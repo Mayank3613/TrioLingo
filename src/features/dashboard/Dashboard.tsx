@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
+import confetti from 'canvas-confetti';
 import { useUserStore, getLevelTitle } from '../../stores/userStore';
 import { useStudyStore } from '../../stores/studyStore';
 import { useFSRSStore } from '../../stores/fsrsStore';
@@ -30,7 +31,7 @@ import {
 
 /* ──────────── Animated XP Ring ──────────── */
 function XPRing({ current, max, level }: { current: number; max: number; level: number }) {
-  const radius = 54;
+  const radius = 48;
   const circumference = 2 * Math.PI * radius;
   const pct = max > 0 ? Math.min(current / max, 1) : 0;
   const offset = circumference * (1 - pct);
@@ -39,7 +40,7 @@ function XPRing({ current, max, level }: { current: number; max: number; level: 
     <div className="relative w-32 h-32 flex-shrink-0">
       <svg viewBox="0 0 120 120" className="w-full h-full -rotate-90">
         {/* track */}
-        <circle cx="60" cy="60" r={radius} fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="7" />
+        <circle cx="60" cy="60" r={radius} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="6" />
         {/* glow layer */}
         <motion.circle
           cx="60"
@@ -47,13 +48,13 @@ function XPRing({ current, max, level }: { current: number; max: number; level: 
           r={radius}
           fill="none"
           stroke="url(#xpGrad)"
-          strokeWidth="10"
+          strokeWidth="8"
           strokeLinecap="round"
           strokeDasharray={circumference}
           initial={{ strokeDashoffset: circumference }}
           animate={{ strokeDashoffset: offset }}
           transition={{ duration: 1.2, ease: 'easeOut' }}
-          style={{ filter: 'blur(4px)', opacity: 0.5 }}
+          style={{ filter: 'blur(5px)', opacity: 0.6 }}
         />
         {/* progress */}
         <motion.circle
@@ -62,7 +63,7 @@ function XPRing({ current, max, level }: { current: number; max: number; level: 
           r={radius}
           fill="none"
           stroke="url(#xpGrad)"
-          strokeWidth="7"
+          strokeWidth="6"
           strokeLinecap="round"
           strokeDasharray={circumference}
           initial={{ strokeDashoffset: circumference }}
@@ -71,8 +72,8 @@ function XPRing({ current, max, level }: { current: number; max: number; level: 
         />
         <defs>
           <linearGradient id="xpGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#fbbf24" />
-            <stop offset="100%" stopColor="#f59e0b" />
+            <stop offset="0%" stopColor="var(--accent-primary)" />
+            <stop offset="100%" stopColor="var(--accent-secondary)" />
           </linearGradient>
         </defs>
       </svg>
@@ -159,15 +160,20 @@ function ActionCard({
       transition={{ delay, type: 'spring', stiffness: 260, damping: 20 }}
       whileHover={{ scale: 1.04, y: -4 }}
       whileTap={{ scale: 0.97 }}
-      className="rounded-2xl p-4 text-left text-white cursor-pointer w-full overflow-hidden"
+      className="rounded-2xl p-4 text-left text-white cursor-pointer w-full overflow-hidden relative"
       style={{ background: gradient, boxShadow: 'var(--shadow-lg)' }}
       onClick={onClick}
     >
-      <div className="w-9 h-9 rounded-xl flex items-center justify-center mb-2 bg-white/20 flex-shrink-0">
-        {icon}
+      {/* Shimmer sweep overlay */}
+      <div className="absolute inset-0 animate-shimmer pointer-events-none" />
+
+      <div className="relative z-10">
+        <div className="w-9 h-9 rounded-xl flex items-center justify-center mb-2 bg-white/20 flex-shrink-0">
+          {icon}
+        </div>
+        <div className="text-sm font-bold truncate">{title}</div>
+        <div className="text-[11px] opacity-80 mt-0.5 truncate">{subtitle}</div>
       </div>
-      <div className="text-sm font-bold truncate">{title}</div>
-      <div className="text-[11px] opacity-80 mt-0.5 truncate">{subtitle}</div>
     </motion.button>
   );
 }
@@ -204,6 +210,35 @@ export default function Dashboard() {
   const completedGoals = dailyGoals.filter((g) => g.current >= g.target).length;
   const dailyPct = dailyGoals.length > 0 ? Math.round((completedGoals / dailyGoals.length) * 100) : 0;
 
+  React.useEffect(() => {
+    if (dailyPct === 100) {
+      const duration = 2 * 1000;
+      const end = Date.now() + duration;
+
+      const frame = () => {
+        confetti({
+          particleCount: 4,
+          angle: 60,
+          spread: 60,
+          origin: { x: 0, y: 0.8 },
+          colors: ['#6366f1', '#ec4899', '#22c55e', '#fbbf24']
+        });
+        confetti({
+          particleCount: 4,
+          angle: 120,
+          spread: 60,
+          origin: { x: 1, y: 0.8 },
+          colors: ['#6366f1', '#ec4899', '#22c55e', '#fbbf24']
+        });
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      };
+      frame();
+    }
+  }, [dailyPct]);
+
   return (
     <div className="p-6 overflow-y-auto h-full pb-20 space-y-5">
       {/* ── Hero Welcome ── */}
@@ -214,9 +249,12 @@ export default function Dashboard() {
         className="rounded-2xl p-5 flex items-center gap-5 relative overflow-hidden"
         style={{
           background: 'var(--gradient-hero)',
-          boxShadow: '0 20px 40px -10px rgba(99, 102, 241, 0.3)',
+          boxShadow: 'var(--shadow-xl), var(--shadow-glow)',
         }}
       >
+        {/* Shimmer sweep overlay */}
+        <div className="absolute inset-0 animate-shimmer pointer-events-none" />
+
         {/* Decorative elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full" style={{ background: 'rgba(255,255,255,0.06)' }} />
@@ -235,7 +273,7 @@ export default function Dashboard() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
           >
-            Welcome back, {profile.displayName}!
+            Welcome back, {profile.displayName}! 👋
           </motion.h1>
           <motion.p
             className="text-white/70 text-sm mt-1"
@@ -246,8 +284,27 @@ export default function Dashboard() {
             おかえりなさい · {getLevelTitle(profile.currentLevel)}
           </motion.p>
 
+          {/* Level Progress Indicator */}
           <motion.div
-            className="mt-3 flex items-center gap-2 flex-wrap"
+            className="mt-3 max-w-[240px]"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.35 }}
+          >
+            <div className="flex justify-between text-[10px] text-white/85 font-semibold mb-1 uppercase tracking-wider">
+              <span>Next Level Progress</span>
+              <span>{Math.round((profile.currentXP / profile.xpToNextLevel) * 100)}%</span>
+            </div>
+            <div className="w-full bg-white/20 h-1.5 rounded-full overflow-hidden border border-white/5">
+              <div 
+                className="bg-white h-full rounded-full transition-all duration-700 ease-out"
+                style={{ width: `${Math.min((profile.currentXP / profile.xpToNextLevel) * 100, 100)}%` }}
+              />
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="mt-4 flex items-center gap-2 flex-wrap"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
@@ -267,29 +324,32 @@ export default function Dashboard() {
       {/* ── Stat Cards ── */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         <StatCard
-          icon={<Flame size={20} className="text-orange-400" />}
+          icon={<Flame size={20} className="text-orange-500 dark:text-orange-400" />}
           label="Study Streak"
           value={profile.currentStreak}
           suffix="days"
+          gradient="linear-gradient(135deg, rgba(249,115,22,0.15), rgba(234,88,12,0.08))"
           delay={0.15}
         />
         <StatCard
-          icon={<Sparkles size={20} className="text-yellow-400" />}
+          icon={<Sparkles size={20} className="text-amber-500 dark:text-amber-400" />}
           label="XP Today"
           value={profile.currentXP}
-          gradient="linear-gradient(135deg, rgba(251,191,36,0.15), rgba(245,158,11,0.1))"
+          gradient="linear-gradient(135deg, rgba(245,158,11,0.15), rgba(217,119,6,0.08))"
           delay={0.2}
         />
         <StatCard
-          icon={<Clock size={20} className="text-blue-400" />}
+          icon={<Clock size={20} className="text-blue-500 dark:text-blue-400" />}
           label="Reviews Due"
           value={reviewsDue}
+          gradient="linear-gradient(135deg, rgba(59,130,246,0.15), rgba(37,99,235,0.08))"
           delay={0.25}
         />
         <StatCard
-          icon={<BookOpen size={20} className="text-emerald-400" />}
+          icon={<BookOpen size={20} className="text-emerald-500 dark:text-emerald-400" />}
           label="Lessons Available"
           value={lessonsAvailable}
+          gradient="linear-gradient(135deg, rgba(16,185,129,0.15), rgba(5,150,105,0.08))"
           delay={0.3}
         />
       </div>
@@ -390,13 +450,35 @@ export default function Dashboard() {
                 <Radar
                   name="Skills"
                   dataKey="value"
-                  stroke="#6366f1"
-                  fill="#6366f1"
-                  fillOpacity={0.25}
-                  strokeWidth={2}
+                  stroke="var(--accent-primary)"
+                  fill="var(--accent-primary)"
+                  fillOpacity={0.2}
+                  strokeWidth={2.5}
+                  dot={{ r: 3.5, fill: 'var(--accent-primary)', strokeWidth: 1.5, stroke: 'var(--bg-card)' }}
                 />
               </RadarChart>
             </ResponsiveContainer>
+
+            {/* Mini Skill Grid for exact numeric breakdown */}
+            <div className="grid grid-cols-3 gap-3 mt-5 pt-4 border-t border-[var(--border-secondary)]">
+              {RADAR_DATA.map((item) => (
+                <div key={item.skill} className="flex flex-col min-w-0">
+                  <span className="text-[10px] font-semibold text-[var(--text-tertiary)] uppercase tracking-wider truncate">
+                    {item.skill}
+                  </span>
+                  <span className="text-sm font-bold text-[var(--text-primary)] mt-0.5">
+                    {item.value}%
+                  </span>
+                  {/* progress micro-bar */}
+                  <div className="w-full bg-[var(--bg-tertiary)] h-1 rounded-full mt-1.5 overflow-hidden">
+                    <div 
+                      className="bg-[var(--accent-primary)] h-full rounded-full transition-all duration-500 ease-out"
+                      style={{ width: `${item.value}%` }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
           </Card>
         </motion.div>
       </div>
@@ -417,7 +499,7 @@ export default function Dashboard() {
             icon={<Play size={20} />}
             title="Continue Lesson"
             subtitle="JLPT N5 · Verbs"
-            gradient="linear-gradient(135deg, #6366f1, #8b5cf6)"
+            gradient="var(--gradient-primary)"
             delay={0.55}
             onClick={() => navigate('/vocabulary')}
           />
@@ -425,7 +507,7 @@ export default function Dashboard() {
             icon={<Layers size={20} />}
             title="Review Flashcards"
             subtitle={`${reviewsDue} cards due`}
-            gradient="linear-gradient(135deg, #ec4899, #f472b6)"
+            gradient="var(--gradient-accent)"
             delay={0.6}
             onClick={() => navigate('/flashcards')}
           />
@@ -433,7 +515,7 @@ export default function Dashboard() {
             icon={<Zap size={20} />}
             title="Take a Quiz"
             subtitle="5 min quick quiz"
-            gradient="linear-gradient(135deg, #22c55e, #4ade80)"
+            gradient="var(--gradient-success)"
             delay={0.65}
             onClick={() => navigate('/quiz')}
           />
@@ -441,7 +523,7 @@ export default function Dashboard() {
             icon={<PenTool size={20} />}
             title="Practice Kanji"
             subtitle="Stroke order drill"
-            gradient="linear-gradient(135deg, #f59e0b, #fbbf24)"
+            gradient="var(--gradient-xp)"
             delay={0.7}
             onClick={() => navigate('/kanji')}
           />
@@ -465,7 +547,8 @@ export default function Dashboard() {
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.8 + i * 0.05 }}
-                className="flex items-center gap-3 py-2 border-b last:border-b-0"
+                whileHover={{ x: 4 }}
+                className="flex items-center gap-3 py-2 border-b last:border-b-0 px-2 -mx-2 rounded-lg hover:bg-[var(--bg-hover)] transition-colors duration-150"
                 style={{ borderColor: 'var(--border-secondary)' }}
               >
                 <div

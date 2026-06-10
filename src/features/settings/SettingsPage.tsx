@@ -4,9 +4,6 @@ import { useThemeStore, THEMES, type ThemeId } from '../../stores/themeStore';
 import { useUserStore } from '../../stores/userStore';
 import {
   Palette,
-  Monitor,
-  Moon,
-  Sun,
   Lock,
   Check,
   Volume2,
