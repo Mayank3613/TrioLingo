@@ -44,17 +44,18 @@ Whether you're learning your first hiragana or grinding for the N1 exam, TrioLin
 ### 📚 Core Learning Modules
 | Module | Description | Status |
 |--------|-------------|--------|
-| **Vocabulary** | 18,000+ words with JLPT N5→N1 filtering, mastery tracking | ✅ Built |
-| **Kanji** | Interactive kanji grid with On/Kun readings, stroke count, examples | ✅ Built |
-| **Grammar** | Pattern-based learning with formations, examples, and study notes | ✅ Built |
-| **Reading** | Graded passages with comprehension questions | 🔜 Phase 2 |
-| **Listening** | Audio exercises with speed control | 🔜 Phase 2 |
-| **Speaking** | Pronunciation practice with AI feedback | 🔜 Phase 3 |
-| **Writing** | Stroke order practice for hiragana, katakana, kanji | 🔜 Phase 3 |
+| **Vocabulary** | 400+ words with JLPT N5→N1 filtering, FSRS flashcard integration | ✅ Built |
+| **Kanji** | 300 kanji with On/Kun readings, stroke count, examples, FSRS integration | ✅ Built |
+| **Grammar** | 100 grammar points with formations, examples, notes, FSRS integration | ✅ Built |
+| **Reading** | 15 graded passages (N5–N1) with comprehension quizzes & translation toggle | ✅ Built |
+| **Listening** | Audio exercises with speed control | 🔜 Phase 4 |
+| **Speaking** | Pronunciation practice with AI feedback | 🔜 Phase 4 |
+| **Writing** | Stroke order practice for hiragana, katakana, kanji | 🔜 Phase 4 |
 
 ### 🧠 Study Tools
-- **🃏 Flashcards** — FSRS-powered spaced repetition (Free Spaced Repetition Scheduler)
-- **⚡ Quick Quizzes** — Adaptive quizzes that target your weak areas
+- **🃏 Flashcards** — ✅ FSRS-powered spaced repetition with 3D card flip, rating buttons (Again/Hard/Good/Easy), session stats
+- **⚡ Quick Quizzes** — ✅ Adaptive quizzes with multiple-choice & type-answer, JLPT level/category selection, results breakdown
+- **👤 Profile** — ✅ Editable avatar, XP progress, study heatmap (16 weeks), flashcard category breakdown
 - **🎓 Mock Exams** — Full-length JLPT simulations with timed sections
 - **🤖 AI Tutor** — Personalized explanations and conversation practice
 
@@ -80,7 +81,11 @@ Whether you're learning your first hiragana or grinding for the N1 exam, TrioLin
 - **Spring-based animations** (Motion/Framer Motion)
 - **Collapsible sidebar** with smooth 260→72px transition
 - **Page transitions** with AnimatePresence
-- **JLPT Readiness Radar Chart** for skill analysis
+- **JLPT Readiness Radar Chart** with per-skill micro-progress bars
+- **Shimmer overlays** on hero banners and action cards
+- **Confetti celebration** when daily goals are completed
+- **Level progress indicator** in hero welcome card
+- **Theme-adaptive** colors — charts, rings, and cards match active theme
 - **Responsive layouts** that feel premium on every screen size
 
 ---
@@ -148,11 +153,19 @@ TrioLingo++/
 │   ├── App.tsx                           # Router (19 routes, code-split)
 │   ├── index.css                         # Design system + 6 themes
 │   │
+│   ├── data/                             # Curated Japanese language datasets
+│   │   ├── vocabData.ts                  # 400+ words across JLPT N5–N1
+│   │   ├── kanjiData.ts                  # 300 kanji with readings & examples
+│   │   ├── grammarData.ts                # 100 grammar points with explanations
+│   │   └── readingData.ts                # 15 graded passages with comprehension Qs
+│   │
 │   ├── stores/                           # Zustand state management
 │   │   ├── themeStore.ts                 # Theme switching + level-gated unlocks
 │   │   ├── userStore.ts                  # XP, leveling, streaks, profile
 │   │   ├── studyStore.ts                 # Daily goals, activity feed
-│   │   └── sidebarStore.ts              # Sidebar collapse state
+│   │   ├── sidebarStore.ts               # Sidebar collapse state
+│   │   ├── fsrsStore.ts                  # FSRS spaced repetition engine
+│   │   └── quizStore.ts                  # Quiz session & question generation
 │   │
 │   ├── components/
 │   │   ├── ui/                           # Reusable component library
@@ -162,7 +175,7 @@ TrioLingo++/
 │   │   │   ├── Badge.tsx                 # 7 variants (XP, coin, success...)
 │   │   │   ├── Modal.tsx                 # Spring animation + backdrop
 │   │   │   ├── Input.tsx                 # Label, error, icon support
-│   │   │   └── Tooltip.tsx              # 4-directional, animated
+│   │   │   └── Tooltip.tsx               # 4-directional, animated
 │   │   │
 │   │   └── layout/
 │   │       ├── Sidebar.tsx               # Collapsible nav + XP display
@@ -170,12 +183,16 @@ TrioLingo++/
 │   │       └── MainLayout.tsx            # Responsive shell + transitions
 │   │
 │   └── features/
-│       ├── dashboard/Dashboard.tsx        # XP ring, stats, radar, actions
-│       ├── vocabulary/VocabularyPage.tsx   # Word grid + search + expand
-│       ├── kanji/KanjiPage.tsx            # Kanji grid + detail panel
-│       ├── grammar/GrammarPage.tsx        # Expandable grammar cards
+│       ├── dashboard/Dashboard.tsx        # XP ring, stats, radar, confetti, shimmer
+│       ├── vocabulary/VocabularyPage.tsx   # Word grid + search + FSRS integration
+│       ├── kanji/KanjiPage.tsx            # Kanji grid + detail + flashcard add
+│       ├── grammar/GrammarPage.tsx        # Expandable grammar cards + FSRS
+│       ├── reading/ReadingPage.tsx        # Graded passages + comprehension quiz
+│       ├── flashcards/FlashcardsPage.tsx  # 3D flip cards + FSRS review session
+│       ├── quiz/QuizPage.tsx             # Adaptive quiz engine + results
+│       ├── profile/ProfilePage.tsx        # Avatar, heatmap, stats, categories
 │       ├── settings/SettingsPage.tsx       # Theme selector + preferences
-│       └── achievements/AchievementsPage.tsx # 24+ achievements
+│       └── achievements/AchievementsPage.tsx # 24+ achievements across 7 categories
 │
 ├── src-tauri/                            # Tauri 2 Rust backend
 │   ├── tauri.conf.json                   # App config
@@ -201,28 +218,37 @@ TrioLingo++/
 - [x] Achievements system (24+ achievements)
 - [x] Animated sidebar + page transitions
 
-### Phase 2 — Data & Content (In Progress)
-- [ ] SQLite database with tauri-plugin-sql
-- [ ] JMdict/KANJIDIC2 data import pipeline
-- [ ] Full-text search with FTS5
-- [ ] FSRS spaced repetition engine
-- [ ] Reading passages with comprehension
+### Phase 2 — Data & Study Engine ✅
+- [x] Curated data sets: 400+ vocab, 300 kanji, 100 grammar, 15 reading passages
+- [x] FSRS spaced repetition engine (ts-fsrs + Zustand persist)
+- [x] Quiz engine with multiple-choice & type-answer question generation
+- [x] Reading passages with comprehension quizzes
+- [x] Flashcard review sessions with 3D flip animation & FSRS rating
+- [x] Profile page with study heatmap, stats grid, avatar picker
 
-### Phase 3 — Interactive Learning
-- [ ] Flashcard review sessions
-- [ ] Quiz engine (multiple choice, typing, matching)
+### Phase 3 — UI Polish & Premium Experience ✅
+- [x] Theme-adaptive dashboard (XP ring, radar, action cards, stat icons)
+- [x] Shimmer overlays and confetti celebration effects
+- [x] Level progress indicator in hero card
+- [x] Micro-progress skill breakdown grid under radar chart
+- [x] Interactive recent activity feed with hover animations
+- [x] TypeScript strict cleanup across all components
+
+### Phase 4 — Interactive Learning (Next)
+- [ ] Analytics dashboard with study trends & retention curves
+- [ ] Search page across vocab, kanji, grammar
 - [ ] Writing practice with stroke recognition
 - [ ] Mock JLPT exam simulator
+- [ ] Listening exercises with audio playback
 
-### Phase 4 — AI & Advanced Features
+### Phase 5 — AI & Advanced Features
 - [ ] AI Tutor with conversation practice
 - [ ] Speech-to-text for pronunciation feedback
 - [ ] Career Mode story paths
 - [ ] Mini games (word puzzles, kanji match)
 
-### Phase 5 — Analytics & Social
-- [ ] Detailed learning analytics dashboard
-- [ ] Study heatmap and retention curves
+### Phase 6 — Social & Export
+- [ ] Detailed learning analytics
 - [ ] Export/import study data
 - [ ] Leaderboards
 
