@@ -48,23 +48,26 @@ Whether you're learning your first hiragana or grinding for the N1 exam, TrioLin
 | **Kanji** | 300 kanji with On/Kun readings, stroke count, examples, FSRS integration | ✅ Built |
 | **Grammar** | 100 grammar points with formations, examples, notes, FSRS integration | ✅ Built |
 | **Reading** | 15 graded passages (N5–N1) with comprehension quizzes & translation toggle | ✅ Built |
-| **Listening** | Audio exercises with speed control | 🔜 Phase 4 |
-| **Speaking** | Pronunciation practice with AI feedback | 🔜 Phase 4 |
-| **Writing** | Stroke order practice for hiragana, katakana, kanji | 🔜 Phase 4 |
+| **Listening** | TTS-powered audio exercises with dictation mode, speed controls, JLPT levels | ✅ Built |
+| **Speaking** | Pronunciation practice with Web Speech API, self-rating, session results | ✅ Built |
+| **Writing** | Canvas stroke practice for hiragana (46), katakana (46), kanji (20) with undo | ✅ Built |
 
 ### 🧠 Study Tools
 - **🃏 Flashcards** — ✅ FSRS-powered spaced repetition with 3D card flip, rating buttons (Again/Hard/Good/Easy), session stats
 - **⚡ Quick Quizzes** — ✅ Adaptive quizzes with multiple-choice & type-answer, JLPT level/category selection, results breakdown
 - **👤 Profile** — ✅ Editable avatar, XP progress, study heatmap (16 weeks), flashcard category breakdown
-- **🎓 Mock Exams** — Full-length JLPT simulations with timed sections
-- **🤖 AI Tutor** — Personalized explanations and conversation practice
+- **🎓 Mock Exams** — ✅ Full JLPT simulation with 30 timed questions across vocab/kanji/grammar sections, animated score reveal, pass/fail with confetti
+- **🤖 AI Tutor** — ✅ Simulated chat interface with 6 conversation topics, typing indicators, guided dialogue with XP rewards
+- **📊 Analytics** — ✅ Study analytics dashboard with XP chart, category pie chart, JLPT progress bars, GitHub-style heatmap
+- **🔍 Search** — ✅ Unified search across all data sets with category filters, type-specific result cards, debounced filtering
+- **🎮 Mini Games** — ✅ 3 playable games: Word Match, Kanji Memory, Speed Type
 
 ### 🎮 Gamification & Engagement
 - **🔥 Streak System** — Daily study streaks with flame animations
 - **⭐ XP & Leveling** — Earn XP for every activity, level up with titles
 - **🪙 Coin Economy** — Earn coins to unlock premium themes and content
 - **🏆 24+ Achievements** — Across 7 categories including hidden achievements
-- **🗺️ Career Mode** — Story-driven learning paths through Japanese scenarios
+- **🗺️ Career Mode** — ✅ Story-driven learning path with 5 chapters (N5→N1), scenario lists, level-gated progression
 
 ### 🎨 6 Premium Themes
 | Theme | Vibe | Unlock |
@@ -234,23 +237,24 @@ TrioLingo++/
 - [x] Interactive recent activity feed with hover animations
 - [x] TypeScript strict cleanup across all components
 
-### Phase 4 — Interactive Learning (Next)
-- [ ] Analytics dashboard with study trends & retention curves
-- [ ] Search page across vocab, kanji, grammar
-- [ ] Writing practice with stroke recognition
-- [ ] Mock JLPT exam simulator
-- [ ] Listening exercises with audio playback
+### Phase 4 — Interactive Learning ✅
+- [x] Analytics dashboard with study trends, XP chart, category breakdown, heatmap
+- [x] Unified search page across vocab, kanji, grammar, reading
+- [x] Mock JLPT exam simulator with timed sections and score breakdown
+- [x] Mini Games hub: Word Match, Kanji Memory, Speed Type
+- [x] Listening practice with TTS, speed controls, and dictation mode
+- [x] Speaking practice with speech recognition and self-assessment
+- [x] Writing practice with canvas stroke drawing and undo
 
-### Phase 5 — AI & Advanced Features
-- [ ] AI Tutor with conversation practice
-- [ ] Speech-to-text for pronunciation feedback
-- [ ] Career Mode story paths
-- [ ] Mini games (word puzzles, kanji match)
+### Phase 5 — AI & Story Features ✅
+- [x] AI Tutor chat interface with 6 guided conversation topics
+- [x] Career Mode with 5 story chapters (N5→N1) and scenario progression
 
-### Phase 6 — Social & Export
-- [ ] Detailed learning analytics
+### Phase 6 — Social & Export (Next)
+- [ ] Detailed retention analytics and learning curves
 - [ ] Export/import study data
 - [ ] Leaderboards
+- [ ] Cloud sync between devices
 
 ---
 
