@@ -7,7 +7,10 @@
 
 <p align="center">
   <em>Master Japanese from absolute beginner to JLPT N1 — beautifully.</em>
+  <br />
+  🚀 <strong><a href="https://triolingolang.netlify.app">Live Web App Demo</a></strong>
 </p>
+
 
 <p align="center">
   <img src="https://img.shields.io/badge/Tauri-2.0-blue?style=flat-square&logo=tauri&logoColor=white" alt="Tauri 2"/>
