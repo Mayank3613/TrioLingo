@@ -22,65 +22,19 @@ const AchievementsPage = React.lazy(() =>
   import('./features/achievements/AchievementsPage').then((m) => ({ default: m.AchievementsPage }))
 );
 
-/* ——— Placeholder for pages not yet built ——— */
-function PlaceholderPage({
-  title,
-  icon,
-  description,
-}: {
-  title: string;
-  icon: string;
-  description: string;
-}) {
-  return (
-    <div className="flex flex-col items-center justify-center h-full gap-4">
-      <span className="text-6xl">{icon}</span>
-      <h1
-        className="text-2xl font-bold"
-        style={{ color: 'var(--text-primary)' }}
-      >
-        {title}
-      </h1>
-      <p className="text-sm max-w-md text-center" style={{ color: 'var(--text-secondary)' }}>
-        {description}
-      </p>
-      <span
-        className="px-3 py-1 rounded-full text-xs font-medium"
-        style={{
-          background: 'var(--bg-tertiary)',
-          color: 'var(--text-tertiary)',
-        }}
-      >
-        Coming in Phase 2
-      </span>
-    </div>
-  );
-}
 
-/* ——— Lazy-wrapped placeholder pages ——— */
+/* ——— Lazy-wrapped pages ——— */
 const ReadingPage = React.lazy(() =>
   import('./features/reading/ReadingPage')
 );
 const ListeningPage = React.lazy(() =>
-  Promise.resolve({
-    default: () => (
-      <PlaceholderPage title="Listening" icon="🎧" description="Sharpen your Japanese listening skills with audio exercises" />
-    ),
-  })
+  import('./features/listening/ListeningPage').then((m) => ({ default: m.ListeningPage }))
 );
 const SpeakingPage = React.lazy(() =>
-  Promise.resolve({
-    default: () => (
-      <PlaceholderPage title="Speaking" icon="🎙️" description="Practice Japanese pronunciation with AI feedback" />
-    ),
-  })
+  import('./features/speaking/SpeakingPage').then((m) => ({ default: m.SpeakingPage }))
 );
 const WritingPage = React.lazy(() =>
-  Promise.resolve({
-    default: () => (
-      <PlaceholderPage title="Writing" icon="✍️" description="Practice writing hiragana, katakana, and kanji" />
-    ),
-  })
+  import('./features/writing/WritingPage').then((m) => ({ default: m.WritingPage }))
 );
 const FlashcardsPage = React.lazy(() =>
   import('./features/flashcards/FlashcardsPage')
@@ -92,21 +46,13 @@ const MockExamPage = React.lazy(() =>
   import('./features/mock-exam/MockExamPage').then((m) => ({ default: m.MockExamPage }))
 );
 const CareerPage = React.lazy(() =>
-  Promise.resolve({
-    default: () => (
-      <PlaceholderPage title="Career Mode" icon="🗺️" description="Progress through immersive Japanese scenarios from N5 to N1" />
-    ),
-  })
+  import('./features/career/CareerPage').then((m) => ({ default: m.CareerPage }))
 );
 const MiniGamesPage = React.lazy(() =>
   import('./features/mini-games/MiniGamesPage').then((m) => ({ default: m.MiniGamesPage }))
 );
 const AITutorPage = React.lazy(() =>
-  Promise.resolve({
-    default: () => (
-      <PlaceholderPage title="AI Tutor" icon="🤖" description="Get personalized explanations and conversation practice" />
-    ),
-  })
+  import('./features/ai-tutor/AITutorPage').then((m) => ({ default: m.AITutorPage }))
 );
 const AnalyticsPage = React.lazy(() =>
   import('./features/analytics/AnalyticsPage').then((m) => ({ default: m.AnalyticsPage }))

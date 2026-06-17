@@ -9,6 +9,7 @@ interface CardProps {
   gradient?: boolean;
   padding?: 'none' | 'sm' | 'md' | 'lg';
   onClick?: () => void;
+  style?: React.CSSProperties;
 }
 
 export function Card({
@@ -18,6 +19,7 @@ export function Card({
   gradient = false,
   padding = 'md',
   onClick,
+  style,
 }: CardProps) {
   const paddingClasses = {
     none: '',
@@ -44,6 +46,7 @@ export function Card({
           borderImage: 'var(--gradient-primary) 1',
           borderImageSlice: '1 1 0 0',
         }),
+        ...style,
       }}
       onClick={onClick}
       whileHover={hover ? { y: -4, boxShadow: 'var(--shadow-xl)' } : undefined}
