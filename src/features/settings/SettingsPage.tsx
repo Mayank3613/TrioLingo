@@ -12,7 +12,20 @@ import {
   Shield,
   Download,
   Info,
+  Bot,
+  Eye,
+  EyeOff,
+  ExternalLink,
+  Loader2,
+  CheckCircle,
+  XCircle,
 } from 'lucide-react';
+import {
+  getApiKey,
+  setApiKey,
+  removeApiKey,
+  testApiKey,
+} from '../../services/aiService';
 
 function ThemeCard({
   theme,
@@ -128,7 +141,127 @@ function SettingSection({ title, icon, children }: SettingSectionProps) {
   );
 }
 
+function AITutorSettings() {
+  const [apiKey, setKey] = React.useState(getApiKey() || '');
+  const [showKey, setShowKey] = React.useState(false);
+  const [testStatus, setTestStatus] = React.useState<'idle' | 'testing' | 'success' | 'error'>('idle');
+
+  const handleSave = () => {
+    if (apiKey.trim()) {
+      setApiKey(apiKey.trim());
+      setTestStatus('idle');
+    }
+  };
+
+  const handleRemove = () => {
+    removeApiKey();
+    setKey('');
+    setTestStatus('idle');
+  };
+
+  const handleTest = async () => {
+    if (!apiKey.trim()) return;
+    setTestStatus('testing');
+    try {
+      const ok = await testApiKey(apiKey.trim());
+      setTestStatus(ok ? 'success' : 'error');
+    } catch {
+      setTestStatus('error');
+    }
+  };
+
+  return (
+    <SettingSection title="AI Tutor" icon={<Bot size={18} />}>
+      <p className="text-sm mb-4" style={{ color: 'var(--text-secondary)' }}>
+        Connect to Google Gemini for live AI-powered conversations.
+      </p>
+
+      {/* API Key Input */}
+      <div className="space-y-3">
+        <div className="flex gap-2">
+          <div className="relative flex-1">
+            <input
+              type={showKey ? 'text' : 'password'}
+              value={apiKey}
+              onChange={(e) => { setKey(e.target.value); setTestStatus('idle'); }}
+              placeholder="Enter your Gemini API key..."
+              className="w-full px-3 py-2 pr-10 rounded-lg text-sm"
+              style={{
+                background: 'var(--bg-tertiary)',
+                color: 'var(--text-primary)',
+                border: '1px solid var(--border-primary)',
+              }}
+            />
+            <button
+              onClick={() => setShowKey(!showKey)}
+              className="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded"
+              style={{ color: 'var(--text-tertiary)' }}
+            >
+              {showKey ? <EyeOff size={14} /> : <Eye size={14} />}
+            </button>
+          </div>
+          <button
+            onClick={handleSave}
+            className="px-4 py-2 rounded-lg text-sm font-medium"
+            style={{ background: 'var(--accent-primary)', color: 'white' }}
+          >
+            Save
+          </button>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex items-center gap-3">
+          <button
+            onClick={handleTest}
+            disabled={testStatus === 'testing' || !apiKey.trim()}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-opacity"
+            style={{
+              background: 'var(--bg-tertiary)',
+              color: 'var(--text-primary)',
+              border: '1px solid var(--border-primary)',
+              opacity: (!apiKey.trim() || testStatus === 'testing') ? 0.5 : 1,
+            }}
+          >
+            {testStatus === 'testing' ? (
+              <><Loader2 size={12} className="animate-spin" /> Testing...</>
+            ) : testStatus === 'success' ? (
+              <><CheckCircle size={12} style={{ color: '#22c55e' }} /> Connected!</>
+            ) : testStatus === 'error' ? (
+              <><XCircle size={12} style={{ color: '#ef4444' }} /> Invalid Key</>
+            ) : (
+              <>Test Connection</>
+            )}
+          </button>
+
+          {getApiKey() && (
+            <button
+              onClick={handleRemove}
+              className="text-xs px-3 py-1.5 rounded-lg"
+              style={{ color: '#ef4444', background: 'var(--bg-tertiary)' }}
+            >
+              Remove Key
+            </button>
+          )}
+        </div>
+
+        {/* Help Link */}
+        <a
+          href="https://aistudio.google.com/app/apikey"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-1.5 text-xs"
+          style={{ color: 'var(--accent-primary)' }}
+        >
+          <ExternalLink size={12} />
+          Get a free API key from Google AI Studio
+        </a>
+      </div>
+    </SettingSection>
+  );
+}
+
 export function SettingsPage() {
+
   const { currentTheme, unlockedThemes, setTheme } = useThemeStore();
   const { profile } = useUserStore();
 
@@ -161,6 +294,9 @@ export function SettingsPage() {
           ))}
         </div>
       </SettingSection>
+
+      {/* AI Tutor */}
+      <AITutorSettings />
 
       {/* Study Settings */}
       <SettingSection title="Study Preferences" icon={<Globe size={18} />}>

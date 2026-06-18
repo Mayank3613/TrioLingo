@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { tauriStorage } from '../services/tauriStorage';
 import {
   createEmptyCard,
   fsrs,
@@ -213,6 +214,7 @@ export const useFSRSStore = create<FSRSState>()(
     }),
     {
       name: 'triolingo-fsrs',
+      storage: tauriStorage,
     }
   )
 );

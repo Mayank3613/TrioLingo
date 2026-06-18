@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { tauriStorage } from '../services/tauriStorage';
 
 export interface UserProfile {
   username: string;
@@ -144,6 +145,7 @@ export const useUserStore = create<UserState>()(
     }),
     {
       name: 'triolingo-user',
+      storage: tauriStorage,
     }
   )
 );

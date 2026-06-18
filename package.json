@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.75.0",
+    "@tauri-apps/plugin-fs": "^2.5.1",
     "canvas-confetti": "^1.9.3",
     "clsx": "^2.1.1",
     "lucide-react": "^0.510.0",

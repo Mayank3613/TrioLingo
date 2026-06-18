@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { tauriStorage } from '../services/tauriStorage';
 
 export interface DailyGoal {
   id: string;
@@ -79,6 +80,7 @@ export const useStudyStore = create<StudyState>()(
     }),
     {
       name: 'triolingo-study',
+      storage: tauriStorage,
     }
   )
 );

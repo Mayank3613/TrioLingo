@@ -1,0 +1,3903 @@
+[
+  {
+    "id": 1,
+    "character": "日",
+    "meaning": "day, sun",
+    "onyomi": "ニチ、ジツ",
+    "kunyomi": "ひ、-び、-か",
+    "jlptLevel": "N5",
+    "strokeCount": 4,
+    "examples": [
+      "日本 (にほん) - Japan",
+      "今日 (きょう) - today",
+      "日曜日 (にちようび) - Sunday"
+    ]
+  },
+  {
+    "id": 2,
+    "character": "月",
+    "meaning": "month, moon",
+    "onyomi": "ゲツ、ガツ",
+    "kunyomi": "つき",
+    "jlptLevel": "N5",
+    "strokeCount": 4,
+    "examples": [
+      "月曜日 (げつようび) - Monday",
+      "今月 (こんげつ) - this month"
+    ]
+  },
+  {
+    "id": 3,
+    "character": "火",
+    "meaning": "fire",
+    "onyomi": "カ",
+    "kunyomi": "ひ、-び、ほ-",
+    "jlptLevel": "N5",
+    "strokeCount": 4,
+    "examples": [
+      "火曜日 (かようび) - Tuesday",
+      "花火 (はなび) - fireworks"
+    ]
+  },
+  {
+    "id": 4,
+    "character": "水",
+    "meaning": "water",
+    "onyomi": "スイ",
+    "kunyomi": "みず",
+    "jlptLevel": "N5",
+    "strokeCount": 4,
+    "examples": [
+      "水曜日 (すいようび) - Wednesday",
+      "水 (みず) - water"
+    ]
+  },
+  {
+    "id": 5,
+    "character": "木",
+    "meaning": "tree, wood",
+    "onyomi": "モク、ボク",
+    "kunyomi": "き、こ-",
+    "jlptLevel": "N5",
+    "strokeCount": 4,
+    "examples": [
+      "木曜日 (もくようび) - Thursday",
+      "木 (き) - tree"
+    ]
+  },
+  {
+    "id": 6,
+    "character": "金",
+    "meaning": "gold, money",
+    "onyomi": "キン、コン",
+    "kunyomi": "かね、かな-",
+    "jlptLevel": "N5",
+    "strokeCount": 8,
+    "examples": [
+      "金曜日 (きんようび) - Friday",
+      "お金 (おかね) - money"
+    ]
+  },
+  {
+    "id": 7,
+    "character": "土",
+    "meaning": "earth, soil",
+    "onyomi": "ド、ト",
+    "kunyomi": "つち",
+    "jlptLevel": "N5",
+    "strokeCount": 3,
+    "examples": [
+      "土曜日 (どようび) - Saturday",
+      "土地 (とち) - land"
+    ]
+  },
+  {
+    "id": 8,
+    "character": "人",
+    "meaning": "person",
+    "onyomi": "ジン、ニン",
+    "kunyomi": "ひと",
+    "jlptLevel": "N5",
+    "strokeCount": 2,
+    "examples": [
+      "日本人 (にほんじん) - Japanese person",
+      "一人 (ひとり) - one person"
+    ]
+  },
+  {
+    "id": 9,
+    "character": "大",
+    "meaning": "big, large",
+    "onyomi": "ダイ、タイ",
+    "kunyomi": "おお-、おお.きい",
+    "jlptLevel": "N5",
+    "strokeCount": 3,
+    "examples": [
+      "大学 (だいがく) - university",
+      "大きい (おおきい) - big"
+    ]
+  },
+  {
+    "id": 10,
+    "character": "小",
+    "meaning": "small, little",
+    "onyomi": "ショウ",
+    "kunyomi": "ちい.さい、こ-、お-",
+    "jlptLevel": "N5",
+    "strokeCount": 3,
+    "examples": [
+      "小学校 (しょうがっこう) - elementary school",
+      "小さい (ちいさい) - small"
+    ]
+  },
+  {
+    "id": 11,
+    "character": "中",
+    "meaning": "middle, inside",
+    "onyomi": "チュウ",
+    "kunyomi": "なか",
+    "jlptLevel": "N5",
+    "strokeCount": 4,
+    "examples": [
+      "中学校 (ちゅうがっこう) - middle school",
+      "中 (なか) - inside"
+    ]
+  },
+  {
+    "id": 12,
+    "character": "山",
+    "meaning": "mountain",
+    "onyomi": "サン",
+    "kunyomi": "やま",
+    "jlptLevel": "N5",
+    "strokeCount": 3,
+    "examples": [
+      "山 (やま) - mountain",
+      "富士山 (ふじさん) - Mt. Fuji"
+    ]
+  },
+  {
+    "id": 13,
+    "character": "川",
+    "meaning": "river",
+    "onyomi": "セン",
+    "kunyomi": "かわ",
+    "jlptLevel": "N5",
+    "strokeCount": 3,
+    "examples": [
+      "川 (かわ) - river",
+      "小川 (おがわ) - stream"
+    ]
+  },
+  {
+    "id": 14,
+    "character": "上",
+    "meaning": "above, up",
+    "onyomi": "ジョウ、ショウ",
+    "kunyomi": "うえ、あ.げる、のぼ.る",
+    "jlptLevel": "N5",
+    "strokeCount": 3,
+    "examples": [
+      "上 (うえ) - above",
+      "上手 (じょうず) - skillful"
+    ]
+  },
+  {
+    "id": 15,
+    "character": "下",
+    "meaning": "below, down",
+    "onyomi": "カ、ゲ",
+    "kunyomi": "した、さ.げる、くだ.る",
+    "jlptLevel": "N5",
+    "strokeCount": 3,
+    "examples": [
+      "下 (した) - below",
+      "地下鉄 (ちかてつ) - subway"
+    ]
+  },
+  {
+    "id": 16,
+    "character": "左",
+    "meaning": "left",
+    "onyomi": "サ",
+    "kunyomi": "ひだり",
+    "jlptLevel": "N5",
+    "strokeCount": 5,
+    "examples": [
+      "左 (ひだり) - left",
+      "左手 (ひだりて) - left hand"
+    ]
+  },
+  {
+    "id": 17,
+    "character": "右",
+    "meaning": "right",
+    "onyomi": "ウ、ユウ",
+    "kunyomi": "みぎ",
+    "jlptLevel": "N5",
+    "strokeCount": 5,
+    "examples": [
+      "右 (みぎ) - right",
+      "右手 (みぎて) - right hand"
+    ]
+  },
+  {
+    "id": 18,
+    "character": "口",
+    "meaning": "mouth",
+    "onyomi": "コウ、ク",
+    "kunyomi": "くち",
+    "jlptLevel": "N5",
+    "strokeCount": 3,
+    "examples": [
+      "口 (くち) - mouth",
+      "入口 (いりぐち) - entrance"
+    ]
+  },
+  {
+    "id": 19,
+    "character": "目",
+    "meaning": "eye",
+    "onyomi": "モク、ボク",
+    "kunyomi": "め",
+    "jlptLevel": "N5",
+    "strokeCount": 5,
+    "examples": [
+      "目 (め) - eye",
+      "目的 (もくてき) - purpose"
+    ]
+  },
+  {
+    "id": 20,
+    "character": "手",
+    "meaning": "hand",
+    "onyomi": "シュ",
+    "kunyomi": "て",
+    "jlptLevel": "N5",
+    "strokeCount": 4,
+    "examples": [
+      "手 (て) - hand",
+      "上手 (じょうず) - skillful"
+    ]
+  },
+  {
+    "id": 21,
+    "character": "足",
+    "meaning": "foot, leg",
+    "onyomi": "ソク",
+    "kunyomi": "あし、た.りる",
+    "jlptLevel": "N5",
+    "strokeCount": 7,
+    "examples": [
+      "足 (あし) - foot",
+      "遠足 (えんそく) - excursion"
+    ]
+  },
+  {
+    "id": 22,
+    "character": "耳",
+    "meaning": "ear",
+    "onyomi": "ジ",
+    "kunyomi": "みみ",
+    "jlptLevel": "N5",
+    "strokeCount": 6,
+    "examples": [
+      "耳 (みみ) - ear",
+      "耳鼻科 (じびか) - ENT clinic"
+    ]
+  },
+  {
+    "id": 23,
+    "character": "力",
+    "meaning": "power, strength",
+    "onyomi": "リョク、リキ",
+    "kunyomi": "ちから",
+    "jlptLevel": "N5",
+    "strokeCount": 2,
+    "examples": [
+      "力 (ちから) - power",
+      "努力 (どりょく) - effort"
+    ]
+  },
+  {
+    "id": 24,
+    "character": "男",
+    "meaning": "man, male",
+    "onyomi": "ダン、ナン",
+    "kunyomi": "おとこ",
+    "jlptLevel": "N5",
+    "strokeCount": 7,
+    "examples": [
+      "男 (おとこ) - man",
+      "男の子 (おとこのこ) - boy"
+    ]
+  },
+  {
+    "id": 25,
+    "character": "女",
+    "meaning": "woman, female",
+    "onyomi": "ジョ、ニョ",
+    "kunyomi": "おんな",
+    "jlptLevel": "N5",
+    "strokeCount": 3,
+    "examples": [
+      "女 (おんな) - woman",
+      "女の子 (おんなのこ) - girl"
+    ]
+  },
+  {
+    "id": 26,
+    "character": "子",
+    "meaning": "child",
+    "onyomi": "シ、ス",
+    "kunyomi": "こ",
+    "jlptLevel": "N5",
+    "strokeCount": 3,
+    "examples": [
+      "子供 (こども) - child",
+      "女の子 (おんなのこ) - girl"
+    ]
+  },
+  {
+    "id": 27,
+    "character": "学",
+    "meaning": "study, learning",
+    "onyomi": "ガク",
+    "kunyomi": "まな.ぶ",
+    "jlptLevel": "N5",
+    "strokeCount": 8,
+    "examples": [
+      "学生 (がくせい) - student",
+      "大学 (だいがく) - university"
+    ]
+  },
+  {
+    "id": 28,
+    "character": "生",
+    "meaning": "life, birth",
+    "onyomi": "セイ、ショウ",
+    "kunyomi": "い.きる、う.まれる、なま",
+    "jlptLevel": "N5",
+    "strokeCount": 5,
+    "examples": [
+      "先生 (せんせい) - teacher",
+      "学生 (がくせい) - student"
+    ]
+  },
+  {
+    "id": 29,
+    "character": "先",
+    "meaning": "before, ahead",
+    "onyomi": "セン",
+    "kunyomi": "さき",
+    "jlptLevel": "N5",
+    "strokeCount": 6,
+    "examples": [
+      "先生 (せんせい) - teacher",
+      "先週 (せんしゅう) - last week"
+    ]
+  },
+  {
+    "id": 30,
+    "character": "年",
+    "meaning": "year",
+    "onyomi": "ネン",
+    "kunyomi": "とし",
+    "jlptLevel": "N5",
+    "strokeCount": 6,
+    "examples": [
+      "今年 (ことし) - this year",
+      "去年 (きょねん) - last year"
+    ]
+  },
+  {
+    "id": 31,
+    "character": "何",
+    "meaning": "what",
+    "onyomi": "カ",
+    "kunyomi": "なに、なん",
+    "jlptLevel": "N5",
+    "strokeCount": 7,
+    "examples": [
+      "何 (なに) - what",
+      "何時 (なんじ) - what time"
+    ]
+  },
+  {
+    "id": 32,
+    "character": "本",
+    "meaning": "book, origin",
+    "onyomi": "ホン",
+    "kunyomi": "もと",
+    "jlptLevel": "N5",
+    "strokeCount": 5,
+    "examples": [
+      "本 (ほん) - book",
+      "日本 (にほん) - Japan"
+    ]
+  },
+  {
+    "id": 33,
+    "character": "校",
+    "meaning": "school",
+    "onyomi": "コウ",
+    "kunyomi": "",
+    "jlptLevel": "N5",
+    "strokeCount": 10,
+    "examples": [
+      "学校 (がっこう) - school",
+      "高校 (こうこう) - high school"
+    ]
+  },
+  {
+    "id": 34,
+    "character": "気",
+    "meaning": "spirit, energy",
+    "onyomi": "キ、ケ",
+    "kunyomi": "",
+    "jlptLevel": "N5",
+    "strokeCount": 6,
+    "examples": [
+      "天気 (てんき) - weather",
+      "元気 (げんき) - healthy"
+    ]
+  },
+  {
+    "id": 35,
+    "character": "電",
+    "meaning": "electricity",
+    "onyomi": "デン",
+    "kunyomi": "",
+    "jlptLevel": "N5",
+    "strokeCount": 13,
+    "examples": [
+      "電話 (でんわ) - telephone",
+      "電車 (でんしゃ) - train"
+    ]
+  },
+  {
+    "id": 36,
+    "character": "車",
+    "meaning": "car, vehicle",
+    "onyomi": "シャ",
+    "kunyomi": "くるま",
+    "jlptLevel": "N5",
+    "strokeCount": 7,
+    "examples": [
+      "車 (くるま) - car",
+      "電車 (でんしゃ) - train"
+    ]
+  },
+  {
+    "id": 37,
+    "character": "東",
+    "meaning": "east",
+    "onyomi": "トウ",
+    "kunyomi": "ひがし",
+    "jlptLevel": "N5",
+    "strokeCount": 8,
+    "examples": [
+      "東京 (とうきょう) - Tokyo",
+      "東 (ひがし) - east"
+    ]
+  },
+  {
+    "id": 38,
+    "character": "西",
+    "meaning": "west",
+    "onyomi": "セイ、サイ",
+    "kunyomi": "にし",
+    "jlptLevel": "N5",
+    "strokeCount": 6,
+    "examples": [
+      "西 (にし) - west",
+      "関西 (かんさい) - Kansai"
+    ]
+  },
+  {
+    "id": 39,
+    "character": "南",
+    "meaning": "south",
+    "onyomi": "ナン",
+    "kunyomi": "みなみ",
+    "jlptLevel": "N5",
+    "strokeCount": 9,
+    "examples": [
+      "南 (みなみ) - south",
+      "南口 (みなみぐち) - south exit"
+    ]
+  },
+  {
+    "id": 40,
+    "character": "北",
+    "meaning": "north",
+    "onyomi": "ホク",
+    "kunyomi": "きた",
+    "jlptLevel": "N5",
+    "strokeCount": 5,
+    "examples": [
+      "北 (きた) - north",
+      "北海道 (ほっかいどう) - Hokkaido"
+    ]
+  },
+  {
+    "id": 41,
+    "character": "国",
+    "meaning": "country",
+    "onyomi": "コク",
+    "kunyomi": "くに",
+    "jlptLevel": "N5",
+    "strokeCount": 8,
+    "examples": [
+      "国 (くに) - country",
+      "外国 (がいこく) - foreign country"
+    ]
+  },
+  {
+    "id": 42,
+    "character": "語",
+    "meaning": "language, word",
+    "onyomi": "ゴ",
+    "kunyomi": "かた.る",
+    "jlptLevel": "N5",
+    "strokeCount": 14,
+    "examples": [
+      "日本語 (にほんご) - Japanese",
+      "英語 (えいご) - English"
+    ]
+  },
+  {
+    "id": 43,
+    "character": "食",
+    "meaning": "eat, food",
+    "onyomi": "ショク",
+    "kunyomi": "た.べる、く.う",
+    "jlptLevel": "N5",
+    "strokeCount": 9,
+    "examples": [
+      "食べる (たべる) - to eat",
+      "食事 (しょくじ) - meal"
+    ]
+  },
+  {
+    "id": 44,
+    "character": "飲",
+    "meaning": "drink",
+    "onyomi": "イン",
+    "kunyomi": "の.む",
+    "jlptLevel": "N5",
+    "strokeCount": 12,
+    "examples": [
+      "飲む (のむ) - to drink",
+      "飲み物 (のみもの) - beverage"
+    ]
+  },
+  {
+    "id": 45,
+    "character": "行",
+    "meaning": "go, conduct",
+    "onyomi": "コウ、ギョウ",
+    "kunyomi": "い.く、おこな.う",
+    "jlptLevel": "N5",
+    "strokeCount": 6,
+    "examples": [
+      "行く (いく) - to go",
+      "旅行 (りょこう) - travel"
+    ]
+  },
+  {
+    "id": 46,
+    "character": "来",
+    "meaning": "come",
+    "onyomi": "ライ",
+    "kunyomi": "く.る、きた.る",
+    "jlptLevel": "N5",
+    "strokeCount": 7,
+    "examples": [
+      "来る (くる) - to come",
+      "来年 (らいねん) - next year"
+    ]
+  },
+  {
+    "id": 47,
+    "character": "見",
+    "meaning": "see, look",
+    "onyomi": "ケン",
+    "kunyomi": "み.る、み.せる",
+    "jlptLevel": "N5",
+    "strokeCount": 7,
+    "examples": [
+      "見る (みる) - to see",
+      "花見 (はなみ) - cherry blossom viewing"
+    ]
+  },
+  {
+    "id": 48,
+    "character": "聞",
+    "meaning": "hear, listen, ask",
+    "onyomi": "ブン、モン",
+    "kunyomi": "き.く",
+    "jlptLevel": "N5",
+    "strokeCount": 14,
+    "examples": [
+      "聞く (きく) - to listen",
+      "新聞 (しんぶん) - newspaper"
+    ]
+  },
+  {
+    "id": 49,
+    "character": "読",
+    "meaning": "read",
+    "onyomi": "ドク、トク",
+    "kunyomi": "よ.む",
+    "jlptLevel": "N5",
+    "strokeCount": 14,
+    "examples": [
+      "読む (よむ) - to read",
+      "読書 (どくしょ) - reading"
+    ]
+  },
+  {
+    "id": 50,
+    "character": "書",
+    "meaning": "write",
+    "onyomi": "ショ",
+    "kunyomi": "か.く",
+    "jlptLevel": "N5",
+    "strokeCount": 10,
+    "examples": [
+      "書く (かく) - to write",
+      "辞書 (じしょ) - dictionary"
+    ]
+  },
+  {
+    "id": 51,
+    "character": "話",
+    "meaning": "talk, speak",
+    "onyomi": "ワ",
+    "kunyomi": "はな.す、はなし",
+    "jlptLevel": "N5",
+    "strokeCount": 13,
+    "examples": [
+      "話す (はなす) - to speak",
+      "電話 (でんわ) - telephone"
+    ]
+  },
+  {
+    "id": 52,
+    "character": "出",
+    "meaning": "go out, exit",
+    "onyomi": "シュツ、スイ",
+    "kunyomi": "で.る、だ.す",
+    "jlptLevel": "N5",
+    "strokeCount": 5,
+    "examples": [
+      "出る (でる) - to go out",
+      "出口 (でぐち) - exit"
+    ]
+  },
+  {
+    "id": 53,
+    "character": "入",
+    "meaning": "enter, insert",
+    "onyomi": "ニュウ",
+    "kunyomi": "い.る、はい.る",
+    "jlptLevel": "N5",
+    "strokeCount": 2,
+    "examples": [
+      "入る (はいる) - to enter",
+      "入口 (いりぐち) - entrance"
+    ]
+  },
+  {
+    "id": 54,
+    "character": "立",
+    "meaning": "stand",
+    "onyomi": "リツ",
+    "kunyomi": "た.つ、た.てる",
+    "jlptLevel": "N5",
+    "strokeCount": 5,
+    "examples": [
+      "立つ (たつ) - to stand",
+      "国立 (こくりつ) - national"
+    ]
+  },
+  {
+    "id": 55,
+    "character": "休",
+    "meaning": "rest",
+    "onyomi": "キュウ",
+    "kunyomi": "やす.む",
+    "jlptLevel": "N5",
+    "strokeCount": 6,
+    "examples": [
+      "休む (やすむ) - to rest",
+      "休日 (きゅうじつ) - holiday"
+    ]
+  },
+  {
+    "id": 56,
+    "character": "買",
+    "meaning": "buy",
+    "onyomi": "バイ",
+    "kunyomi": "か.う",
+    "jlptLevel": "N5",
+    "strokeCount": 12,
+    "examples": [
+      "買う (かう) - to buy",
+      "買い物 (かいもの) - shopping"
+    ]
+  },
+  {
+    "id": 57,
+    "character": "花",
+    "meaning": "flower",
+    "onyomi": "カ",
+    "kunyomi": "はな",
+    "jlptLevel": "N5",
+    "strokeCount": 7,
+    "examples": [
+      "花 (はな) - flower",
+      "花火 (はなび) - fireworks"
+    ]
+  },
+  {
+    "id": 58,
+    "character": "天",
+    "meaning": "sky, heaven",
+    "onyomi": "テン",
+    "kunyomi": "あめ、あま-",
+    "jlptLevel": "N5",
+    "strokeCount": 4,
+    "examples": [
+      "天気 (てんき) - weather",
+      "天国 (てんごく) - heaven"
+    ]
+  },
+  {
+    "id": 59,
+    "character": "雨",
+    "meaning": "rain",
+    "onyomi": "ウ",
+    "kunyomi": "あめ、あま-",
+    "jlptLevel": "N5",
+    "strokeCount": 8,
+    "examples": [
+      "雨 (あめ) - rain",
+      "大雨 (おおあめ) - heavy rain"
+    ]
+  },
+  {
+    "id": 60,
+    "character": "白",
+    "meaning": "white",
+    "onyomi": "ハク、ビャク",
+    "kunyomi": "しろ、しろ.い",
+    "jlptLevel": "N5",
+    "strokeCount": 5,
+    "examples": [
+      "白い (しろい) - white",
+      "白紙 (はくし) - blank paper"
+    ]
+  },
+  {
+    "id": 61,
+    "character": "百",
+    "meaning": "hundred",
+    "onyomi": "ヒャク",
+    "kunyomi": "",
+    "jlptLevel": "N5",
+    "strokeCount": 6,
+    "examples": [
+      "百 (ひゃく) - hundred",
+      "百円 (ひゃくえん) - 100 yen"
+    ]
+  },
+  {
+    "id": 62,
+    "character": "千",
+    "meaning": "thousand",
+    "onyomi": "セン",
+    "kunyomi": "ち",
+    "jlptLevel": "N5",
+    "strokeCount": 3,
+    "examples": [
+      "千 (せん) - thousand",
+      "千円 (せんえん) - 1000 yen"
+    ]
+  },
+  {
+    "id": 63,
+    "character": "万",
+    "meaning": "ten thousand",
+    "onyomi": "マン、バン",
+    "kunyomi": "",
+    "jlptLevel": "N5",
+    "strokeCount": 3,
+    "examples": [
+      "一万 (いちまん) - 10,000",
+      "万年筆 (まんねんひつ) - fountain pen"
+    ]
+  },
+  {
+    "id": 64,
+    "character": "円",
+    "meaning": "yen, circle",
+    "onyomi": "エン",
+    "kunyomi": "まる.い",
+    "jlptLevel": "N5",
+    "strokeCount": 4,
+    "examples": [
+      "百円 (ひゃくえん) - 100 yen",
+      "円い (まるい) - round"
+    ]
+  },
+  {
+    "id": 65,
+    "character": "時",
+    "meaning": "time, hour",
+    "onyomi": "ジ",
+    "kunyomi": "とき",
+    "jlptLevel": "N5",
+    "strokeCount": 10,
+    "examples": [
+      "時間 (じかん) - time",
+      "時計 (とけい) - clock"
+    ]
+  },
+  {
+    "id": 66,
+    "character": "分",
+    "meaning": "minute, part",
+    "onyomi": "ブン、フン",
+    "kunyomi": "わ.ける、わ.かる",
+    "jlptLevel": "N5",
+    "strokeCount": 4,
+    "examples": [
+      "十分 (じゅっぷん) - 10 minutes",
+      "自分 (じぶん) - oneself"
+    ]
+  },
+  {
+    "id": 67,
+    "character": "半",
+    "meaning": "half",
+    "onyomi": "ハン",
+    "kunyomi": "なか.ば",
+    "jlptLevel": "N5",
+    "strokeCount": 5,
+    "examples": [
+      "半分 (はんぶん) - half",
+      "三時半 (さんじはん) - 3:30"
+    ]
+  },
+  {
+    "id": 68,
+    "character": "毎",
+    "meaning": "every",
+    "onyomi": "マイ",
+    "kunyomi": "ごと",
+    "jlptLevel": "N5",
+    "strokeCount": 6,
+    "examples": [
+      "毎日 (まいにち) - every day",
+      "毎朝 (まいあさ) - every morning"
+    ]
+  },
+  {
+    "id": 69,
+    "character": "今",
+    "meaning": "now, current",
+    "onyomi": "コン、キン",
+    "kunyomi": "いま",
+    "jlptLevel": "N5",
+    "strokeCount": 4,
+    "examples": [
+      "今 (いま) - now",
+      "今日 (きょう) - today"
+    ]
+  },
+  {
+    "id": 70,
+    "character": "新",
+    "meaning": "new",
+    "onyomi": "シン",
+    "kunyomi": "あたら.しい、あら.た",
+    "jlptLevel": "N5",
+    "strokeCount": 13,
+    "examples": [
+      "新しい (あたらしい) - new",
+      "新聞 (しんぶん) - newspaper"
+    ]
+  },
+  {
+    "id": 71,
+    "character": "古",
+    "meaning": "old",
+    "onyomi": "コ",
+    "kunyomi": "ふる.い",
+    "jlptLevel": "N5",
+    "strokeCount": 5,
+    "examples": [
+      "古い (ふるい) - old",
+      "中古 (ちゅうこ) - secondhand"
+    ]
+  },
+  {
+    "id": 72,
+    "character": "長",
+    "meaning": "long, leader",
+    "onyomi": "チョウ",
+    "kunyomi": "なが.い",
+    "jlptLevel": "N5",
+    "strokeCount": 8,
+    "examples": [
+      "長い (ながい) - long",
+      "社長 (しゃちょう) - president"
+    ]
+  },
+  {
+    "id": 73,
+    "character": "高",
+    "meaning": "tall, expensive",
+    "onyomi": "コウ",
+    "kunyomi": "たか.い",
+    "jlptLevel": "N5",
+    "strokeCount": 10,
+    "examples": [
+      "高い (たかい) - tall/expensive",
+      "高校 (こうこう) - high school"
+    ]
+  },
+  {
+    "id": 74,
+    "character": "安",
+    "meaning": "cheap, safe",
+    "onyomi": "アン",
+    "kunyomi": "やす.い",
+    "jlptLevel": "N5",
+    "strokeCount": 6,
+    "examples": [
+      "安い (やすい) - cheap",
+      "安全 (あんぜん) - safety"
+    ]
+  },
+  {
+    "id": 75,
+    "character": "多",
+    "meaning": "many, much",
+    "onyomi": "タ",
+    "kunyomi": "おお.い",
+    "jlptLevel": "N5",
+    "strokeCount": 6,
+    "examples": [
+      "多い (おおい) - many",
+      "多分 (たぶん) - probably"
+    ]
+  },
+  {
+    "id": 76,
+    "character": "少",
+    "meaning": "few, little",
+    "onyomi": "ショウ",
+    "kunyomi": "すく.ない、すこ.し",
+    "jlptLevel": "N5",
+    "strokeCount": 4,
+    "examples": [
+      "少ない (すくない) - few",
+      "少年 (しょうねん) - boy"
+    ]
+  },
+  {
+    "id": 77,
+    "character": "早",
+    "meaning": "early, fast",
+    "onyomi": "ソウ、サッ",
+    "kunyomi": "はや.い",
+    "jlptLevel": "N5",
+    "strokeCount": 6,
+    "examples": [
+      "早い (はやい) - early",
+      "早朝 (そうちょう) - early morning"
+    ]
+  },
+  {
+    "id": 78,
+    "character": "名",
+    "meaning": "name",
+    "onyomi": "メイ、ミョウ",
+    "kunyomi": "な",
+    "jlptLevel": "N5",
+    "strokeCount": 6,
+    "examples": [
+      "名前 (なまえ) - name",
+      "有名 (ゆうめい) - famous"
+    ]
+  },
+  {
+    "id": 79,
+    "character": "前",
+    "meaning": "before, front",
+    "onyomi": "ゼン",
+    "kunyomi": "まえ",
+    "jlptLevel": "N5",
+    "strokeCount": 9,
+    "examples": [
+      "名前 (なまえ) - name",
+      "午前 (ごぜん) - morning/AM"
+    ]
+  },
+  {
+    "id": 80,
+    "character": "後",
+    "meaning": "after, behind",
+    "onyomi": "ゴ、コウ",
+    "kunyomi": "あと、うし.ろ",
+    "jlptLevel": "N5",
+    "strokeCount": 9,
+    "examples": [
+      "午後 (ごご) - afternoon/PM",
+      "後ろ (うしろ) - behind"
+    ]
+  },
+  {
+    "id": 81,
+    "character": "会",
+    "meaning": "meet, society",
+    "onyomi": "カイ、エ",
+    "kunyomi": "あ.う",
+    "jlptLevel": "N4",
+    "strokeCount": 6,
+    "examples": [
+      "会う (あう) - to meet",
+      "会社 (かいしゃ) - company"
+    ]
+  },
+  {
+    "id": 82,
+    "character": "社",
+    "meaning": "company, shrine",
+    "onyomi": "シャ",
+    "kunyomi": "やしろ",
+    "jlptLevel": "N4",
+    "strokeCount": 7,
+    "examples": [
+      "会社 (かいしゃ) - company",
+      "神社 (じんじゃ) - shrine"
+    ]
+  },
+  {
+    "id": 83,
+    "character": "事",
+    "meaning": "matter, thing",
+    "onyomi": "ジ、ズ",
+    "kunyomi": "こと",
+    "jlptLevel": "N4",
+    "strokeCount": 8,
+    "examples": [
+      "仕事 (しごと) - work",
+      "食事 (しょくじ) - meal"
+    ]
+  },
+  {
+    "id": 84,
+    "character": "仕",
+    "meaning": "serve, work",
+    "onyomi": "シ、ジ",
+    "kunyomi": "つか.える",
+    "jlptLevel": "N4",
+    "strokeCount": 5,
+    "examples": [
+      "仕事 (しごと) - work",
+      "仕方 (しかた) - way of doing"
+    ]
+  },
+  {
+    "id": 85,
+    "character": "勉",
+    "meaning": "endeavor",
+    "onyomi": "ベン",
+    "kunyomi": "",
+    "jlptLevel": "N4",
+    "strokeCount": 10,
+    "examples": [
+      "勉強 (べんきょう) - study",
+      "勉強する - to study"
+    ]
+  },
+  {
+    "id": 86,
+    "character": "強",
+    "meaning": "strong",
+    "onyomi": "キョウ、ゴウ",
+    "kunyomi": "つよ.い",
+    "jlptLevel": "N4",
+    "strokeCount": 11,
+    "examples": [
+      "強い (つよい) - strong",
+      "勉強 (べんきょう) - study"
+    ]
+  },
+  {
+    "id": 87,
+    "character": "思",
+    "meaning": "think",
+    "onyomi": "シ",
+    "kunyomi": "おも.う",
+    "jlptLevel": "N4",
+    "strokeCount": 9,
+    "examples": [
+      "思う (おもう) - to think",
+      "思い出 (おもいで) - memory"
+    ]
+  },
+  {
+    "id": 88,
+    "character": "知",
+    "meaning": "know",
+    "onyomi": "チ",
+    "kunyomi": "し.る",
+    "jlptLevel": "N4",
+    "strokeCount": 8,
+    "examples": [
+      "知る (しる) - to know",
+      "知識 (ちしき) - knowledge"
+    ]
+  },
+  {
+    "id": 89,
+    "character": "地",
+    "meaning": "ground, earth",
+    "onyomi": "チ、ジ",
+    "kunyomi": "",
+    "jlptLevel": "N4",
+    "strokeCount": 6,
+    "examples": [
+      "地下鉄 (ちかてつ) - subway",
+      "土地 (とち) - land"
+    ]
+  },
+  {
+    "id": 90,
+    "character": "方",
+    "meaning": "direction, person",
+    "onyomi": "ホウ",
+    "kunyomi": "かた",
+    "jlptLevel": "N4",
+    "strokeCount": 4,
+    "examples": [
+      "方法 (ほうほう) - method",
+      "あの方 (あのかた) - that person"
+    ]
+  },
+  {
+    "id": 91,
+    "character": "世",
+    "meaning": "world, generation",
+    "onyomi": "セイ、セ",
+    "kunyomi": "よ",
+    "jlptLevel": "N4",
+    "strokeCount": 5,
+    "examples": [
+      "世界 (せかい) - world",
+      "世紀 (せいき) - century"
+    ]
+  },
+  {
+    "id": 92,
+    "character": "界",
+    "meaning": "world, boundary",
+    "onyomi": "カイ",
+    "kunyomi": "",
+    "jlptLevel": "N4",
+    "strokeCount": 9,
+    "examples": [
+      "世界 (せかい) - world",
+      "限界 (げんかい) - limit"
+    ]
+  },
+  {
+    "id": 93,
+    "character": "動",
+    "meaning": "move",
+    "onyomi": "ドウ",
+    "kunyomi": "うご.く",
+    "jlptLevel": "N4",
+    "strokeCount": 11,
+    "examples": [
+      "動く (うごく) - to move",
+      "運動 (うんどう) - exercise"
+    ]
+  },
+  {
+    "id": 94,
+    "character": "運",
+    "meaning": "carry, luck",
+    "onyomi": "ウン",
+    "kunyomi": "はこ.ぶ",
+    "jlptLevel": "N4",
+    "strokeCount": 12,
+    "examples": [
+      "運動 (うんどう) - exercise",
+      "運転 (うんてん) - driving"
+    ]
+  },
+  {
+    "id": 95,
+    "character": "転",
+    "meaning": "revolve, turn",
+    "onyomi": "テン",
+    "kunyomi": "ころ.がる",
+    "jlptLevel": "N4",
+    "strokeCount": 11,
+    "examples": [
+      "運転 (うんてん) - driving",
+      "自転車 (じてんしゃ) - bicycle"
+    ]
+  },
+  {
+    "id": 96,
+    "character": "使",
+    "meaning": "use",
+    "onyomi": "シ",
+    "kunyomi": "つか.う",
+    "jlptLevel": "N4",
+    "strokeCount": 8,
+    "examples": [
+      "使う (つかう) - to use",
+      "大使館 (たいしかん) - embassy"
+    ]
+  },
+  {
+    "id": 97,
+    "character": "持",
+    "meaning": "hold, have",
+    "onyomi": "ジ",
+    "kunyomi": "も.つ",
+    "jlptLevel": "N4",
+    "strokeCount": 9,
+    "examples": [
+      "持つ (もつ) - to hold",
+      "気持ち (きもち) - feeling"
+    ]
+  },
+  {
+    "id": 98,
+    "character": "待",
+    "meaning": "wait",
+    "onyomi": "タイ",
+    "kunyomi": "ま.つ",
+    "jlptLevel": "N4",
+    "strokeCount": 9,
+    "examples": [
+      "待つ (まつ) - to wait",
+      "期待 (きたい) - expectation"
+    ]
+  },
+  {
+    "id": 99,
+    "character": "教",
+    "meaning": "teach",
+    "onyomi": "キョウ",
+    "kunyomi": "おし.える、おそ.わる",
+    "jlptLevel": "N4",
+    "strokeCount": 11,
+    "examples": [
+      "教える (おしえる) - to teach",
+      "教室 (きょうしつ) - classroom"
+    ]
+  },
+  {
+    "id": 100,
+    "character": "室",
+    "meaning": "room",
+    "onyomi": "シツ",
+    "kunyomi": "むろ",
+    "jlptLevel": "N4",
+    "strokeCount": 9,
+    "examples": [
+      "教室 (きょうしつ) - classroom",
+      "部屋 (へや) - room"
+    ]
+  },
+  {
+    "id": 101,
+    "character": "院",
+    "meaning": "institution",
+    "onyomi": "イン",
+    "kunyomi": "",
+    "jlptLevel": "N4",
+    "strokeCount": 10,
+    "examples": [
+      "病院 (びょういん) - hospital",
+      "大学院 (だいがくいん) - graduate school"
+    ]
+  },
+  {
+    "id": 102,
+    "character": "病",
+    "meaning": "ill, sick",
+    "onyomi": "ビョウ",
+    "kunyomi": "や.む、やまい",
+    "jlptLevel": "N4",
+    "strokeCount": 10,
+    "examples": [
+      "病気 (びょうき) - illness",
+      "病院 (びょういん) - hospital"
+    ]
+  },
+  {
+    "id": 103,
+    "character": "医",
+    "meaning": "medicine, doctor",
+    "onyomi": "イ",
+    "kunyomi": "",
+    "jlptLevel": "N4",
+    "strokeCount": 7,
+    "examples": [
+      "医者 (いしゃ) - doctor",
+      "医学 (いがく) - medicine"
+    ]
+  },
+  {
+    "id": 104,
+    "character": "者",
+    "meaning": "person",
+    "onyomi": "シャ",
+    "kunyomi": "もの",
+    "jlptLevel": "N4",
+    "strokeCount": 8,
+    "examples": [
+      "医者 (いしゃ) - doctor",
+      "若者 (わかもの) - young person"
+    ]
+  },
+  {
+    "id": 105,
+    "character": "歩",
+    "meaning": "walk, step",
+    "onyomi": "ホ、ブ、フ",
+    "kunyomi": "ある.く、あゆ.む",
+    "jlptLevel": "N4",
+    "strokeCount": 8,
+    "examples": [
+      "歩く (あるく) - to walk",
+      "散歩 (さんぽ) - walk/stroll"
+    ]
+  },
+  {
+    "id": 106,
+    "character": "近",
+    "meaning": "near",
+    "onyomi": "キン",
+    "kunyomi": "ちか.い",
+    "jlptLevel": "N4",
+    "strokeCount": 7,
+    "examples": [
+      "近い (ちかい) - near",
+      "最近 (さいきん) - recently"
+    ]
+  },
+  {
+    "id": 107,
+    "character": "遠",
+    "meaning": "far",
+    "onyomi": "エン、オン",
+    "kunyomi": "とお.い",
+    "jlptLevel": "N4",
+    "strokeCount": 13,
+    "examples": [
+      "遠い (とおい) - far",
+      "遠足 (えんそく) - excursion"
+    ]
+  },
+  {
+    "id": 108,
+    "character": "通",
+    "meaning": "pass, commute",
+    "onyomi": "ツウ",
+    "kunyomi": "とお.る、かよ.う",
+    "jlptLevel": "N4",
+    "strokeCount": 10,
+    "examples": [
+      "通る (とおる) - to pass",
+      "交通 (こうつう) - traffic"
+    ]
+  },
+  {
+    "id": 109,
+    "character": "道",
+    "meaning": "road, way",
+    "onyomi": "ドウ、トウ",
+    "kunyomi": "みち",
+    "jlptLevel": "N4",
+    "strokeCount": 12,
+    "examples": [
+      "道 (みち) - road",
+      "北海道 (ほっかいどう) - Hokkaido"
+    ]
+  },
+  {
+    "id": 110,
+    "character": "場",
+    "meaning": "place",
+    "onyomi": "ジョウ",
+    "kunyomi": "ば",
+    "jlptLevel": "N4",
+    "strokeCount": 12,
+    "examples": [
+      "場所 (ばしょ) - place",
+      "駐車場 (ちゅうしゃじょう) - parking lot"
+    ]
+  },
+  {
+    "id": 111,
+    "character": "所",
+    "meaning": "place",
+    "onyomi": "ショ",
+    "kunyomi": "ところ",
+    "jlptLevel": "N4",
+    "strokeCount": 8,
+    "examples": [
+      "場所 (ばしょ) - place",
+      "台所 (だいどころ) - kitchen"
+    ]
+  },
+  {
+    "id": 112,
+    "character": "店",
+    "meaning": "shop, store",
+    "onyomi": "テン",
+    "kunyomi": "みせ",
+    "jlptLevel": "N4",
+    "strokeCount": 8,
+    "examples": [
+      "店 (みせ) - shop",
+      "本屋 (ほんや) - bookstore"
+    ]
+  },
+  {
+    "id": 113,
+    "character": "売",
+    "meaning": "sell",
+    "onyomi": "バイ",
+    "kunyomi": "う.る、う.れる",
+    "jlptLevel": "N4",
+    "strokeCount": 7,
+    "examples": [
+      "売る (うる) - to sell",
+      "売り場 (うりば) - sales counter"
+    ]
+  },
+  {
+    "id": 114,
+    "character": "開",
+    "meaning": "open",
+    "onyomi": "カイ",
+    "kunyomi": "ひら.く、あ.ける",
+    "jlptLevel": "N4",
+    "strokeCount": 12,
+    "examples": [
+      "開ける (あける) - to open",
+      "開発 (かいはつ) - development"
+    ]
+  },
+  {
+    "id": 115,
+    "character": "閉",
+    "meaning": "close, shut",
+    "onyomi": "ヘイ",
+    "kunyomi": "し.める、と.じる",
+    "jlptLevel": "N4",
+    "strokeCount": 11,
+    "examples": [
+      "閉める (しめる) - to close",
+      "閉店 (へいてん) - store closing"
+    ]
+  },
+  {
+    "id": 116,
+    "character": "始",
+    "meaning": "begin",
+    "onyomi": "シ",
+    "kunyomi": "はじ.める",
+    "jlptLevel": "N4",
+    "strokeCount": 8,
+    "examples": [
+      "始める (はじめる) - to begin",
+      "開始 (かいし) - start"
+    ]
+  },
+  {
+    "id": 117,
+    "character": "終",
+    "meaning": "end",
+    "onyomi": "シュウ",
+    "kunyomi": "お.わる",
+    "jlptLevel": "N4",
+    "strokeCount": 11,
+    "examples": [
+      "終わる (おわる) - to end",
+      "最終 (さいしゅう) - last/final"
+    ]
+  },
+  {
+    "id": 118,
+    "character": "朝",
+    "meaning": "morning",
+    "onyomi": "チョウ",
+    "kunyomi": "あさ",
+    "jlptLevel": "N4",
+    "strokeCount": 12,
+    "examples": [
+      "朝 (あさ) - morning",
+      "毎朝 (まいあさ) - every morning"
+    ]
+  },
+  {
+    "id": 119,
+    "character": "昼",
+    "meaning": "noon, daytime",
+    "onyomi": "チュウ",
+    "kunyomi": "ひる",
+    "jlptLevel": "N4",
+    "strokeCount": 9,
+    "examples": [
+      "昼 (ひる) - noon",
+      "昼食 (ちゅうしょく) - lunch"
+    ]
+  },
+  {
+    "id": 120,
+    "character": "夜",
+    "meaning": "night",
+    "onyomi": "ヤ",
+    "kunyomi": "よる、よ",
+    "jlptLevel": "N4",
+    "strokeCount": 8,
+    "examples": [
+      "夜 (よる) - night",
+      "今夜 (こんや) - tonight"
+    ]
+  },
+  {
+    "id": 121,
+    "character": "春",
+    "meaning": "spring",
+    "onyomi": "シュン",
+    "kunyomi": "はる",
+    "jlptLevel": "N4",
+    "strokeCount": 9,
+    "examples": [
+      "春 (はる) - spring",
+      "春休み (はるやすみ) - spring break"
+    ]
+  },
+  {
+    "id": 122,
+    "character": "夏",
+    "meaning": "summer",
+    "onyomi": "カ、ゲ",
+    "kunyomi": "なつ",
+    "jlptLevel": "N4",
+    "strokeCount": 10,
+    "examples": [
+      "夏 (なつ) - summer",
+      "夏休み (なつやすみ) - summer vacation"
+    ]
+  },
+  {
+    "id": 123,
+    "character": "秋",
+    "meaning": "autumn",
+    "onyomi": "シュウ",
+    "kunyomi": "あき",
+    "jlptLevel": "N4",
+    "strokeCount": 9,
+    "examples": [
+      "秋 (あき) - autumn",
+      "秋分 (しゅうぶん) - autumnal equinox"
+    ]
+  },
+  {
+    "id": 124,
+    "character": "冬",
+    "meaning": "winter",
+    "onyomi": "トウ",
+    "kunyomi": "ふゆ",
+    "jlptLevel": "N4",
+    "strokeCount": 5,
+    "examples": [
+      "冬 (ふゆ) - winter",
+      "冬休み (ふゆやすみ) - winter break"
+    ]
+  },
+  {
+    "id": 125,
+    "character": "色",
+    "meaning": "color",
+    "onyomi": "ショク、シキ",
+    "kunyomi": "いろ",
+    "jlptLevel": "N4",
+    "strokeCount": 6,
+    "examples": [
+      "色 (いろ) - color",
+      "景色 (けしき) - scenery"
+    ]
+  },
+  {
+    "id": 126,
+    "character": "赤",
+    "meaning": "red",
+    "onyomi": "セキ、シャク",
+    "kunyomi": "あか、あか.い",
+    "jlptLevel": "N4",
+    "strokeCount": 7,
+    "examples": [
+      "赤い (あかい) - red",
+      "赤ちゃん (あかちゃん) - baby"
+    ]
+  },
+  {
+    "id": 127,
+    "character": "青",
+    "meaning": "blue, green",
+    "onyomi": "セイ、ショウ",
+    "kunyomi": "あお、あお.い",
+    "jlptLevel": "N4",
+    "strokeCount": 8,
+    "examples": [
+      "青い (あおい) - blue",
+      "青年 (せいねん) - youth"
+    ]
+  },
+  {
+    "id": 128,
+    "character": "黒",
+    "meaning": "black",
+    "onyomi": "コク",
+    "kunyomi": "くろ、くろ.い",
+    "jlptLevel": "N4",
+    "strokeCount": 11,
+    "examples": [
+      "黒い (くろい) - black",
+      "黒板 (こくばん) - blackboard"
+    ]
+  },
+  {
+    "id": 129,
+    "character": "心",
+    "meaning": "heart, mind",
+    "onyomi": "シン",
+    "kunyomi": "こころ",
+    "jlptLevel": "N4",
+    "strokeCount": 4,
+    "examples": [
+      "心 (こころ) - heart",
+      "安心 (あんしん) - relief"
+    ]
+  },
+  {
+    "id": 130,
+    "character": "体",
+    "meaning": "body",
+    "onyomi": "タイ、テイ",
+    "kunyomi": "からだ",
+    "jlptLevel": "N4",
+    "strokeCount": 7,
+    "examples": [
+      "体 (からだ) - body",
+      "体育 (たいいく) - physical education"
+    ]
+  },
+  {
+    "id": 131,
+    "character": "頭",
+    "meaning": "head",
+    "onyomi": "トウ、ズ",
+    "kunyomi": "あたま",
+    "jlptLevel": "N4",
+    "strokeCount": 16,
+    "examples": [
+      "頭 (あたま) - head",
+      "先頭 (せんとう) - front/lead"
+    ]
+  },
+  {
+    "id": 132,
+    "character": "顔",
+    "meaning": "face",
+    "onyomi": "ガン",
+    "kunyomi": "かお",
+    "jlptLevel": "N4",
+    "strokeCount": 18,
+    "examples": [
+      "顔 (かお) - face",
+      "笑顔 (えがお) - smiling face"
+    ]
+  },
+  {
+    "id": 133,
+    "character": "音",
+    "meaning": "sound",
+    "onyomi": "オン、イン",
+    "kunyomi": "おと、ね",
+    "jlptLevel": "N4",
+    "strokeCount": 9,
+    "examples": [
+      "音 (おと) - sound",
+      "音楽 (おんがく) - music"
+    ]
+  },
+  {
+    "id": 134,
+    "character": "楽",
+    "meaning": "fun, comfort, music",
+    "onyomi": "ガク、ラク",
+    "kunyomi": "たの.しい",
+    "jlptLevel": "N4",
+    "strokeCount": 13,
+    "examples": [
+      "楽しい (たのしい) - fun",
+      "音楽 (おんがく) - music"
+    ]
+  },
+  {
+    "id": 135,
+    "character": "親",
+    "meaning": "parent, intimate",
+    "onyomi": "シン",
+    "kunyomi": "おや、した.しい",
+    "jlptLevel": "N4",
+    "strokeCount": 16,
+    "examples": [
+      "親 (おや) - parent",
+      "親切 (しんせつ) - kind"
+    ]
+  },
+  {
+    "id": 136,
+    "character": "兄",
+    "meaning": "older brother",
+    "onyomi": "ケイ、キョウ",
+    "kunyomi": "あに",
+    "jlptLevel": "N4",
+    "strokeCount": 5,
+    "examples": [
+      "兄 (あに) - older brother",
+      "お兄さん (おにいさん) - older brother (polite)"
+    ]
+  },
+  {
+    "id": 137,
+    "character": "姉",
+    "meaning": "older sister",
+    "onyomi": "シ",
+    "kunyomi": "あね",
+    "jlptLevel": "N4",
+    "strokeCount": 8,
+    "examples": [
+      "姉 (あね) - older sister",
+      "お姉さん (おねえさん) - older sister (polite)"
+    ]
+  },
+  {
+    "id": 138,
+    "character": "弟",
+    "meaning": "younger brother",
+    "onyomi": "テイ、ダイ",
+    "kunyomi": "おとうと",
+    "jlptLevel": "N4",
+    "strokeCount": 7,
+    "examples": [
+      "弟 (おとうと) - younger brother",
+      "兄弟 (きょうだい) - siblings"
+    ]
+  },
+  {
+    "id": 139,
+    "character": "妹",
+    "meaning": "younger sister",
+    "onyomi": "マイ",
+    "kunyomi": "いもうと",
+    "jlptLevel": "N4",
+    "strokeCount": 8,
+    "examples": [
+      "妹 (いもうと) - younger sister",
+      "姉妹 (しまい) - sisters"
+    ]
+  },
+  {
+    "id": 140,
+    "character": "自",
+    "meaning": "self",
+    "onyomi": "ジ、シ",
+    "kunyomi": "みずか.ら",
+    "jlptLevel": "N4",
+    "strokeCount": 6,
+    "examples": [
+      "自分 (じぶん) - oneself",
+      "自然 (しぜん) - nature"
+    ]
+  },
+  {
+    "id": 141,
+    "character": "友",
+    "meaning": "friend",
+    "onyomi": "ユウ",
+    "kunyomi": "とも",
+    "jlptLevel": "N4",
+    "strokeCount": 4,
+    "examples": [
+      "友達 (ともだち) - friend",
+      "友人 (ゆうじん) - friend (formal)"
+    ]
+  },
+  {
+    "id": 142,
+    "character": "映",
+    "meaning": "reflect, project",
+    "onyomi": "エイ",
+    "kunyomi": "うつ.る、は.える",
+    "jlptLevel": "N4",
+    "strokeCount": 9,
+    "examples": [
+      "映画 (えいが) - movie",
+      "映る (うつる) - to be reflected"
+    ]
+  },
+  {
+    "id": 143,
+    "character": "画",
+    "meaning": "picture, drawing",
+    "onyomi": "ガ、カク",
+    "kunyomi": "",
+    "jlptLevel": "N4",
+    "strokeCount": 8,
+    "examples": [
+      "映画 (えいが) - movie",
+      "計画 (けいかく) - plan"
+    ]
+  },
+  {
+    "id": 144,
+    "character": "写",
+    "meaning": "copy, photograph",
+    "onyomi": "シャ",
+    "kunyomi": "うつ.す、うつ.る",
+    "jlptLevel": "N4",
+    "strokeCount": 5,
+    "examples": [
+      "写真 (しゃしん) - photo",
+      "写す (うつす) - to copy"
+    ]
+  },
+  {
+    "id": 145,
+    "character": "真",
+    "meaning": "true, reality",
+    "onyomi": "シン",
+    "kunyomi": "ま、まこと",
+    "jlptLevel": "N4",
+    "strokeCount": 10,
+    "examples": [
+      "写真 (しゃしん) - photo",
+      "真実 (しんじつ) - truth"
+    ]
+  },
+  {
+    "id": 146,
+    "character": "料",
+    "meaning": "fee, material",
+    "onyomi": "リョウ",
+    "kunyomi": "",
+    "jlptLevel": "N4",
+    "strokeCount": 10,
+    "examples": [
+      "料理 (りょうり) - cooking",
+      "材料 (ざいりょう) - material"
+    ]
+  },
+  {
+    "id": 147,
+    "character": "理",
+    "meaning": "reason, logic",
+    "onyomi": "リ",
+    "kunyomi": "",
+    "jlptLevel": "N4",
+    "strokeCount": 11,
+    "examples": [
+      "料理 (りょうり) - cooking",
+      "理由 (りゆう) - reason"
+    ]
+  },
+  {
+    "id": 148,
+    "character": "意",
+    "meaning": "meaning, intention",
+    "onyomi": "イ",
+    "kunyomi": "",
+    "jlptLevel": "N4",
+    "strokeCount": 13,
+    "examples": [
+      "意味 (いみ) - meaning",
+      "注意 (ちゅうい) - attention"
+    ]
+  },
+  {
+    "id": 149,
+    "character": "味",
+    "meaning": "taste, flavor",
+    "onyomi": "ミ",
+    "kunyomi": "あじ、あじ.わう",
+    "jlptLevel": "N4",
+    "strokeCount": 8,
+    "examples": [
+      "意味 (いみ) - meaning",
+      "味 (あじ) - taste"
+    ]
+  },
+  {
+    "id": 150,
+    "character": "注",
+    "meaning": "pour, note",
+    "onyomi": "チュウ",
+    "kunyomi": "そそ.ぐ",
+    "jlptLevel": "N4",
+    "strokeCount": 8,
+    "examples": [
+      "注意 (ちゅうい) - attention",
+      "注文 (ちゅうもん) - order"
+    ]
+  },
+  {
+    "id": 151,
+    "character": "工",
+    "meaning": "craft, construction",
+    "onyomi": "コウ、ク",
+    "kunyomi": "",
+    "jlptLevel": "N4",
+    "strokeCount": 3,
+    "examples": [
+      "工場 (こうじょう) - factory",
+      "工事 (こうじ) - construction"
+    ]
+  },
+  {
+    "id": 152,
+    "character": "作",
+    "meaning": "make, create",
+    "onyomi": "サク、サ",
+    "kunyomi": "つく.る",
+    "jlptLevel": "N4",
+    "strokeCount": 7,
+    "examples": [
+      "作る (つくる) - to make",
+      "作品 (さくひん) - work/artwork"
+    ]
+  },
+  {
+    "id": 153,
+    "character": "質",
+    "meaning": "quality",
+    "onyomi": "シツ、シチ",
+    "kunyomi": "",
+    "jlptLevel": "N4",
+    "strokeCount": 15,
+    "examples": [
+      "質問 (しつもん) - question",
+      "品質 (ひんしつ) - quality"
+    ]
+  },
+  {
+    "id": 154,
+    "character": "問",
+    "meaning": "question, ask",
+    "onyomi": "モン",
+    "kunyomi": "と.う、と.い",
+    "jlptLevel": "N4",
+    "strokeCount": 11,
+    "examples": [
+      "質問 (しつもん) - question",
+      "問題 (もんだい) - problem"
+    ]
+  },
+  {
+    "id": 155,
+    "character": "題",
+    "meaning": "topic, title",
+    "onyomi": "ダイ",
+    "kunyomi": "",
+    "jlptLevel": "N4",
+    "strokeCount": 18,
+    "examples": [
+      "問題 (もんだい) - problem",
+      "話題 (わだい) - topic"
+    ]
+  },
+  {
+    "id": 156,
+    "character": "答",
+    "meaning": "answer",
+    "onyomi": "トウ",
+    "kunyomi": "こた.える、こた.え",
+    "jlptLevel": "N4",
+    "strokeCount": 12,
+    "examples": [
+      "答える (こたえる) - to answer",
+      "回答 (かいとう) - reply"
+    ]
+  },
+  {
+    "id": 157,
+    "character": "試",
+    "meaning": "try, test",
+    "onyomi": "シ",
+    "kunyomi": "こころ.みる、ため.す",
+    "jlptLevel": "N4",
+    "strokeCount": 13,
+    "examples": [
+      "試験 (しけん) - exam",
+      "試す (ためす) - to try"
+    ]
+  },
+  {
+    "id": 158,
+    "character": "験",
+    "meaning": "test, effect",
+    "onyomi": "ケン、ゲン",
+    "kunyomi": "",
+    "jlptLevel": "N4",
+    "strokeCount": 18,
+    "examples": [
+      "試験 (しけん) - exam",
+      "経験 (けいけん) - experience"
+    ]
+  },
+  {
+    "id": 159,
+    "character": "研",
+    "meaning": "polish, study",
+    "onyomi": "ケン",
+    "kunyomi": "と.ぐ",
+    "jlptLevel": "N4",
+    "strokeCount": 9,
+    "examples": [
+      "研究 (けんきゅう) - research",
+      "研修 (けんしゅう) - training"
+    ]
+  },
+  {
+    "id": 160,
+    "character": "究",
+    "meaning": "research, investigate",
+    "onyomi": "キュウ",
+    "kunyomi": "きわ.める",
+    "jlptLevel": "N4",
+    "strokeCount": 7,
+    "examples": [
+      "研究 (けんきゅう) - research",
+      "究極 (きゅうきょく) - ultimate"
+    ]
+  },
+  {
+    "id": 161,
+    "character": "政",
+    "meaning": "politics, government",
+    "onyomi": "セイ、ショウ",
+    "kunyomi": "まつりごと",
+    "jlptLevel": "N3",
+    "strokeCount": 9,
+    "examples": [
+      "政治 (せいじ) - politics",
+      "政府 (せいふ) - government"
+    ]
+  },
+  {
+    "id": 162,
+    "character": "府",
+    "meaning": "government office",
+    "onyomi": "フ",
+    "kunyomi": "",
+    "jlptLevel": "N3",
+    "strokeCount": 8,
+    "examples": [
+      "政府 (せいふ) - government",
+      "大阪府 (おおさかふ) - Osaka Prefecture"
+    ]
+  },
+  {
+    "id": 163,
+    "character": "経",
+    "meaning": "pass through, sutra",
+    "onyomi": "ケイ、キョウ",
+    "kunyomi": "へ.る、た.つ",
+    "jlptLevel": "N3",
+    "strokeCount": 11,
+    "examples": [
+      "経済 (けいざい) - economy",
+      "経験 (けいけん) - experience"
+    ]
+  },
+  {
+    "id": 164,
+    "character": "済",
+    "meaning": "finish, settle",
+    "onyomi": "サイ、セイ",
+    "kunyomi": "す.む",
+    "jlptLevel": "N3",
+    "strokeCount": 11,
+    "examples": [
+      "経済 (けいざい) - economy",
+      "済む (すむ) - to finish"
+    ]
+  },
+  {
+    "id": 165,
+    "character": "産",
+    "meaning": "produce, birth",
+    "onyomi": "サン",
+    "kunyomi": "う.む、う.まれる",
+    "jlptLevel": "N3",
+    "strokeCount": 11,
+    "examples": [
+      "産業 (さんぎょう) - industry",
+      "生産 (せいさん) - production"
+    ]
+  },
+  {
+    "id": 166,
+    "character": "業",
+    "meaning": "business, industry",
+    "onyomi": "ギョウ、ゴウ",
+    "kunyomi": "わざ",
+    "jlptLevel": "N3",
+    "strokeCount": 13,
+    "examples": [
+      "産業 (さんぎょう) - industry",
+      "授業 (じゅぎょう) - class"
+    ]
+  },
+  {
+    "id": 167,
+    "character": "報",
+    "meaning": "report, news",
+    "onyomi": "ホウ",
+    "kunyomi": "むく.いる",
+    "jlptLevel": "N3",
+    "strokeCount": 12,
+    "examples": [
+      "情報 (じょうほう) - information",
+      "報告 (ほうこく) - report"
+    ]
+  },
+  {
+    "id": 168,
+    "character": "情",
+    "meaning": "emotion, feeling",
+    "onyomi": "ジョウ、セイ",
+    "kunyomi": "なさ.け",
+    "jlptLevel": "N3",
+    "strokeCount": 11,
+    "examples": [
+      "情報 (じょうほう) - information",
+      "感情 (かんじょう) - emotion"
+    ]
+  },
+  {
+    "id": 169,
+    "character": "感",
+    "meaning": "feel, sense",
+    "onyomi": "カン",
+    "kunyomi": "",
+    "jlptLevel": "N3",
+    "strokeCount": 13,
+    "examples": [
+      "感じる (かんじる) - to feel",
+      "感想 (かんそう) - impression"
+    ]
+  },
+  {
+    "id": 170,
+    "character": "想",
+    "meaning": "think, concept",
+    "onyomi": "ソウ、ソ",
+    "kunyomi": "",
+    "jlptLevel": "N3",
+    "strokeCount": 13,
+    "examples": [
+      "感想 (かんそう) - impression",
+      "想像 (そうぞう) - imagination"
+    ]
+  },
+  {
+    "id": 171,
+    "character": "像",
+    "meaning": "image, statue",
+    "onyomi": "ゾウ",
+    "kunyomi": "",
+    "jlptLevel": "N3",
+    "strokeCount": 14,
+    "examples": [
+      "想像 (そうぞう) - imagination",
+      "画像 (がぞう) - image"
+    ]
+  },
+  {
+    "id": 172,
+    "character": "増",
+    "meaning": "increase",
+    "onyomi": "ゾウ",
+    "kunyomi": "ま.す、ふ.える",
+    "jlptLevel": "N3",
+    "strokeCount": 14,
+    "examples": [
+      "増える (ふえる) - to increase",
+      "増加 (ぞうか) - increase"
+    ]
+  },
+  {
+    "id": 173,
+    "character": "減",
+    "meaning": "decrease",
+    "onyomi": "ゲン",
+    "kunyomi": "へ.る、へ.らす",
+    "jlptLevel": "N3",
+    "strokeCount": 12,
+    "examples": [
+      "減る (へる) - to decrease",
+      "削減 (さくげん) - reduction"
+    ]
+  },
+  {
+    "id": 174,
+    "character": "達",
+    "meaning": "reach, achieve",
+    "onyomi": "タツ",
+    "kunyomi": "",
+    "jlptLevel": "N3",
+    "strokeCount": 12,
+    "examples": [
+      "友達 (ともだち) - friend",
+      "発達 (はったつ) - development"
+    ]
+  },
+  {
+    "id": 175,
+    "character": "発",
+    "meaning": "emit, departure",
+    "onyomi": "ハツ、ホツ",
+    "kunyomi": "",
+    "jlptLevel": "N3",
+    "strokeCount": 9,
+    "examples": [
+      "発展 (はってん) - development",
+      "出発 (しゅっぱつ) - departure"
+    ]
+  },
+  {
+    "id": 176,
+    "character": "展",
+    "meaning": "expand, exhibit",
+    "onyomi": "テン",
+    "kunyomi": "",
+    "jlptLevel": "N3",
+    "strokeCount": 10,
+    "examples": [
+      "発展 (はってん) - development",
+      "展覧会 (てんらんかい) - exhibition"
+    ]
+  },
+  {
+    "id": 177,
+    "character": "決",
+    "meaning": "decide",
+    "onyomi": "ケツ",
+    "kunyomi": "き.める",
+    "jlptLevel": "N3",
+    "strokeCount": 7,
+    "examples": [
+      "決める (きめる) - to decide",
+      "解決 (かいけつ) - solution"
+    ]
+  },
+  {
+    "id": 178,
+    "character": "解",
+    "meaning": "solve, untie",
+    "onyomi": "カイ、ゲ",
+    "kunyomi": "と.く",
+    "jlptLevel": "N3",
+    "strokeCount": 13,
+    "examples": [
+      "解決 (かいけつ) - solution",
+      "理解 (りかい) - understanding"
+    ]
+  },
+  {
+    "id": 179,
+    "character": "選",
+    "meaning": "choose, select",
+    "onyomi": "セン",
+    "kunyomi": "えら.ぶ",
+    "jlptLevel": "N3",
+    "strokeCount": 15,
+    "examples": [
+      "選ぶ (えらぶ) - to choose",
+      "選手 (せんしゅ) - athlete"
+    ]
+  },
+  {
+    "id": 180,
+    "character": "挙",
+    "meaning": "raise, elect",
+    "onyomi": "キョ",
+    "kunyomi": "あ.げる",
+    "jlptLevel": "N3",
+    "strokeCount": 10,
+    "examples": [
+      "選挙 (せんきょ) - election",
+      "挙げる (あげる) - to raise"
+    ]
+  },
+  {
+    "id": 181,
+    "character": "議",
+    "meaning": "deliberation",
+    "onyomi": "ギ",
+    "kunyomi": "",
+    "jlptLevel": "N3",
+    "strokeCount": 20,
+    "examples": [
+      "会議 (かいぎ) - meeting",
+      "議論 (ぎろん) - discussion"
+    ]
+  },
+  {
+    "id": 182,
+    "character": "論",
+    "meaning": "theory, argument",
+    "onyomi": "ロン",
+    "kunyomi": "",
+    "jlptLevel": "N3",
+    "strokeCount": 15,
+    "examples": [
+      "議論 (ぎろん) - discussion",
+      "理論 (りろん) - theory"
+    ]
+  },
+  {
+    "id": 183,
+    "character": "調",
+    "meaning": "investigate, tune",
+    "onyomi": "チョウ",
+    "kunyomi": "しら.べる、ととの.う",
+    "jlptLevel": "N3",
+    "strokeCount": 15,
+    "examples": [
+      "調べる (しらべる) - to investigate",
+      "調査 (ちょうさ) - survey"
+    ]
+  },
+  {
+    "id": 184,
+    "character": "査",
+    "meaning": "inspect",
+    "onyomi": "サ",
+    "kunyomi": "",
+    "jlptLevel": "N3",
+    "strokeCount": 9,
+    "examples": [
+      "調査 (ちょうさ) - survey",
+      "検査 (けんさ) - inspection"
+    ]
+  },
+  {
+    "id": 185,
+    "character": "制",
+    "meaning": "system, control",
+    "onyomi": "セイ",
+    "kunyomi": "",
+    "jlptLevel": "N3",
+    "strokeCount": 8,
+    "examples": [
+      "制度 (せいど) - system",
+      "規制 (きせい) - regulation"
+    ]
+  },
+  {
+    "id": 186,
+    "character": "度",
+    "meaning": "degree, time",
+    "onyomi": "ド、ト、タク",
+    "kunyomi": "たび",
+    "jlptLevel": "N3",
+    "strokeCount": 9,
+    "examples": [
+      "制度 (せいど) - system",
+      "温度 (おんど) - temperature"
+    ]
+  },
+  {
+    "id": 187,
+    "character": "規",
+    "meaning": "standard, rule",
+    "onyomi": "キ",
+    "kunyomi": "",
+    "jlptLevel": "N3",
+    "strokeCount": 11,
+    "examples": [
+      "規則 (きそく) - rule",
+      "規模 (きぼ) - scale"
+    ]
+  },
+  {
+    "id": 188,
+    "character": "則",
+    "meaning": "rule, law",
+    "onyomi": "ソク",
+    "kunyomi": "",
+    "jlptLevel": "N3",
+    "strokeCount": 9,
+    "examples": [
+      "規則 (きそく) - rule",
+      "原則 (げんそく) - principle"
+    ]
+  },
+  {
+    "id": 189,
+    "character": "確",
+    "meaning": "certain, confirm",
+    "onyomi": "カク",
+    "kunyomi": "たし.か、たし.かめる",
+    "jlptLevel": "N3",
+    "strokeCount": 15,
+    "examples": [
+      "確認 (かくにん) - confirmation",
+      "正確 (せいかく) - accurate"
+    ]
+  },
+  {
+    "id": 190,
+    "character": "認",
+    "meaning": "recognize, approve",
+    "onyomi": "ニン",
+    "kunyomi": "みと.める",
+    "jlptLevel": "N3",
+    "strokeCount": 14,
+    "examples": [
+      "確認 (かくにん) - confirmation",
+      "認める (みとめる) - to recognize"
+    ]
+  },
+  {
+    "id": 191,
+    "character": "判",
+    "meaning": "judge",
+    "onyomi": "ハン、バン",
+    "kunyomi": "",
+    "jlptLevel": "N3",
+    "strokeCount": 7,
+    "examples": [
+      "判断 (はんだん) - judgment",
+      "裁判 (さいばん) - trial"
+    ]
+  },
+  {
+    "id": 192,
+    "character": "断",
+    "meaning": "refuse, cut off",
+    "onyomi": "ダン",
+    "kunyomi": "ことわ.る、た.つ",
+    "jlptLevel": "N3",
+    "strokeCount": 11,
+    "examples": [
+      "判断 (はんだん) - judgment",
+      "断る (ことわる) - to refuse"
+    ]
+  },
+  {
+    "id": 193,
+    "character": "相",
+    "meaning": "mutual, minister",
+    "onyomi": "ソウ、ショウ",
+    "kunyomi": "あい",
+    "jlptLevel": "N3",
+    "strokeCount": 9,
+    "examples": [
+      "相手 (あいて) - partner",
+      "首相 (しゅしょう) - prime minister"
+    ]
+  },
+  {
+    "id": 194,
+    "character": "手",
+    "meaning": "hand",
+    "onyomi": "シュ",
+    "kunyomi": "て",
+    "jlptLevel": "N3",
+    "strokeCount": 4,
+    "examples": [
+      "相手 (あいて) - partner",
+      "選手 (せんしゅ) - athlete"
+    ]
+  },
+  {
+    "id": 195,
+    "character": "期",
+    "meaning": "period, term",
+    "onyomi": "キ、ゴ",
+    "kunyomi": "",
+    "jlptLevel": "N3",
+    "strokeCount": 12,
+    "examples": [
+      "期間 (きかん) - period",
+      "期待 (きたい) - expectation"
+    ]
+  },
+  {
+    "id": 196,
+    "character": "間",
+    "meaning": "interval, between",
+    "onyomi": "カン、ケン",
+    "kunyomi": "あいだ、ま",
+    "jlptLevel": "N3",
+    "strokeCount": 12,
+    "examples": [
+      "時間 (じかん) - time",
+      "人間 (にんげん) - human"
+    ]
+  },
+  {
+    "id": 197,
+    "character": "関",
+    "meaning": "related, barrier",
+    "onyomi": "カン",
+    "kunyomi": "せき、かか.わる",
+    "jlptLevel": "N3",
+    "strokeCount": 14,
+    "examples": [
+      "関係 (かんけい) - relationship",
+      "関心 (かんしん) - interest"
+    ]
+  },
+  {
+    "id": 198,
+    "character": "係",
+    "meaning": "connection, person in charge",
+    "onyomi": "ケイ",
+    "kunyomi": "かか.る、かかり",
+    "jlptLevel": "N3",
+    "strokeCount": 9,
+    "examples": [
+      "関係 (かんけい) - relationship",
+      "係員 (かかりいん) - staff member"
+    ]
+  },
+  {
+    "id": 199,
+    "character": "対",
+    "meaning": "opposite, versus",
+    "onyomi": "タイ、ツイ",
+    "kunyomi": "",
+    "jlptLevel": "N3",
+    "strokeCount": 7,
+    "examples": [
+      "対策 (たいさく) - countermeasure",
+      "反対 (はんたい) - opposition"
+    ]
+  },
+  {
+    "id": 200,
+    "character": "反",
+    "meaning": "anti, opposite",
+    "onyomi": "ハン、ホン、タン",
+    "kunyomi": "そ.る、かえ.る",
+    "jlptLevel": "N3",
+    "strokeCount": 4,
+    "examples": [
+      "反対 (はんたい) - opposition",
+      "反応 (はんのう) - reaction"
+    ]
+  },
+  {
+    "id": 201,
+    "character": "応",
+    "meaning": "respond, answer",
+    "onyomi": "オウ",
+    "kunyomi": "",
+    "jlptLevel": "N3",
+    "strokeCount": 7,
+    "examples": [
+      "反応 (はんのう) - reaction",
+      "応用 (おうよう) - application"
+    ]
+  },
+  {
+    "id": 202,
+    "character": "変",
+    "meaning": "change, strange",
+    "onyomi": "ヘン",
+    "kunyomi": "か.わる、か.える",
+    "jlptLevel": "N3",
+    "strokeCount": 9,
+    "examples": [
+      "変わる (かわる) - to change",
+      "変化 (へんか) - change"
+    ]
+  },
+  {
+    "id": 203,
+    "character": "化",
+    "meaning": "change into, -ize",
+    "onyomi": "カ、ケ",
+    "kunyomi": "ば.ける",
+    "jlptLevel": "N3",
+    "strokeCount": 4,
+    "examples": [
+      "変化 (へんか) - change",
+      "文化 (ぶんか) - culture"
+    ]
+  },
+  {
+    "id": 204,
+    "character": "進",
+    "meaning": "advance, progress",
+    "onyomi": "シン",
+    "kunyomi": "すす.む、すす.める",
+    "jlptLevel": "N3",
+    "strokeCount": 11,
+    "examples": [
+      "進む (すすむ) - to advance",
+      "進歩 (しんぽ) - progress"
+    ]
+  },
+  {
+    "id": 205,
+    "character": "歴",
+    "meaning": "history, curriculum",
+    "onyomi": "レキ",
+    "kunyomi": "",
+    "jlptLevel": "N3",
+    "strokeCount": 14,
+    "examples": [
+      "歴史 (れきし) - history",
+      "学歴 (がくれき) - academic background"
+    ]
+  },
+  {
+    "id": 206,
+    "character": "史",
+    "meaning": "history",
+    "onyomi": "シ",
+    "kunyomi": "",
+    "jlptLevel": "N3",
+    "strokeCount": 5,
+    "examples": [
+      "歴史 (れきし) - history",
+      "日本史 (にほんし) - Japanese history"
+    ]
+  },
+  {
+    "id": 207,
+    "character": "民",
+    "meaning": "people, nation",
+    "onyomi": "ミン",
+    "kunyomi": "たみ",
+    "jlptLevel": "N3",
+    "strokeCount": 5,
+    "examples": [
+      "国民 (こくみん) - citizens",
+      "民主 (みんしゅ) - democracy"
+    ]
+  },
+  {
+    "id": 208,
+    "character": "主",
+    "meaning": "master, main",
+    "onyomi": "シュ、ス",
+    "kunyomi": "ぬし、おも",
+    "jlptLevel": "N3",
+    "strokeCount": 5,
+    "examples": [
+      "主に (おもに) - mainly",
+      "民主 (みんしゅ) - democracy"
+    ]
+  },
+  {
+    "id": 209,
+    "character": "義",
+    "meaning": "righteousness, meaning",
+    "onyomi": "ギ",
+    "kunyomi": "",
+    "jlptLevel": "N3",
+    "strokeCount": 13,
+    "examples": [
+      "意義 (いぎ) - significance",
+      "主義 (しゅぎ) - -ism"
+    ]
+  },
+  {
+    "id": 210,
+    "character": "法",
+    "meaning": "law, method",
+    "onyomi": "ホウ、ハッ",
+    "kunyomi": "",
+    "jlptLevel": "N3",
+    "strokeCount": 8,
+    "examples": [
+      "方法 (ほうほう) - method",
+      "法律 (ほうりつ) - law"
+    ]
+  },
+  {
+    "id": 211,
+    "character": "律",
+    "meaning": "law, rhythm",
+    "onyomi": "リツ、リチ",
+    "kunyomi": "",
+    "jlptLevel": "N3",
+    "strokeCount": 9,
+    "examples": [
+      "法律 (ほうりつ) - law",
+      "規律 (きりつ) - discipline"
+    ]
+  },
+  {
+    "id": 212,
+    "character": "権",
+    "meaning": "rights, authority",
+    "onyomi": "ケン、ゴン",
+    "kunyomi": "",
+    "jlptLevel": "N3",
+    "strokeCount": 15,
+    "examples": [
+      "権利 (けんり) - rights",
+      "人権 (じんけん) - human rights"
+    ]
+  },
+  {
+    "id": 213,
+    "character": "利",
+    "meaning": "profit, benefit",
+    "onyomi": "リ",
+    "kunyomi": "き.く",
+    "jlptLevel": "N3",
+    "strokeCount": 7,
+    "examples": [
+      "権利 (けんり) - rights",
+      "便利 (べんり) - convenient"
+    ]
+  },
+  {
+    "id": 214,
+    "character": "説",
+    "meaning": "theory, explain",
+    "onyomi": "セツ、ゼイ",
+    "kunyomi": "と.く",
+    "jlptLevel": "N3",
+    "strokeCount": 14,
+    "examples": [
+      "説明 (せつめい) - explanation",
+      "小説 (しょうせつ) - novel"
+    ]
+  },
+  {
+    "id": 215,
+    "character": "明",
+    "meaning": "bright, clear",
+    "onyomi": "メイ、ミョウ",
+    "kunyomi": "あか.るい、あき.らか",
+    "jlptLevel": "N3",
+    "strokeCount": 8,
+    "examples": [
+      "説明 (せつめい) - explanation",
+      "明日 (あした) - tomorrow"
+    ]
+  },
+  {
+    "id": 216,
+    "character": "示",
+    "meaning": "show, indicate",
+    "onyomi": "ジ、シ",
+    "kunyomi": "しめ.す",
+    "jlptLevel": "N3",
+    "strokeCount": 5,
+    "examples": [
+      "表示 (ひょうじ) - display",
+      "指示 (しじ) - instruction"
+    ]
+  },
+  {
+    "id": 217,
+    "character": "表",
+    "meaning": "surface, express",
+    "onyomi": "ヒョウ",
+    "kunyomi": "おもて、あらわ.す",
+    "jlptLevel": "N3",
+    "strokeCount": 8,
+    "examples": [
+      "表現 (ひょうげん) - expression",
+      "発表 (はっぴょう) - announcement"
+    ]
+  },
+  {
+    "id": 218,
+    "character": "現",
+    "meaning": "present, appear",
+    "onyomi": "ゲン",
+    "kunyomi": "あらわ.れる",
+    "jlptLevel": "N3",
+    "strokeCount": 11,
+    "examples": [
+      "表現 (ひょうげん) - expression",
+      "現在 (げんざい) - present time"
+    ]
+  },
+  {
+    "id": 219,
+    "character": "在",
+    "meaning": "exist, reside",
+    "onyomi": "ザイ",
+    "kunyomi": "あ.る",
+    "jlptLevel": "N3",
+    "strokeCount": 6,
+    "examples": [
+      "現在 (げんざい) - present time",
+      "存在 (そんざい) - existence"
+    ]
+  },
+  {
+    "id": 220,
+    "character": "実",
+    "meaning": "reality, fruit",
+    "onyomi": "ジツ",
+    "kunyomi": "み、みの.る",
+    "jlptLevel": "N3",
+    "strokeCount": 8,
+    "examples": [
+      "実際 (じっさい) - actually",
+      "事実 (じじつ) - fact"
+    ]
+  },
+  {
+    "id": 221,
+    "character": "際",
+    "meaning": "occasion, side",
+    "onyomi": "サイ",
+    "kunyomi": "きわ",
+    "jlptLevel": "N3",
+    "strokeCount": 14,
+    "examples": [
+      "実際 (じっさい) - actually",
+      "国際 (こくさい) - international"
+    ]
+  },
+  {
+    "id": 222,
+    "character": "際",
+    "meaning": "occasion",
+    "onyomi": "サイ",
+    "kunyomi": "きわ",
+    "jlptLevel": "N3",
+    "strokeCount": 14,
+    "examples": [
+      "国際 (こくさい) - international",
+      "交際 (こうさい) - association"
+    ]
+  },
+  {
+    "id": 223,
+    "character": "能",
+    "meaning": "ability",
+    "onyomi": "ノウ",
+    "kunyomi": "",
+    "jlptLevel": "N3",
+    "strokeCount": 10,
+    "examples": [
+      "能力 (のうりょく) - ability",
+      "可能 (かのう) - possible"
+    ]
+  },
+  {
+    "id": 224,
+    "character": "可",
+    "meaning": "possible",
+    "onyomi": "カ",
+    "kunyomi": "",
+    "jlptLevel": "N3",
+    "strokeCount": 5,
+    "examples": [
+      "可能 (かのう) - possible",
+      "不可能 (ふかのう) - impossible"
+    ]
+  },
+  {
+    "id": 225,
+    "character": "性",
+    "meaning": "nature, gender",
+    "onyomi": "セイ、ショウ",
+    "kunyomi": "",
+    "jlptLevel": "N3",
+    "strokeCount": 8,
+    "examples": [
+      "可能性 (かのうせい) - possibility",
+      "性格 (せいかく) - personality"
+    ]
+  },
+  {
+    "id": 226,
+    "character": "格",
+    "meaning": "status, case",
+    "onyomi": "カク、コウ",
+    "kunyomi": "",
+    "jlptLevel": "N3",
+    "strokeCount": 10,
+    "examples": [
+      "性格 (せいかく) - personality",
+      "価格 (かかく) - price"
+    ]
+  },
+  {
+    "id": 227,
+    "character": "価",
+    "meaning": "value, price",
+    "onyomi": "カ",
+    "kunyomi": "あたい",
+    "jlptLevel": "N3",
+    "strokeCount": 8,
+    "examples": [
+      "価格 (かかく) - price",
+      "評価 (ひょうか) - evaluation"
+    ]
+  },
+  {
+    "id": 228,
+    "character": "評",
+    "meaning": "evaluate",
+    "onyomi": "ヒョウ",
+    "kunyomi": "",
+    "jlptLevel": "N3",
+    "strokeCount": 12,
+    "examples": [
+      "評価 (ひょうか) - evaluation",
+      "批評 (ひひょう) - criticism"
+    ]
+  },
+  {
+    "id": 229,
+    "character": "環",
+    "meaning": "ring, cycle",
+    "onyomi": "カン",
+    "kunyomi": "わ",
+    "jlptLevel": "N3",
+    "strokeCount": 17,
+    "examples": [
+      "環境 (かんきょう) - environment",
+      "循環 (じゅんかん) - circulation"
+    ]
+  },
+  {
+    "id": 230,
+    "character": "境",
+    "meaning": "boundary",
+    "onyomi": "キョウ、ケイ",
+    "kunyomi": "さかい",
+    "jlptLevel": "N3",
+    "strokeCount": 14,
+    "examples": [
+      "環境 (かんきょう) - environment",
+      "国境 (こっきょう) - national border"
+    ]
+  },
+  {
+    "id": 231,
+    "character": "提",
+    "meaning": "propose, carry",
+    "onyomi": "テイ",
+    "kunyomi": "さ.げる",
+    "jlptLevel": "N3",
+    "strokeCount": 12,
+    "examples": [
+      "提案 (ていあん) - proposal",
+      "提出 (ていしゅつ) - submission"
+    ]
+  },
+  {
+    "id": 232,
+    "character": "案",
+    "meaning": "plan, idea",
+    "onyomi": "アン",
+    "kunyomi": "",
+    "jlptLevel": "N3",
+    "strokeCount": 10,
+    "examples": [
+      "提案 (ていあん) - proposal",
+      "案内 (あんない) - guidance"
+    ]
+  },
+  {
+    "id": 233,
+    "character": "保",
+    "meaning": "protect, maintain",
+    "onyomi": "ホ",
+    "kunyomi": "たも.つ",
+    "jlptLevel": "N3",
+    "strokeCount": 9,
+    "examples": [
+      "保護 (ほご) - protection",
+      "保険 (ほけん) - insurance"
+    ]
+  },
+  {
+    "id": 234,
+    "character": "護",
+    "meaning": "protect, defend",
+    "onyomi": "ゴ",
+    "kunyomi": "まも.る",
+    "jlptLevel": "N3",
+    "strokeCount": 20,
+    "examples": [
+      "保護 (ほご) - protection",
+      "弁護士 (べんごし) - lawyer"
+    ]
+  },
+  {
+    "id": 235,
+    "character": "険",
+    "meaning": "danger, steep",
+    "onyomi": "ケン",
+    "kunyomi": "けわ.しい",
+    "jlptLevel": "N3",
+    "strokeCount": 11,
+    "examples": [
+      "保険 (ほけん) - insurance",
+      "危険 (きけん) - danger"
+    ]
+  },
+  {
+    "id": 236,
+    "character": "危",
+    "meaning": "danger",
+    "onyomi": "キ",
+    "kunyomi": "あぶ.ない、あや.うい",
+    "jlptLevel": "N3",
+    "strokeCount": 6,
+    "examples": [
+      "危険 (きけん) - danger",
+      "危機 (きき) - crisis"
+    ]
+  },
+  {
+    "id": 237,
+    "character": "改",
+    "meaning": "reform, change",
+    "onyomi": "カイ",
+    "kunyomi": "あらた.める",
+    "jlptLevel": "N3",
+    "strokeCount": 7,
+    "examples": [
+      "改善 (かいぜん) - improvement",
+      "改革 (かいかく) - reform"
+    ]
+  },
+  {
+    "id": 238,
+    "character": "善",
+    "meaning": "good, virtuous",
+    "onyomi": "ゼン",
+    "kunyomi": "よ.い",
+    "jlptLevel": "N3",
+    "strokeCount": 12,
+    "examples": [
+      "改善 (かいぜん) - improvement",
+      "親善 (しんぜん) - goodwill"
+    ]
+  },
+  {
+    "id": 239,
+    "character": "革",
+    "meaning": "leather, reform",
+    "onyomi": "カク",
+    "kunyomi": "かわ",
+    "jlptLevel": "N3",
+    "strokeCount": 9,
+    "examples": [
+      "改革 (かいかく) - reform",
+      "革命 (かくめい) - revolution"
+    ]
+  },
+  {
+    "id": 240,
+    "character": "命",
+    "meaning": "life, fate",
+    "onyomi": "メイ、ミョウ",
+    "kunyomi": "いのち",
+    "jlptLevel": "N3",
+    "strokeCount": 8,
+    "examples": [
+      "命 (いのち) - life",
+      "革命 (かくめい) - revolution"
+    ]
+  },
+  {
+    "id": 241,
+    "character": "導",
+    "meaning": "guide, lead",
+    "onyomi": "ドウ",
+    "kunyomi": "みちび.く",
+    "jlptLevel": "N2",
+    "strokeCount": 15,
+    "examples": [
+      "指導 (しどう) - guidance",
+      "導入 (どうにゅう) - introduction"
+    ]
+  },
+  {
+    "id": 242,
+    "character": "指",
+    "meaning": "finger, point",
+    "onyomi": "シ",
+    "kunyomi": "ゆび、さ.す",
+    "jlptLevel": "N2",
+    "strokeCount": 9,
+    "examples": [
+      "指導 (しどう) - guidance",
+      "指摘 (してき) - pointing out"
+    ]
+  },
+  {
+    "id": 243,
+    "character": "響",
+    "meaning": "echo, resound",
+    "onyomi": "キョウ",
+    "kunyomi": "ひび.く",
+    "jlptLevel": "N2",
+    "strokeCount": 20,
+    "examples": [
+      "影響 (えいきょう) - influence",
+      "響く (ひびく) - to resound"
+    ]
+  },
+  {
+    "id": 244,
+    "character": "影",
+    "meaning": "shadow, influence",
+    "onyomi": "エイ",
+    "kunyomi": "かげ",
+    "jlptLevel": "N2",
+    "strokeCount": 15,
+    "examples": [
+      "影響 (えいきょう) - influence",
+      "影 (かげ) - shadow"
+    ]
+  },
+  {
+    "id": 245,
+    "character": "策",
+    "meaning": "plan, scheme",
+    "onyomi": "サク",
+    "kunyomi": "",
+    "jlptLevel": "N2",
+    "strokeCount": 12,
+    "examples": [
+      "対策 (たいさく) - countermeasure",
+      "政策 (せいさく) - policy"
+    ]
+  },
+  {
+    "id": 246,
+    "character": "構",
+    "meaning": "construct, posture",
+    "onyomi": "コウ",
+    "kunyomi": "かま.える",
+    "jlptLevel": "N2",
+    "strokeCount": 14,
+    "examples": [
+      "構造 (こうぞう) - structure",
+      "構成 (こうせい) - composition"
+    ]
+  },
+  {
+    "id": 247,
+    "character": "造",
+    "meaning": "create, make",
+    "onyomi": "ゾウ",
+    "kunyomi": "つく.る",
+    "jlptLevel": "N2",
+    "strokeCount": 10,
+    "examples": [
+      "構造 (こうぞう) - structure",
+      "創造 (そうぞう) - creation"
+    ]
+  },
+  {
+    "id": 248,
+    "character": "創",
+    "meaning": "create, originate",
+    "onyomi": "ソウ",
+    "kunyomi": "つく.る、はじ.める",
+    "jlptLevel": "N2",
+    "strokeCount": 12,
+    "examples": [
+      "創造 (そうぞう) - creation",
+      "創業 (そうぎょう) - founding"
+    ]
+  },
+  {
+    "id": 249,
+    "character": "維",
+    "meaning": "maintain, fiber",
+    "onyomi": "イ",
+    "kunyomi": "",
+    "jlptLevel": "N2",
+    "strokeCount": 14,
+    "examples": [
+      "維持 (いじ) - maintenance",
+      "繊維 (せんい) - fiber"
+    ]
+  },
+  {
+    "id": 250,
+    "character": "持",
+    "meaning": "hold, maintain",
+    "onyomi": "ジ",
+    "kunyomi": "も.つ",
+    "jlptLevel": "N2",
+    "strokeCount": 9,
+    "examples": [
+      "維持 (いじ) - maintenance",
+      "支持 (しじ) - support"
+    ]
+  },
+  {
+    "id": 251,
+    "character": "徴",
+    "meaning": "sign, indication",
+    "onyomi": "チョウ",
+    "kunyomi": "",
+    "jlptLevel": "N2",
+    "strokeCount": 14,
+    "examples": [
+      "特徴 (とくちょう) - feature",
+      "象徴 (しょうちょう) - symbol"
+    ]
+  },
+  {
+    "id": 252,
+    "character": "象",
+    "meaning": "elephant, phenomenon",
+    "onyomi": "ショウ、ゾウ",
+    "kunyomi": "",
+    "jlptLevel": "N2",
+    "strokeCount": 12,
+    "examples": [
+      "対象 (たいしょう) - target",
+      "現象 (げんしょう) - phenomenon"
+    ]
+  },
+  {
+    "id": 253,
+    "character": "素",
+    "meaning": "element, plain",
+    "onyomi": "ソ、ス",
+    "kunyomi": "",
+    "jlptLevel": "N2",
+    "strokeCount": 10,
+    "examples": [
+      "要素 (ようそ) - element",
+      "素材 (そざい) - material"
+    ]
+  },
+  {
+    "id": 254,
+    "character": "要",
+    "meaning": "need, main point",
+    "onyomi": "ヨウ",
+    "kunyomi": "い.る、かなめ",
+    "jlptLevel": "N2",
+    "strokeCount": 9,
+    "examples": [
+      "要素 (ようそ) - element",
+      "必要 (ひつよう) - necessary"
+    ]
+  },
+  {
+    "id": 255,
+    "character": "基",
+    "meaning": "base, foundation",
+    "onyomi": "キ",
+    "kunyomi": "もと、もとい",
+    "jlptLevel": "N2",
+    "strokeCount": 11,
+    "examples": [
+      "基本 (きほん) - basic",
+      "基礎 (きそ) - foundation"
+    ]
+  },
+  {
+    "id": 256,
+    "character": "礎",
+    "meaning": "cornerstone",
+    "onyomi": "ソ",
+    "kunyomi": "いしずえ",
+    "jlptLevel": "N2",
+    "strokeCount": 18,
+    "examples": [
+      "基礎 (きそ) - foundation",
+      "礎石 (そせき) - cornerstone"
+    ]
+  },
+  {
+    "id": 257,
+    "character": "複",
+    "meaning": "duplicate, complex",
+    "onyomi": "フク",
+    "kunyomi": "",
+    "jlptLevel": "N2",
+    "strokeCount": 14,
+    "examples": [
+      "複雑 (ふくざつ) - complex",
+      "複数 (ふくすう) - plural"
+    ]
+  },
+  {
+    "id": 258,
+    "character": "雑",
+    "meaning": "miscellaneous",
+    "onyomi": "ザツ、ゾウ",
+    "kunyomi": "まじ.える",
+    "jlptLevel": "N2",
+    "strokeCount": 14,
+    "examples": [
+      "複雑 (ふくざつ) - complex",
+      "雑誌 (ざっし) - magazine"
+    ]
+  },
+  {
+    "id": 259,
+    "character": "効",
+    "meaning": "effect, merit",
+    "onyomi": "コウ",
+    "kunyomi": "き.く",
+    "jlptLevel": "N2",
+    "strokeCount": 8,
+    "examples": [
+      "効果 (こうか) - effect",
+      "有効 (ゆうこう) - effective"
+    ]
+  },
+  {
+    "id": 260,
+    "character": "果",
+    "meaning": "fruit, result",
+    "onyomi": "カ",
+    "kunyomi": "は.たす、は.てる",
+    "jlptLevel": "N2",
+    "strokeCount": 8,
+    "examples": [
+      "結果 (けっか) - result",
+      "効果 (こうか) - effect"
+    ]
+  },
+  {
+    "id": 261,
+    "character": "結",
+    "meaning": "tie, conclude",
+    "onyomi": "ケツ",
+    "kunyomi": "むす.ぶ",
+    "jlptLevel": "N2",
+    "strokeCount": 12,
+    "examples": [
+      "結果 (けっか) - result",
+      "結論 (けつろん) - conclusion"
+    ]
+  },
+  {
+    "id": 262,
+    "character": "積",
+    "meaning": "accumulate",
+    "onyomi": "セキ",
+    "kunyomi": "つ.む",
+    "jlptLevel": "N2",
+    "strokeCount": 16,
+    "examples": [
+      "蓄積 (ちくせき) - accumulation",
+      "面積 (めんせき) - area"
+    ]
+  },
+  {
+    "id": 263,
+    "character": "蓄",
+    "meaning": "store, amass",
+    "onyomi": "チク",
+    "kunyomi": "たくわ.える",
+    "jlptLevel": "N2",
+    "strokeCount": 13,
+    "examples": [
+      "蓄積 (ちくせき) - accumulation",
+      "貯蓄 (ちょちく) - savings"
+    ]
+  },
+  {
+    "id": 264,
+    "character": "貢",
+    "meaning": "tribute, contribute",
+    "onyomi": "コウ、ク",
+    "kunyomi": "みつ.ぐ",
+    "jlptLevel": "N2",
+    "strokeCount": 10,
+    "examples": [
+      "貢献 (こうけん) - contribution",
+      "年貢 (ねんぐ) - tribute"
+    ]
+  },
+  {
+    "id": 265,
+    "character": "献",
+    "meaning": "offer, dedicate",
+    "onyomi": "ケン、コン",
+    "kunyomi": "",
+    "jlptLevel": "N2",
+    "strokeCount": 13,
+    "examples": [
+      "貢献 (こうけん) - contribution",
+      "献血 (けんけつ) - blood donation"
+    ]
+  },
+  {
+    "id": 266,
+    "character": "普",
+    "meaning": "general, universal",
+    "onyomi": "フ",
+    "kunyomi": "",
+    "jlptLevel": "N2",
+    "strokeCount": 12,
+    "examples": [
+      "普通 (ふつう) - normal",
+      "普及 (ふきゅう) - spread"
+    ]
+  },
+  {
+    "id": 267,
+    "character": "及",
+    "meaning": "reach, extend",
+    "onyomi": "キュウ",
+    "kunyomi": "およ.ぶ、およ.ぼす",
+    "jlptLevel": "N2",
+    "strokeCount": 3,
+    "examples": [
+      "普及 (ふきゅう) - spread",
+      "及ぶ (およぶ) - to reach"
+    ]
+  },
+  {
+    "id": 268,
+    "character": "促",
+    "meaning": "urge, promote",
+    "onyomi": "ソク",
+    "kunyomi": "うなが.す",
+    "jlptLevel": "N2",
+    "strokeCount": 9,
+    "examples": [
+      "促進 (そくしん) - promotion",
+      "促す (うながす) - to urge"
+    ]
+  },
+  {
+    "id": 269,
+    "character": "克",
+    "meaning": "overcome",
+    "onyomi": "コク",
+    "kunyomi": "か.つ",
+    "jlptLevel": "N2",
+    "strokeCount": 7,
+    "examples": [
+      "克服 (こくふく) - overcoming",
+      "克己 (こっき) - self-control"
+    ]
+  },
+  {
+    "id": 270,
+    "character": "服",
+    "meaning": "clothes, submit",
+    "onyomi": "フク",
+    "kunyomi": "",
+    "jlptLevel": "N2",
+    "strokeCount": 8,
+    "examples": [
+      "克服 (こくふく) - overcoming",
+      "服 (ふく) - clothes"
+    ]
+  },
+  {
+    "id": 271,
+    "character": "覆",
+    "meaning": "cover, overturn",
+    "onyomi": "フク",
+    "kunyomi": "おお.う、くつがえ.す",
+    "jlptLevel": "N1",
+    "strokeCount": 18,
+    "examples": [
+      "覆す (くつがえす) - to overturn",
+      "覆う (おおう) - to cover"
+    ]
+  },
+  {
+    "id": 272,
+    "character": "培",
+    "meaning": "cultivate",
+    "onyomi": "バイ",
+    "kunyomi": "つちか.う",
+    "jlptLevel": "N1",
+    "strokeCount": 11,
+    "examples": [
+      "栽培 (さいばい) - cultivation",
+      "培う (つちかう) - to foster"
+    ]
+  },
+  {
+    "id": 273,
+    "character": "携",
+    "meaning": "carry, portable",
+    "onyomi": "ケイ",
+    "kunyomi": "たずさ.える、たずさ.わる",
+    "jlptLevel": "N1",
+    "strokeCount": 13,
+    "examples": [
+      "携帯 (けいたい) - portable/cell phone",
+      "携わる (たずさわる) - to be engaged in"
+    ]
+  },
+  {
+    "id": 274,
+    "character": "遂",
+    "meaning": "accomplish",
+    "onyomi": "スイ",
+    "kunyomi": "と.げる",
+    "jlptLevel": "N1",
+    "strokeCount": 12,
+    "examples": [
+      "遂げる (とげる) - to accomplish",
+      "完遂 (かんすい) - accomplishment"
+    ]
+  },
+  {
+    "id": 275,
+    "character": "兼",
+    "meaning": "concurrently",
+    "onyomi": "ケン",
+    "kunyomi": "か.ねる",
+    "jlptLevel": "N1",
+    "strokeCount": 10,
+    "examples": [
+      "兼ねる (かねる) - to serve both",
+      "兼業 (けんぎょう) - side business"
+    ]
+  },
+  {
+    "id": 276,
+    "character": "施",
+    "meaning": "carry out",
+    "onyomi": "シ、セ",
+    "kunyomi": "ほどこ.す",
+    "jlptLevel": "N1",
+    "strokeCount": 9,
+    "examples": [
+      "実施 (じっし) - implementation",
+      "施設 (しせつ) - facility"
+    ]
+  },
+  {
+    "id": 277,
+    "character": "委",
+    "meaning": "committee, entrust",
+    "onyomi": "イ",
+    "kunyomi": "ゆだ.ねる",
+    "jlptLevel": "N1",
+    "strokeCount": 8,
+    "examples": [
+      "委員会 (いいんかい) - committee",
+      "委ねる (ゆだねる) - to entrust"
+    ]
+  },
+  {
+    "id": 278,
+    "character": "趣",
+    "meaning": "purport, gist",
+    "onyomi": "シュ",
+    "kunyomi": "おもむき",
+    "jlptLevel": "N1",
+    "strokeCount": 15,
+    "examples": [
+      "趣旨 (しゅし) - purpose",
+      "趣味 (しゅみ) - hobby"
+    ]
+  },
+  {
+    "id": 279,
+    "character": "裁",
+    "meaning": "judge, cut",
+    "onyomi": "サイ",
+    "kunyomi": "た.つ、さば.く",
+    "jlptLevel": "N1",
+    "strokeCount": 12,
+    "examples": [
+      "裁判 (さいばん) - trial",
+      "裁く (さばく) - to judge"
+    ]
+  },
+  {
+    "id": 280,
+    "character": "措",
+    "meaning": "set aside, measure",
+    "onyomi": "ソ",
+    "kunyomi": "お.く",
+    "jlptLevel": "N1",
+    "strokeCount": 11,
+    "examples": [
+      "措置 (そち) - measure",
+      "措く (おく) - to set aside"
+    ]
+  },
+  {
+    "id": 281,
+    "character": "置",
+    "meaning": "place, set",
+    "onyomi": "チ",
+    "kunyomi": "お.く",
+    "jlptLevel": "N1",
+    "strokeCount": 13,
+    "examples": [
+      "措置 (そち) - measure",
+      "位置 (いち) - position"
+    ]
+  },
+  {
+    "id": 282,
+    "character": "概",
+    "meaning": "approximate, outline",
+    "onyomi": "ガイ",
+    "kunyomi": "おおむ.ね",
+    "jlptLevel": "N1",
+    "strokeCount": 14,
+    "examples": [
+      "概念 (がいねん) - concept",
+      "概要 (がいよう) - summary"
+    ]
+  },
+  {
+    "id": 283,
+    "character": "拠",
+    "meaning": "foothold, base",
+    "onyomi": "キョ、コ",
+    "kunyomi": "よ.る",
+    "jlptLevel": "N1",
+    "strokeCount": 8,
+    "examples": [
+      "根拠 (こんきょ) - basis",
+      "拠点 (きょてん) - base"
+    ]
+  },
+  {
+    "id": 284,
+    "character": "根",
+    "meaning": "root",
+    "onyomi": "コン",
+    "kunyomi": "ね",
+    "jlptLevel": "N1",
+    "strokeCount": 10,
+    "examples": [
+      "根拠 (こんきょ) - basis",
+      "根本 (こんぽん) - fundamental"
+    ]
+  },
+  {
+    "id": 285,
+    "character": "踏",
+    "meaning": "step on, tread",
+    "onyomi": "トウ",
+    "kunyomi": "ふ.む、ふ.まえる",
+    "jlptLevel": "N1",
+    "strokeCount": 15,
+    "examples": [
+      "踏まえる (ふまえる) - to be based on",
+      "踏む (ふむ) - to step on"
+    ]
+  },
+  {
+    "id": 286,
+    "character": "枠",
+    "meaning": "frame, framework",
+    "onyomi": "",
+    "kunyomi": "わく",
+    "jlptLevel": "N1",
+    "strokeCount": 8,
+    "examples": [
+      "枠 (わく) - frame",
+      "枠組み (わくぐみ) - framework"
+    ]
+  },
+  {
+    "id": 287,
+    "character": "斬",
+    "meaning": "cut, slash",
+    "onyomi": "ザン",
+    "kunyomi": "き.る",
+    "jlptLevel": "N1",
+    "strokeCount": 11,
+    "examples": [
+      "斬新 (ざんしん) - novel",
+      "斬る (きる) - to slash"
+    ]
+  },
+  {
+    "id": 288,
+    "character": "妥",
+    "meaning": "proper, compromise",
+    "onyomi": "ダ",
+    "kunyomi": "",
+    "jlptLevel": "N1",
+    "strokeCount": 7,
+    "examples": [
+      "妥当 (だとう) - reasonable",
+      "妥協 (だきょう) - compromise"
+    ]
+  },
+  {
+    "id": 289,
+    "character": "膨",
+    "meaning": "swell, expand",
+    "onyomi": "ボウ",
+    "kunyomi": "ふく.らむ",
+    "jlptLevel": "N1",
+    "strokeCount": 16,
+    "examples": [
+      "膨大 (ぼうだい) - enormous",
+      "膨らむ (ふくらむ) - to swell"
+    ]
+  },
+  {
+    "id": 290,
+    "character": "顕",
+    "meaning": "manifest, visible",
+    "onyomi": "ケン",
+    "kunyomi": "あきらか",
+    "jlptLevel": "N1",
+    "strokeCount": 18,
+    "examples": [
+      "顕著 (けんちょ) - remarkable",
+      "顕微鏡 (けんびきょう) - microscope"
+    ]
+  },
+  {
+    "id": 291,
+    "character": "欠",
+    "meaning": "lack, yawn",
+    "onyomi": "ケツ、ケン",
+    "kunyomi": "か.ける",
+    "jlptLevel": "N1",
+    "strokeCount": 4,
+    "examples": [
+      "不可欠 (ふかけつ) - indispensable",
+      "欠点 (けってん) - shortcoming"
+    ]
+  },
+  {
+    "id": 292,
+    "character": "岐",
+    "meaning": "branch off",
+    "onyomi": "キ",
+    "kunyomi": "",
+    "jlptLevel": "N1",
+    "strokeCount": 7,
+    "examples": [
+      "多岐 (たき) - diverse",
+      "岐阜 (ぎふ) - Gifu"
+    ]
+  },
+  {
+    "id": 293,
+    "character": "環",
+    "meaning": "ring, loop",
+    "onyomi": "カン",
+    "kunyomi": "わ",
+    "jlptLevel": "N1",
+    "strokeCount": 17,
+    "examples": [
+      "一環 (いっかん) - part of",
+      "循環 (じゅんかん) - circulation"
+    ]
+  },
+  {
+    "id": 294,
+    "character": "裏",
+    "meaning": "back, reverse",
+    "onyomi": "リ",
+    "kunyomi": "うら",
+    "jlptLevel": "N1",
+    "strokeCount": 13,
+    "examples": [
+      "裏付け (うらづけ) - backing",
+      "裏 (うら) - back side"
+    ]
+  },
+  {
+    "id": 295,
+    "character": "波",
+    "meaning": "wave",
+    "onyomi": "ハ",
+    "kunyomi": "なみ",
+    "jlptLevel": "N1",
+    "strokeCount": 8,
+    "examples": [
+      "波及 (はきゅう) - spread",
+      "電波 (でんぱ) - radio wave"
+    ]
+  },
+  {
+    "id": 296,
+    "character": "志",
+    "meaning": "will, ambition",
+    "onyomi": "シ",
+    "kunyomi": "こころざ.す、こころざし",
+    "jlptLevel": "N1",
+    "strokeCount": 7,
+    "examples": [
+      "志向 (しこう) - orientation",
+      "志 (こころざし) - aspiration"
+    ]
+  },
+  {
+    "id": 297,
+    "character": "養",
+    "meaning": "nurture, cultivate",
+    "onyomi": "ヨウ",
+    "kunyomi": "やしな.う",
+    "jlptLevel": "N1",
+    "strokeCount": 15,
+    "examples": [
+      "素養 (そよう) - grounding",
+      "養成 (ようせい) - training"
+    ]
+  },
+  {
+    "id": 298,
+    "character": "体",
+    "meaning": "body, form",
+    "onyomi": "タイ、テイ",
+    "kunyomi": "からだ",
+    "jlptLevel": "N1",
+    "strokeCount": 7,
+    "examples": [
+      "体裁 (ていさい) - appearance",
+      "具体 (ぐたい) - concrete"
+    ]
+  },
+  {
+    "id": 299,
+    "character": "彩",
+    "meaning": "coloring, paint",
+    "onyomi": "サイ",
+    "kunyomi": "いろど.る",
+    "jlptLevel": "N1",
+    "strokeCount": 11,
+    "examples": [
+      "多彩 (たさい) - colorful",
+      "色彩 (しきさい) - color"
+    ]
+  },
+  {
+    "id": 300,
+    "character": "画",
+    "meaning": "picture, stroke",
+    "onyomi": "ガ、カク",
+    "kunyomi": "",
+    "jlptLevel": "N1",
+    "strokeCount": 8,
+    "examples": [
+      "画期的 (かっきてき) - epoch-making",
+      "計画 (けいかく) - plan"
+    ]
+  }
+]

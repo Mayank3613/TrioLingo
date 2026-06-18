@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { tauriStorage } from '../services/tauriStorage';
 
 export type ThemeId = 'light' | 'dark' | 'amoled' | 'sakura' | 'cyber-tokyo' | 'traditional';
 
@@ -46,6 +47,7 @@ export const useThemeStore = create<ThemeState>()(
     }),
     {
       name: 'triolingo-theme',
+      storage: tauriStorage,
       onRehydrateStorage: () => (state) => {
         if (state) {
           document.documentElement.setAttribute('data-theme', state.currentTheme);
