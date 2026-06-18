@@ -13,7 +13,8 @@ import {
 import { Card } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
 import { ProgressBar } from '../../components/ui/ProgressBar';
-import { VOCAB_DATA } from '../../data/vocabData';
+import { useVocabData } from '../../services/dataService';
+import type { VocabWord } from '../../data/vocabData';
 
 /* ── Types ────────────────────────────────────────────────────── */
 interface SpeakingExercise {
@@ -44,9 +45,9 @@ const COMMON_PHRASES: SpeakingExercise[] = [
   { id: 1015, japanese: '意味がわかりません', reading: 'imi ga wakarimasen', english: 'I don\'t understand the meaning', jlptLevel: 'N4', type: 'phrase' },
 ];
 
-function generateExercises(level: string): SpeakingExercise[] {
+function generateExercises(level: string, vocabData: VocabWord[]): SpeakingExercise[] {
   const phrases = level === 'All' ? COMMON_PHRASES : COMMON_PHRASES.filter((p) => p.jlptLevel === level);
-  const vocabWords = (level === 'All' ? VOCAB_DATA : VOCAB_DATA.filter((w) => w.jlptLevel === level))
+  const vocabWords = (level === 'All' ? vocabData : vocabData.filter((w) => w.jlptLevel === level))
     .sort(() => Math.random() - 0.5)
     .slice(0, 8)
     .map((w) => ({
@@ -67,6 +68,8 @@ type Screen = 'setup' | 'practice' | 'results';
 
 /* ── Component ────────────────────────────────────────────────── */
 export function SpeakingPage() {
+  const { data: vocabData = [], isLoading, isError } = useVocabData();
+
   const [screen, setScreen] = useState<Screen>('setup');
   const [selectedLevel, setSelectedLevel] = useState('N5');
   const [exercises, setExercises] = useState<SpeakingExercise[]>([]);
@@ -139,7 +142,7 @@ export function SpeakingPage() {
 
   /* ── Actions ─────────────────────────────────────────────────── */
   const startSession = () => {
-    setExercises(generateExercises(selectedLevel));
+    setExercises(generateExercises(selectedLevel, vocabData));
     setCurrentIndex(0);
     setResults([]);
     setShowFeedback(false);
@@ -193,6 +196,31 @@ export function SpeakingPage() {
 
   /* ── Setup Screen ────────────────────────────────────────────── */
   if (screen === 'setup') {
+    if (isLoading) {
+      return (
+        <div className="p-6 h-full flex items-center justify-center animate-pulse">
+          <div className="flex flex-col items-center gap-3">
+            <div
+              className="w-8 h-8 rounded-full border-2 border-t-transparent animate-spin"
+              style={{ borderColor: 'var(--border-primary)', borderTopColor: 'transparent' }}
+            />
+            <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>Loading speaking data...</span>
+          </div>
+        </div>
+      );
+    }
+
+    if (isError) {
+      return (
+        <div className="p-6 h-full flex items-center justify-center">
+          <div className="text-center">
+            <p className="font-semibold text-red-500">Failed to load speaking exercise assets.</p>
+            <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>Please check your network connection and try again.</p>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div style={{ padding: '2rem', maxWidth: '700px', margin: '0 auto' }}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>

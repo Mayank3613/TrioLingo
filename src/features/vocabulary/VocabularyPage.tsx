@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 import { Badge } from '../../components/ui/Badge';
 import { ProgressBar } from '../../components/ui/ProgressBar';
-import { VOCAB_BY_LEVEL } from '../../data/vocabData';
+import { useVocabByLevel } from '../../services/dataService';
 import { useFSRSStore } from '../../stores/fsrsStore';
 
 const JLPT_LEVELS = ['N5', 'N4', 'N3', 'N2', 'N1'];
@@ -25,8 +25,9 @@ export function VocabularyPage() {
   const [expandedId, setExpandedId] = useState<number | null>(null);
   const { addCard, isCardAdded } = useFSRSStore();
 
+  const { data: levelWords = [], isLoading, isError } = useVocabByLevel(selectedLevel);
+
   const filtered = useMemo(() => {
-    const levelWords = VOCAB_BY_LEVEL[selectedLevel as keyof typeof VOCAB_BY_LEVEL] || [];
     return levelWords.filter((w) => {
       if (posFilter !== 'All' && w.partOfSpeech !== posFilter) return false;
       if (search) {
@@ -39,10 +40,34 @@ export function VocabularyPage() {
       }
       return true;
     });
-  }, [selectedLevel, posFilter, search]);
+  }, [levelWords, posFilter, search]);
 
-  const levelWords = VOCAB_BY_LEVEL[selectedLevel as keyof typeof VOCAB_BY_LEVEL] || [];
   const addedCount = levelWords.filter(w => isCardAdded('vocab', w.id)).length;
+
+  if (isLoading) {
+    return (
+      <div className="p-6 h-full flex items-center justify-center">
+        <div className="flex flex-col items-center gap-3">
+          <div
+            className="w-8 h-8 rounded-full border-2 border-t-transparent animate-spin"
+            style={{ borderColor: 'var(--border-primary)', borderTopColor: 'transparent' }}
+          />
+          <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>Loading vocabulary...</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="p-6 h-full flex items-center justify-center">
+        <div className="text-center">
+          <p className="font-semibold text-red-500">Failed to load vocabulary data.</p>
+          <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>Please check your network connection and try again.</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="p-6 overflow-y-auto h-full pb-20">

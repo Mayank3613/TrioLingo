@@ -19,6 +19,7 @@ import {
 } from '../../stores/quizStore';
 import { useUserStore } from '../../stores/userStore';
 import { useStudyStore } from '../../stores/studyStore';
+import { useVocabData, useKanjiData, useGrammarData } from '../../services/dataService';
 
 const LEVEL_OPTIONS = ['N5', 'N4', 'N3', 'N2', 'N1', 'All'];
 const CATEGORY_OPTIONS: { key: 'vocab' | 'kanji' | 'grammar'; label: string; icon: typeof BookOpen }[] = [
@@ -33,6 +34,17 @@ export default function QuizPage() {
   const addXP = useUserStore(s => s.addXP);
   const addActivity = useStudyStore(s => s.addActivity);
 
+  const vocabQuery = useVocabData();
+  const kanjiQuery = useKanjiData();
+  const grammarQuery = useGrammarData();
+
+  const vocabData = vocabQuery.data || [];
+  const kanjiData = kanjiQuery.data || [];
+  const grammarData = grammarQuery.data || [];
+
+  const isLoading = vocabQuery.isLoading || kanjiQuery.isLoading || grammarQuery.isLoading;
+  const isError = vocabQuery.isError || kanjiQuery.isError || grammarQuery.isError;
+
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [showFeedback, setShowFeedback] = useState(false);
   const [typedAnswer, setTypedAnswer] = useState('');
@@ -45,13 +57,16 @@ export default function QuizPage() {
       quiz.questionCount,
       quiz.selectedLevel,
       quiz.selectedCategories,
-      quiz.selectedTypes
+      quiz.selectedTypes,
+      vocabData,
+      kanjiData,
+      grammarData
     );
     if (questions.length > 0) {
       quiz.startQuiz(questions);
       setQuestionStartTime(Date.now());
     }
-  }, [quiz]);
+  }, [quiz, vocabData, kanjiData, grammarData]);
 
   const handleAnswer = useCallback((answer: string) => {
     if (showFeedback) return;
@@ -87,6 +102,31 @@ export default function QuizPage() {
       handleAnswer(typedAnswer.trim());
     }
   }, [typedAnswer, handleAnswer]);
+
+  if (isLoading) {
+    return (
+      <div className="p-6 h-full flex items-center justify-center">
+        <div className="flex flex-col items-center gap-3">
+          <div
+            className="w-8 h-8 rounded-full border-2 border-t-transparent animate-spin"
+            style={{ borderColor: 'var(--border-primary)', borderTopColor: 'transparent' }}
+          />
+          <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>Loading quiz data...</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="p-6 h-full flex items-center justify-center">
+        <div className="text-center">
+          <p className="font-semibold text-red-500">Failed to load quiz study data.</p>
+          <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>Please check your network connection and try again.</p>
+        </div>
+      </div>
+    );
+  }
 
   // ── Setup Screen ──────────────────────────────────────────
   if (!quiz.isActive && quiz.results.length === 0) {

@@ -15,9 +15,9 @@ import {
 } from 'lucide-react';
 import { Card } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
-
 import { ProgressBar } from '../../components/ui/ProgressBar';
-import { VOCAB_DATA } from '../../data/vocabData';
+import { useVocabData } from '../../services/dataService';
+import type { VocabWord } from '../../data/vocabData';
 
 /* ── Types ────────────────────────────────────────────────────── */
 interface ListeningExercise {
@@ -30,8 +30,8 @@ interface ListeningExercise {
 }
 
 /* ── Data generator ───────────────────────────────────────────── */
-function generateExercises(level: string): ListeningExercise[] {
-  const filtered = level === 'All' ? VOCAB_DATA : VOCAB_DATA.filter((w) => w.jlptLevel === level);
+function generateExercises(level: string, vocabData: VocabWord[]): ListeningExercise[] {
+  const filtered = level === 'All' ? vocabData : vocabData.filter((w) => w.jlptLevel === level);
   const shuffled = [...filtered].sort(() => Math.random() - 0.5);
 
   const exercises: ListeningExercise[] = [];
@@ -72,6 +72,8 @@ type Screen = 'setup' | 'practice' | 'results';
 
 /* ── Component ────────────────────────────────────────────────── */
 export function ListeningPage() {
+  const { data: vocabData = [], isLoading, isError } = useVocabData();
+
   const [screen, setScreen] = useState<Screen>('setup');
   const [selectedLevel, setSelectedLevel] = useState('N5');
   const [exercises, setExercises] = useState<ListeningExercise[]>([]);
@@ -125,7 +127,7 @@ export function ListeningPage() {
 
   /* ── Actions ─────────────────────────────────────────────────── */
   const startSession = () => {
-    const ex = generateExercises(selectedLevel);
+    const ex = generateExercises(selectedLevel, vocabData);
     setExercises(ex);
     setCurrentIndex(0);
     setResults([]);
@@ -168,6 +170,31 @@ export function ListeningPage() {
 
   /* ── Setup Screen ────────────────────────────────────────────── */
   if (screen === 'setup') {
+    if (isLoading) {
+      return (
+        <div className="p-6 h-full flex items-center justify-center animate-pulse">
+          <div className="flex flex-col items-center gap-3">
+            <div
+              className="w-8 h-8 rounded-full border-2 border-t-transparent animate-spin"
+              style={{ borderColor: 'var(--border-primary)', borderTopColor: 'transparent' }}
+            />
+            <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>Loading listening data...</span>
+          </div>
+        </div>
+      );
+    }
+
+    if (isError) {
+      return (
+        <div className="p-6 h-full flex items-center justify-center">
+          <div className="text-center">
+            <p className="font-semibold text-red-500">Failed to load listening practice assets.</p>
+            <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>Please check your network connection and try again.</p>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div style={{ padding: '2rem', maxWidth: '700px', margin: '0 auto' }}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>

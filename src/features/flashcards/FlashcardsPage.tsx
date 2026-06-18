@@ -15,14 +15,20 @@ import {
 import { useFSRSStore, type StudyCard } from '../../stores/fsrsStore';
 import { useUserStore } from '../../stores/userStore';
 import { useStudyStore } from '../../stores/studyStore';
-import { VOCAB_DATA } from '../../data/vocabData';
-import { KANJI_DATA } from '../../data/kanjiData';
-import { GRAMMAR_DATA } from '../../data/grammarData';
+import { useVocabData, useKanjiData, useGrammarData } from '../../services/dataService';
+import type { VocabWord } from '../../data/vocabData';
+import type { KanjiEntry } from '../../data/kanjiData';
+import type { GrammarPoint } from '../../data/grammarData';
 import { Rating } from 'ts-fsrs';
 
-function getCardContent(card: StudyCard) {
+function getCardContent(
+  card: StudyCard,
+  vocabData: VocabWord[],
+  kanjiData: KanjiEntry[],
+  grammarData: GrammarPoint[]
+) {
   if (card.type === 'vocab') {
-    const word = VOCAB_DATA.find(w => w.id === card.contentId);
+    const word = vocabData.find(w => w.id === card.contentId);
     if (!word) return null;
     return {
       front: word.word,
@@ -35,7 +41,7 @@ function getCardContent(card: StudyCard) {
     };
   }
   if (card.type === 'kanji') {
-    const kanji = KANJI_DATA.find(k => k.id === card.contentId);
+    const kanji = kanjiData.find(k => k.id === card.contentId);
     if (!kanji) return null;
     return {
       front: kanji.character,
@@ -48,7 +54,7 @@ function getCardContent(card: StudyCard) {
     };
   }
   if (card.type === 'grammar') {
-    const grammar = GRAMMAR_DATA.find(g => g.id === card.contentId);
+    const grammar = grammarData.find(g => g.id === card.contentId);
     if (!grammar) return null;
     return {
       front: grammar.pattern,
@@ -75,6 +81,17 @@ export default function FlashcardsPage() {
   const addXP = useUserStore(s => s.addXP);
   const addActivity = useStudyStore(s => s.addActivity);
 
+  const vocabQuery = useVocabData();
+  const kanjiQuery = useKanjiData();
+  const grammarQuery = useGrammarData();
+
+  const vocabData = vocabQuery.data || [];
+  const kanjiData = kanjiQuery.data || [];
+  const grammarData = grammarQuery.data || [];
+
+  const isLoading = vocabQuery.isLoading || kanjiQuery.isLoading || grammarQuery.isLoading;
+  const isError = vocabQuery.isError || kanjiQuery.isError || grammarQuery.isError;
+
   const [sessionActive, setSessionActive] = useState(false);
   const [sessionCards, setSessionCards] = useState<StudyCard[]>([]);
   const [currentIdx, setCurrentIdx] = useState(0);
@@ -87,6 +104,31 @@ export default function FlashcardsPage() {
   const dueCount = getDueCount();
   const newCount = getNewCards().length;
   const totalCards = getTotalCards();
+
+  if (isLoading) {
+    return (
+      <div className="p-6 h-full flex items-center justify-center">
+        <div className="flex flex-col items-center gap-3">
+          <div
+            className="w-8 h-8 rounded-full border-2 border-t-transparent animate-spin"
+            style={{ borderColor: 'var(--border-primary)', borderTopColor: 'transparent' }}
+          />
+          <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>Loading flashcards...</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="p-6 h-full flex items-center justify-center">
+        <div className="text-center">
+          <p className="font-semibold text-red-500">Failed to load flashcard study data.</p>
+          <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>Please check your network connection and try again.</p>
+        </div>
+      </div>
+    );
+  }
 
   const startSession = useCallback(() => {
     const cards = getReviewableCards(cardLimit);
@@ -132,11 +174,9 @@ export default function FlashcardsPage() {
       setShowHint(false);
     }
   }, [sessionCards, currentIdx, reviewCard, addXP, addActivity, sessionResults]);
-
   const currentCard = sessionActive ? sessionCards[currentIdx] : null;
-  const content = currentCard ? getCardContent(currentCard) : null;
+  const content = currentCard ? getCardContent(currentCard, vocabData, kanjiData, grammarData) : null;
   const progress = sessionCards.length > 0 ? ((currentIdx) / sessionCards.length) * 100 : 0;
-
   // ── Pre-session screen ────────────────────────────────────
   if (!sessionActive || sessionComplete) {
     return (

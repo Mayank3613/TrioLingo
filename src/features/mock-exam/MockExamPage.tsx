@@ -24,6 +24,7 @@ import { ProgressBar } from '../../components/ui/ProgressBar';
 import { Button } from '../../components/ui/Button';
 import { generateQuizQuestions, type QuizQuestion } from '../../stores/quizStore';
 import { useUserStore } from '../../stores/userStore';
+import { useVocabData, useKanjiData, useGrammarData } from '../../services/dataService';
 
 // ── Types ──────────────────────────────────────────────────
 
@@ -979,6 +980,17 @@ function ExamResults({
 // ── Main MockExamPage ──────────────────────────────────────
 
 export function MockExamPage() {
+  const vocabQuery = useVocabData();
+  const kanjiQuery = useKanjiData();
+  const grammarQuery = useGrammarData();
+
+  const vocabData = vocabQuery.data || [];
+  const kanjiData = kanjiQuery.data || [];
+  const grammarData = grammarQuery.data || [];
+
+  const isLoading = vocabQuery.isLoading || kanjiQuery.isLoading || grammarQuery.isLoading;
+  const isError = vocabQuery.isError || kanjiQuery.isError || grammarQuery.isError;
+
   const [screen, setScreen] = useState<ExamScreen>('setup');
   const [selectedLevel, setSelectedLevel] = useState<JLPTLevel>('N5');
   const [questions, setQuestions] = useState<QuizQuestion[]>([]);
@@ -991,19 +1003,28 @@ export function MockExamPage() {
       QUESTIONS_PER_SECTION,
       selectedLevel,
       ['vocab'],
-      ['multiple-choice']
+      ['multiple-choice'],
+      vocabData,
+      kanjiData,
+      grammarData
     );
     const kanjiQuestions = generateQuizQuestions(
       QUESTIONS_PER_SECTION,
       selectedLevel,
       ['kanji'],
-      ['multiple-choice']
+      ['multiple-choice'],
+      vocabData,
+      kanjiData,
+      grammarData
     );
     const grammarQuestions = generateQuizQuestions(
       QUESTIONS_PER_SECTION,
       selectedLevel,
       ['grammar'],
-      ['multiple-choice']
+      ['multiple-choice'],
+      vocabData,
+      kanjiData,
+      grammarData
     );
 
     const allQuestions = [...vocabQuestions, ...kanjiQuestions, ...grammarQuestions];
@@ -1011,7 +1032,7 @@ export function MockExamPage() {
     setExamAnswers([]);
     setTimeTaken(0);
     setScreen('exam');
-  }, [selectedLevel]);
+  }, [selectedLevel, vocabData, kanjiData, grammarData]);
 
   const handleFinish = useCallback((answers: ExamAnswer[], time: number) => {
     setExamAnswers(answers);
@@ -1031,6 +1052,33 @@ export function MockExamPage() {
     // For now, reset to setup
     window.history.back();
   }, []);
+
+  if (screen === 'setup') {
+    if (isLoading) {
+      return (
+        <div className="p-6 h-full flex items-center justify-center">
+          <div className="flex flex-col items-center gap-3">
+            <div
+              className="w-8 h-8 rounded-full border-2 border-t-transparent animate-spin"
+              style={{ borderColor: 'var(--border-primary)', borderTopColor: 'transparent' }}
+            />
+            <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>Loading exam data...</span>
+          </div>
+        </div>
+      );
+    }
+
+    if (isError) {
+      return (
+        <div className="p-6 h-full flex items-center justify-center">
+          <div className="text-center">
+            <p className="font-semibold text-red-500">Failed to load mock exam study data.</p>
+            <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>Please check your network connection and try again.</p>
+          </div>
+        </div>
+      );
+    }
+  }
 
   return (
     <AnimatePresence mode="wait">

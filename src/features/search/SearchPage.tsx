@@ -2,10 +2,11 @@ import { useState, useEffect, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Search, X, BookOpen, Languages, FileText, Pen } from 'lucide-react';
 import { Badge } from '../../components/ui/Badge';
-import { VOCAB_DATA } from '../../data/vocabData';
-import { KANJI_DATA } from '../../data/kanjiData';
-import { GRAMMAR_DATA } from '../../data/grammarData';
-import { READING_DATA } from '../../data/readingData';
+import { useVocabData, useKanjiData, useGrammarData, useReadingData } from '../../services/dataService';
+import type { VocabWord } from '../../data/vocabData';
+import type { KanjiEntry } from '../../data/kanjiData';
+import type { GrammarPoint } from '../../data/grammarData';
+import type { ReadingPassage } from '../../data/readingData';
 
 type Category = 'all' | 'vocabulary' | 'kanji' | 'grammar' | 'reading';
 
@@ -42,6 +43,19 @@ export function SearchPage() {
   const [activeCategory, setActiveCategory] = useState<Category>('all');
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const vocabQuery = useVocabData();
+  const kanjiQuery = useKanjiData();
+  const grammarQuery = useGrammarData();
+  const readingQuery = useReadingData();
+
+  const vocabData = vocabQuery.data || [];
+  const kanjiData = kanjiQuery.data || [];
+  const grammarData = grammarQuery.data || [];
+  const readingData = readingQuery.data || [];
+
+  const isLoading = vocabQuery.isLoading || kanjiQuery.isLoading || grammarQuery.isLoading || readingQuery.isLoading;
+  const isError = vocabQuery.isError || kanjiQuery.isError || grammarQuery.isError || readingQuery.isError;
+
   // Debounce search with 200ms delay
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -54,7 +68,7 @@ export function SearchPage() {
   const vocabResults = useMemo<SearchResult[]>(() => {
     if (!debouncedQuery) return [];
     const q = debouncedQuery.toLowerCase();
-    return VOCAB_DATA
+    return vocabData
       .filter(v =>
         v.word.toLowerCase().includes(q) ||
         v.reading.toLowerCase().includes(q) ||
@@ -62,12 +76,12 @@ export function SearchPage() {
       )
       .slice(0, MAX_PER_CATEGORY)
       .map(v => ({ type: 'vocabulary' as const, id: v.id, data: v }));
-  }, [debouncedQuery]);
+  }, [debouncedQuery, vocabData]);
 
   const kanjiResults = useMemo<SearchResult[]>(() => {
     if (!debouncedQuery) return [];
     const q = debouncedQuery.toLowerCase();
-    return KANJI_DATA
+    return kanjiData
       .filter(k =>
         k.character.toLowerCase().includes(q) ||
         k.meaning.toLowerCase().includes(q) ||
@@ -76,31 +90,31 @@ export function SearchPage() {
       )
       .slice(0, MAX_PER_CATEGORY)
       .map(k => ({ type: 'kanji' as const, id: k.id, data: k }));
-  }, [debouncedQuery]);
+  }, [debouncedQuery, kanjiData]);
 
   const grammarResults = useMemo<SearchResult[]>(() => {
     if (!debouncedQuery) return [];
     const q = debouncedQuery.toLowerCase();
-    return GRAMMAR_DATA
+    return grammarData
       .filter(g =>
         g.pattern.toLowerCase().includes(q) ||
         g.meaning.toLowerCase().includes(q)
       )
       .slice(0, MAX_PER_CATEGORY)
       .map(g => ({ type: 'grammar' as const, id: g.id, data: g }));
-  }, [debouncedQuery]);
+  }, [debouncedQuery, grammarData]);
 
   const readingResults = useMemo<SearchResult[]>(() => {
     if (!debouncedQuery) return [];
     const q = debouncedQuery.toLowerCase();
-    return READING_DATA
+    return readingData
       .filter(r =>
         r.title.toLowerCase().includes(q) ||
         r.titleJp.toLowerCase().includes(q)
       )
       .slice(0, MAX_PER_CATEGORY)
       .map(r => ({ type: 'reading' as const, id: r.id, data: r }));
-  }, [debouncedQuery]);
+  }, [debouncedQuery, readingData]);
 
   const counts = useMemo(() => ({
     all: vocabResults.length + kanjiResults.length + grammarResults.length + readingResults.length,
@@ -346,7 +360,45 @@ export function SearchPage() {
 
         {/* Results Area */}
         <AnimatePresence mode="wait">
-          {!debouncedQuery ? (
+          {isLoading ? (
+            <motion.div
+              key="loading"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '4rem 2rem',
+              }}
+            >
+              <div
+                className="w-8 h-8 rounded-full border-2 border-t-transparent animate-spin"
+                style={{ borderColor: 'var(--border-primary)', borderTopColor: 'transparent', marginBottom: '1rem' }}
+              />
+              <span style={{ fontSize: '0.875rem', color: 'var(--text-tertiary)' }}>Loading search index...</span>
+            </motion.div>
+          ) : isError ? (
+            <motion.div
+              key="error"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '4rem 2rem',
+                textAlign: 'center',
+              }}
+            >
+              <p style={{ fontWeight: 600, color: 'red' }}>Failed to load search data.</p>
+              <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: '0.25rem' }}>Please check your connection and try again.</p>
+            </motion.div>
+          ) : !debouncedQuery ? (
             /* Empty State: No Query */
             <motion.div
               key="empty-initial"
@@ -482,19 +534,19 @@ export function SearchPage() {
 function ResultCard({ result }: { result: SearchResult }) {
   switch (result.type) {
     case 'vocabulary':
-      return <VocabCard data={result.data as typeof VOCAB_DATA[0]} />;
+      return <VocabCard data={result.data as VocabWord} />;
     case 'kanji':
-      return <KanjiCard data={result.data as typeof KANJI_DATA[0]} />;
+      return <KanjiCard data={result.data as KanjiEntry} />;
     case 'grammar':
-      return <GrammarCard data={result.data as typeof GRAMMAR_DATA[0]} />;
+      return <GrammarCard data={result.data as GrammarPoint} />;
     case 'reading':
-      return <ReadingCard data={result.data as typeof READING_DATA[0]} />;
+      return <ReadingCard data={result.data as ReadingPassage} />;
   }
 }
 
 /* ─── Vocab Card ─────────────────────────────────────── */
 
-function VocabCard({ data }: { data: typeof VOCAB_DATA[0] }) {
+function VocabCard({ data }: { data: VocabWord }) {
   return (
     <div
       style={{
@@ -550,7 +602,7 @@ function VocabCard({ data }: { data: typeof VOCAB_DATA[0] }) {
 
 /* ─── Kanji Card ─────────────────────────────────────── */
 
-function KanjiCard({ data }: { data: typeof KANJI_DATA[0] }) {
+function KanjiCard({ data }: { data: KanjiEntry }) {
   return (
     <div
       style={{
@@ -629,7 +681,7 @@ function KanjiCard({ data }: { data: typeof KANJI_DATA[0] }) {
 
 /* ─── Grammar Card ───────────────────────────────────── */
 
-function GrammarCard({ data }: { data: typeof GRAMMAR_DATA[0] }) {
+function GrammarCard({ data }: { data: GrammarPoint }) {
   return (
     <div
       style={{
@@ -684,7 +736,7 @@ function GrammarCard({ data }: { data: typeof GRAMMAR_DATA[0] }) {
 
 /* ─── Reading Card ───────────────────────────────────── */
 
-function ReadingCard({ data }: { data: typeof READING_DATA[0] }) {
+function ReadingCard({ data }: { data: ReadingPassage }) {
   return (
     <div
       style={{

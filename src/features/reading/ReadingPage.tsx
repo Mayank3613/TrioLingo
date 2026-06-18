@@ -12,8 +12,10 @@ import {
   BookOpen,
   Clock,
 } from 'lucide-react';
-import { READING_DATA, READING_BY_LEVEL, type ReadingPassage } from '../../data/readingData';
+import { useReadingData } from '../../services/dataService';
+import type { ReadingPassage } from '../../data/readingData';
 import { useUserStore } from '../../stores/userStore';
+import { useMemo } from 'react';
 
 const LEVEL_COLORS: Record<string, string> = {
   N5: '#22c55e', N4: '#3b82f6', N3: '#f97316', N2: '#a855f7', N1: '#ef4444',
@@ -29,7 +31,44 @@ export default function ReadingPage() {
   const [completedIds, setCompletedIds] = useState<Set<number>>(new Set());
   const addXP = useUserStore(s => s.addXP);
 
-  const filteredPassages = selectedLevel === 'All' ? READING_DATA : READING_BY_LEVEL[selectedLevel as keyof typeof READING_BY_LEVEL] || [];
+  const { data: readingData = [], isLoading, isError } = useReadingData();
+
+  const readingByLevel = useMemo(() => ({
+    N5: readingData.filter(p => p.jlptLevel === 'N5'),
+    N4: readingData.filter(p => p.jlptLevel === 'N4'),
+    N3: readingData.filter(p => p.jlptLevel === 'N3'),
+    N2: readingData.filter(p => p.jlptLevel === 'N2'),
+    N1: readingData.filter(p => p.jlptLevel === 'N1'),
+  }), [readingData]);
+
+  const filteredPassages = useMemo(() => {
+    return selectedLevel === 'All' ? readingData : readingByLevel[selectedLevel as keyof typeof readingByLevel] || [];
+  }, [selectedLevel, readingData, readingByLevel]);
+
+  if (isLoading) {
+    return (
+      <div className="p-6 h-full flex items-center justify-center">
+        <div className="flex flex-col items-center gap-3">
+          <div
+            className="w-8 h-8 rounded-full border-2 border-t-transparent animate-spin"
+            style={{ borderColor: 'var(--border-primary)', borderTopColor: 'transparent' }}
+          />
+          <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>Loading passages...</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="p-6 h-full flex items-center justify-center">
+        <div className="text-center">
+          <p className="font-semibold text-red-500">Failed to load reading data.</p>
+          <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>Please check your network connection and try again.</p>
+        </div>
+      </div>
+    );
+  }
 
   const startReading = (passage: ReadingPassage) => {
     setActivePassage(passage);

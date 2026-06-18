@@ -1,8 +1,7 @@
 /**
- * Reading data — types and re-exports.
+ * Reading data type definitions.
  * Raw data lives in /public/data/reading.json (loaded at runtime by dataService).
  */
-import readingJson from '../../public/data/reading.json';
 
 export interface ReadingPassage {
   id: number;
@@ -20,13 +19,3 @@ export interface ReadingPassage {
   }[];
   wordCount: number;
 }
-
-export const READING_DATA: ReadingPassage[] = readingJson as ReadingPassage[];
-
-export const READING_BY_LEVEL = {
-  N5: READING_DATA.filter(r => r.jlptLevel === 'N5'),
-  N4: READING_DATA.filter(r => r.jlptLevel === 'N4'),
-  N3: READING_DATA.filter(r => r.jlptLevel === 'N3'),
-  N2: READING_DATA.filter(r => r.jlptLevel === 'N2'),
-  N1: READING_DATA.filter(r => r.jlptLevel === 'N1'),
-};

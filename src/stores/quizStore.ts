@@ -1,7 +1,7 @@
 import { create } from 'zustand';
-import { VOCAB_DATA, type VocabWord } from '../data/vocabData';
-import { KANJI_DATA, type KanjiEntry } from '../data/kanjiData';
-import { GRAMMAR_DATA, type GrammarPoint } from '../data/grammarData';
+import type { VocabWord } from '../data/vocabData';
+import type { KanjiEntry } from '../data/kanjiData';
+import type { GrammarPoint } from '../data/grammarData';
 
 export type QuestionType = 'multiple-choice' | 'type-answer' | 'reading-match';
 
@@ -183,13 +183,20 @@ export function generateQuizQuestions(
   count: number,
   level: string,
   categories: ('vocab' | 'kanji' | 'grammar')[],
-  types: QuestionType[]
+  types: QuestionType[],
+  vocabPool?: VocabWord[],
+  kanjiPool?: KanjiEntry[],
+  grammarPool?: GrammarPoint[]
 ): QuizQuestion[] {
   const questions: QuizQuestion[] = [];
 
-  const filteredVocab = level === 'All' ? VOCAB_DATA : VOCAB_DATA.filter(w => w.jlptLevel === level);
-  const filteredKanji = level === 'All' ? KANJI_DATA : KANJI_DATA.filter(k => k.jlptLevel === level);
-  const filteredGrammar = level === 'All' ? GRAMMAR_DATA : GRAMMAR_DATA.filter(g => g.jlptLevel === level);
+  const finalVocab = vocabPool || [];
+  const finalKanji = kanjiPool || [];
+  const finalGrammar = grammarPool || [];
+
+  const filteredVocab = level === 'All' ? finalVocab : finalVocab.filter(w => w.jlptLevel === level);
+  const filteredKanji = level === 'All' ? finalKanji : finalKanji.filter(k => k.jlptLevel === level);
+  const filteredGrammar = level === 'All' ? finalGrammar : finalGrammar.filter(g => g.jlptLevel === level);
 
   const generators: (() => QuizQuestion | null)[] = [];
 

@@ -10,7 +10,7 @@ import {
 } from 'lucide-react';
 import { Badge } from '../../components/ui/Badge';
 import { ProgressBar } from '../../components/ui/ProgressBar';
-import { GRAMMAR_BY_LEVEL } from '../../data/grammarData';
+import { useGrammarByLevel } from '../../services/dataService';
 import { useFSRSStore } from '../../stores/fsrsStore';
 
 const JLPT_LEVELS = ['N5', 'N4', 'N3', 'N2', 'N1'];
@@ -21,7 +21,7 @@ export function GrammarPage() {
   const [expandedId, setExpandedId] = useState<number | null>(null);
   const { addCard, isCardAdded } = useFSRSStore();
 
-  const levelGrammar = GRAMMAR_BY_LEVEL[selectedLevel as keyof typeof GRAMMAR_BY_LEVEL] || [];
+  const { data: levelGrammar = [], isLoading, isError } = useGrammarByLevel(selectedLevel);
 
   const filtered = useMemo(() => {
     if (!search) return levelGrammar;
@@ -35,6 +35,31 @@ export function GrammarPage() {
   }, [levelGrammar, search]);
 
   const addedCount = levelGrammar.filter((g) => isCardAdded('grammar', g.id)).length;
+
+  if (isLoading) {
+    return (
+      <div className="p-6 h-full flex items-center justify-center">
+        <div className="flex flex-col items-center gap-3">
+          <div
+            className="w-8 h-8 rounded-full border-2 border-t-transparent animate-spin"
+            style={{ borderColor: 'var(--border-primary)', borderTopColor: 'transparent' }}
+          />
+          <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>Loading grammar...</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="p-6 h-full flex items-center justify-center">
+        <div className="text-center">
+          <p className="font-semibold text-red-500">Failed to load grammar data.</p>
+          <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>Please check your network connection and try again.</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="p-6 overflow-y-auto h-full pb-20">

@@ -5,8 +5,9 @@ import confetti from 'canvas-confetti';
 import { Card } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
 import { Button } from '../../components/ui/Button';
-import { VOCAB_DATA } from '../../data/vocabData';
-import { KANJI_DATA } from '../../data/kanjiData';
+import { useVocabData, useKanjiData } from '../../services/dataService';
+import type { VocabWord } from '../../data/vocabData';
+import type { KanjiEntry } from '../../data/kanjiData';
 
 // ─── Types ───────────────────────────────────────────────────
 type GameState = 'hub' | 'word-match' | 'kanji-memory' | 'speed-type' | 'results';
@@ -40,13 +41,13 @@ function formatTime(seconds: number) {
   return `${m}:${s.toString().padStart(2, '0')}`;
 }
 
-function getN5Vocab(count: number) {
-  const n5 = VOCAB_DATA.filter((w) => w.jlptLevel === 'N5');
+function getN5Vocab(vocabData: VocabWord[], count: number) {
+  const n5 = vocabData.filter((w) => w.jlptLevel === 'N5');
   return shuffle(n5).slice(0, count);
 }
 
-function getN5Kanji(count: number) {
-  const n5 = KANJI_DATA.filter((k) => k.jlptLevel === 'N5');
+function getN5Kanji(kanjiData: KanjiEntry[], count: number) {
+  const n5 = kanjiData.filter((k) => k.jlptLevel === 'N5');
   return shuffle(n5).slice(0, count);
 }
 
@@ -342,12 +343,14 @@ function GameHeader({
 function WordMatchGame({
   onBack,
   onFinish,
+  vocabData,
 }: {
   onBack: () => void;
   onFinish: (result: GameResult) => void;
+  vocabData: VocabWord[];
 }) {
   const [pairs] = useState(() => {
-    const words = getN5Vocab(6);
+    const words = getN5Vocab(vocabData, 6);
     return words.map((w) => ({ id: w.id, word: w.word, reading: w.reading, meaning: w.meaning }));
   });
   const [shuffledMeanings] = useState(() => shuffle(pairs.map((p) => ({ id: p.id, meaning: p.meaning }))));
@@ -611,12 +614,14 @@ interface MemoryCard {
 function KanjiMemoryGame({
   onBack,
   onFinish,
+  kanjiData,
 }: {
   onBack: () => void;
   onFinish: (result: GameResult) => void;
+  kanjiData: KanjiEntry[];
 }) {
   const [cards] = useState<MemoryCard[]>(() => {
-    const kanji = getN5Kanji(6);
+    const kanji = getN5Kanji(kanjiData, 6);
     const cardList: MemoryCard[] = [];
     kanji.forEach((k) => {
       cardList.push({ uid: `k-${k.id}`, pairId: k.id, display: k.character, type: 'kanji' });
@@ -801,11 +806,13 @@ const SECONDS_PER_ROUND = 10;
 function SpeedTypeGame({
   onBack,
   onFinish,
+  vocabData,
 }: {
   onBack: () => void;
   onFinish: (result: GameResult) => void;
+  vocabData: VocabWord[];
 }) {
-  const [words] = useState(() => getN5Vocab(SPEED_TYPE_ROUNDS));
+  const [words] = useState(() => getN5Vocab(vocabData, SPEED_TYPE_ROUNDS));
   const [currentRound, setCurrentRound] = useState(0);
   const [input, setInput] = useState('');
   const [score, setScore] = useState(0);
@@ -1093,6 +1100,15 @@ function SpeedTypeGame({
 
 // ─── Main Page ───────────────────────────────────────────────
 export function MiniGamesPage() {
+  const vocabQuery = useVocabData();
+  const kanjiQuery = useKanjiData();
+
+  const vocabData = vocabQuery.data || [];
+  const kanjiData = kanjiQuery.data || [];
+
+  const isLoading = vocabQuery.isLoading || kanjiQuery.isLoading;
+  const isError = vocabQuery.isError || kanjiQuery.isError;
+
   const [gameState, setGameState] = useState<GameState>('hub');
   const [gameResult, setGameResult] = useState<GameResult | null>(null);
   const [gameKey, setGameKey] = useState(0); // used to force remount for "play again"
@@ -1124,21 +1140,46 @@ export function MiniGamesPage() {
     setGameResult(null);
   };
 
+  if (isLoading) {
+    return (
+      <div className="p-6 h-full flex items-center justify-center animate-pulse">
+        <div className="flex flex-col items-center gap-3">
+          <div
+            className="w-8 h-8 rounded-full border-2 border-t-transparent animate-spin"
+            style={{ borderColor: 'var(--border-primary)', borderTopColor: 'transparent' }}
+          />
+          <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>Loading games...</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="p-6 h-full flex items-center justify-center">
+        <div className="text-center">
+          <p className="font-semibold text-red-500">Failed to load game assets.</p>
+          <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>Please check your network connection and try again.</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div style={{ padding: '24px 20px', maxWidth: 1000, margin: '0 auto' }}>
       <AnimatePresence mode="wait">
         {gameState === 'hub' && <GameHub key="hub" onSelectGame={handleSelectGame} />}
 
         {gameState === 'word-match' && (
-          <WordMatchGame key={`wm-${gameKey}`} onBack={handleBackToHub} onFinish={handleFinish} />
+          <WordMatchGame key={`wm-${gameKey}`} vocabData={vocabData} onBack={handleBackToHub} onFinish={handleFinish} />
         )}
 
         {gameState === 'kanji-memory' && (
-          <KanjiMemoryGame key={`km-${gameKey}`} onBack={handleBackToHub} onFinish={handleFinish} />
+          <KanjiMemoryGame key={`km-${gameKey}`} kanjiData={kanjiData} onBack={handleBackToHub} onFinish={handleFinish} />
         )}
 
         {gameState === 'speed-type' && (
-          <SpeedTypeGame key={`st-${gameKey}`} onBack={handleBackToHub} onFinish={handleFinish} />
+          <SpeedTypeGame key={`st-${gameKey}`} vocabData={vocabData} onBack={handleBackToHub} onFinish={handleFinish} />
         )}
 
         {gameState === 'results' && gameResult && (

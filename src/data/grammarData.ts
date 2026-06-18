@@ -1,8 +1,7 @@
 /**
- * Grammar data — types and re-exports.
+ * Grammar data type definitions.
  * Raw data lives in /public/data/grammar.json (loaded at runtime by dataService).
  */
-import grammarJson from '../../public/data/grammar.json';
 
 export interface GrammarPoint {
   id: number;
@@ -14,13 +13,3 @@ export interface GrammarPoint {
   examples: { jp: string; en: string }[];
   notes: string;
 }
-
-export const GRAMMAR_DATA: GrammarPoint[] = grammarJson as GrammarPoint[];
-
-export const GRAMMAR_BY_LEVEL = {
-  N5: GRAMMAR_DATA.filter(g => g.jlptLevel === 'N5'),
-  N4: GRAMMAR_DATA.filter(g => g.jlptLevel === 'N4'),
-  N3: GRAMMAR_DATA.filter(g => g.jlptLevel === 'N3'),
-  N2: GRAMMAR_DATA.filter(g => g.jlptLevel === 'N2'),
-  N1: GRAMMAR_DATA.filter(g => g.jlptLevel === 'N1'),
-};
