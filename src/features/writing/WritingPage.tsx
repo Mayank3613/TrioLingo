@@ -119,26 +119,106 @@ const KATAKANA_CHARS: { char: string; romaji: string }[] = [
 ];
 
 const KANJI_CHARS: { char: string; romaji: string }[] = [
-  { char: '\u4e00', romaji: 'one' },
-  { char: '\u4e8c', romaji: 'two' },
-  { char: '\u4e09', romaji: 'three' },
-  { char: '\u56db', romaji: 'four' },
-  { char: '\u4e94', romaji: 'five' },
-  { char: '\u516d', romaji: 'six' },
-  { char: '\u4e03', romaji: 'seven' },
-  { char: '\u516b', romaji: 'eight' },
-  { char: '\u4e5d', romaji: 'nine' },
-  { char: '\u5341', romaji: 'ten' },
-  { char: '\u65e5', romaji: 'sun/day' },
-  { char: '\u6708', romaji: 'moon/month' },
-  { char: '\u706b', romaji: 'fire' },
-  { char: '\u6c34', romaji: 'water' },
-  { char: '\u6728', romaji: 'tree/wood' },
-  { char: '\u91d1', romaji: 'gold/money' },
-  { char: '\u571f', romaji: 'earth/soil' },
-  { char: '\u5c71', romaji: 'mountain' },
-  { char: '\u5ddd', romaji: 'river' },
-  { char: '\u7530', romaji: 'rice field' },
+  { char: '一', romaji: 'one' },
+  { char: '二', romaji: 'two' },
+  { char: '三', romaji: 'three' },
+  { char: '四', romaji: 'four' },
+  { char: '五', romaji: 'five' },
+  { char: '六', romaji: 'six' },
+  { char: '七', romaji: 'seven' },
+  { char: '八', romaji: 'eight' },
+  { char: '九', romaji: 'nine' },
+  { char: '十', romaji: 'ten' },
+  { char: '百', romaji: 'hundred' },
+  { char: '千', romaji: 'thousand' },
+  { char: '万', romaji: 'ten thousand' },
+  { char: '円', romaji: 'yen, circle' },
+  { char: '日', romaji: 'day, sun' },
+  { char: '月', romaji: 'month, moon' },
+  { char: '火', romaji: 'fire' },
+  { char: '水', romaji: 'water' },
+  { char: '木', romaji: 'tree, wood' },
+  { char: '金', romaji: 'gold, money' },
+  { char: '土', romaji: 'earth, soil' },
+  { char: '山', romaji: 'mountain' },
+  { char: '川', romaji: 'river' },
+  { char: '田', romaji: 'rice field' },
+  { char: '人', romaji: 'person' },
+  { char: '口', romaji: 'mouth' },
+  { char: '目', romaji: 'eye' },
+  { char: '耳', romaji: 'ear' },
+  { char: '手', romaji: 'hand' },
+  { char: '足', romaji: 'foot, leg' },
+  { char: '力', romaji: 'power, strength' },
+  { char: '女', romaji: 'woman, female' },
+  { char: '男', romaji: 'man, male' },
+  { char: '子', romaji: 'child' },
+  { char: '先', romaji: 'before, ahead' },
+  { char: '生', romaji: 'life, birth' },
+  { char: '学', romaji: 'study, learning' },
+  { char: '校', romaji: 'school' },
+  { char: '年', romaji: 'year' },
+  { char: '何', romaji: 'what' },
+  { char: '本', romaji: 'book, origin' },
+  { char: '気', romaji: 'spirit, energy' },
+  { char: '電', romaji: 'electricity' },
+  { char: '車', romaji: 'car, vehicle' },
+  { char: '東', romaji: 'east' },
+  { char: '西', romaji: 'west' },
+  { char: '南', romaji: 'south' },
+  { char: '北', romaji: 'north' },
+  { char: '国', romaji: 'country' },
+  { char: '語', romaji: 'language, word' },
+  { char: '食', romaji: 'eat, food' },
+  { char: '飲', romaji: 'drink' },
+  { char: '行', romaji: 'go, conduct' },
+  { char: '来', romaji: 'come' },
+  { char: '見', romaji: 'see, look' },
+  { char: '聞', romaji: 'hear, listen' },
+  { char: '読', romaji: 'read' },
+  { char: '書', romaji: 'write' },
+  { char: '話', romaji: 'talk, speak' },
+  { char: '出', romaji: 'go out, exit' },
+  { char: '入', romaji: 'enter, insert' },
+  { char: '立', romaji: 'stand' },
+  { char: '休', romaji: 'rest' },
+  { char: '買', romaji: 'buy' },
+  { char: '花', romaji: 'flower' },
+  { char: '天', romaji: 'sky, heaven' },
+  { char: '雨', romaji: 'rain' },
+  { char: '白', romaji: 'white' },
+  { char: '時', romaji: 'time, hour' },
+  { char: '分', romaji: 'minute, part' },
+  { char: '半', romaji: 'half' },
+  { char: '毎', romaji: 'every' },
+  { char: '今', romaji: 'now, current' },
+  { char: '新', romaji: 'new' },
+  { char: '古', romaji: 'old' },
+  { char: '長', romaji: 'long, leader' },
+  { char: '高', romaji: 'tall, expensive' },
+  { char: '安', romaji: 'cheap, safe' },
+  { char: '多', romaji: 'many, much' },
+  { char: '少', romaji: 'few, little' },
+  { char: '早', romaji: 'early, fast' },
+  { char: '名', romaji: 'name' },
+  { char: '前', romaji: 'before, front' },
+  { char: '後', romaji: 'after, behind' },
+  { char: '外', romaji: 'outside' },
+  { char: '間', romaji: 'between, interval' },
+  { char: '右', romaji: 'right' },
+  { char: '左', romaji: 'left' },
+  { char: '大', romaji: 'big, large' },
+  { char: '小', romaji: 'small, little' },
+  { char: '中', romaji: 'middle, inside' },
+  { char: '友', romaji: 'friend' },
+  { char: '父', romaji: 'father' },
+  { char: '母', romaji: 'mother' },
+  { char: '空', romaji: 'sky, empty' },
+  { char: '森', romaji: 'forest' },
+  { char: '林', romaji: 'woods' },
+  { char: '犬', romaji: 'dog' },
+  { char: '会', romaji: 'meet, society' },
+  { char: '社', romaji: 'company' }
 ];
 
 type TabId = 'hiragana' | 'katakana' | 'kanji';
@@ -546,6 +626,28 @@ export function WritingPage() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.35 }}
           >
+            {/* Disclaimer notice card */}
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="mb-6"
+            >
+              <Card padding="md" style={{ background: 'var(--bg-tertiary)', border: '1px dashed var(--border-primary)' }}>
+                <div className="flex gap-3 items-start">
+                  <span className="text-xl flex-shrink-0">✍️</span>
+                  <div className="space-y-1">
+                    <h4 className="text-xs font-bold" style={{ color: 'var(--text-primary)' }}>
+                      Writing Practice Scope
+                    </h4>
+                    <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                      This section covers all <strong>46 Hiragana</strong>, <strong>46 Katakana</strong>, and all <strong>100 basic JLPT N5 Kanji</strong> (expanded from 20) to master fundamental stroke orders and build muscle memory. To study higher-level JLPT N4–N1 kanji and vocabulary, please check the main <strong>Kanji</strong>, <strong>Vocabulary</strong>, and <strong>Quiz</strong> sections.
+                    </p>
+                  </div>
+                </div>
+              </Card>
+            </motion.div>
+
             <div
               className="grid gap-2.5"
               style={{

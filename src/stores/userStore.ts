@@ -21,6 +21,7 @@ export interface UserProfile {
   grammarCompleted: number;
   totalStudyMinutes: number;
   joinedDate: string;
+  careerProgress?: Record<number, number>;
 }
 
 const XP_PER_LEVEL = [
@@ -54,6 +55,7 @@ interface UserState {
   updateStreak: () => void;
   updateProfile: (updates: Partial<UserProfile>) => void;
   setOnboarded: (value: boolean) => void;
+  completeCareerLesson: (chapterId: number) => void;
 }
 
 export const useUserStore = create<UserState>()(
@@ -78,6 +80,7 @@ export const useUserStore = create<UserState>()(
         grammarCompleted: 0,
         totalStudyMinutes: 0,
         joinedDate: new Date().toISOString(),
+        careerProgress: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
       },
       isOnboarded: false,
       addXP: (amount) =>
@@ -142,6 +145,24 @@ export const useUserStore = create<UserState>()(
           profile: { ...state.profile, ...updates },
         })),
       setOnboarded: (value) => set({ isOnboarded: value }),
+      completeCareerLesson: (chapterId) =>
+        set((state) => {
+          const currentProgress = state.profile.careerProgress || { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+          const completed = currentProgress[chapterId] || 0;
+          if (completed >= 8) return {};
+
+          const nextProgress = {
+            ...currentProgress,
+            [chapterId]: completed + 1,
+          };
+
+          return {
+            profile: {
+              ...state.profile,
+              careerProgress: nextProgress,
+            },
+          };
+        }),
     }),
     {
       name: 'triolingo-user',

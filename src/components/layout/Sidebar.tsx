@@ -26,6 +26,7 @@ import {
 } from 'lucide-react';
 import { useUserStore } from '../../stores/userStore';
 import { useSidebarStore } from '../../stores/sidebarStore';
+import { useFSRSStore } from '../../stores/fsrsStore';
 
 interface NavItem {
   label: string;
@@ -96,6 +97,22 @@ export function Sidebar() {
   const { collapsed, toggle } = useSidebarStore();
   const location = useLocation();
   const profile = useUserStore((s) => s.profile);
+  const dueCount = useFSRSStore((s) => s.getDueCount());
+
+  const mappedSections = React.useMemo(() => {
+    return NAV_SECTIONS.map((section) => ({
+      ...section,
+      items: section.items.map((item) => {
+        if (item.path === '/flashcards') {
+          return {
+            ...item,
+            badge: dueCount > 0 ? dueCount.toString() : undefined,
+          };
+        }
+        return item;
+      }),
+    }));
+  }, [dueCount]);
 
   const sidebarWidth = collapsed ? 72 : 260;
   const xpPercent = profile.xpToNextLevel > 0
@@ -228,7 +245,7 @@ export function Sidebar() {
 
       {/* Navigation */}
       <nav className="flex-1 overflow-y-auto overflow-x-hidden px-2.5 pb-2">
-        {NAV_SECTIONS.map((section, si) => (
+        {mappedSections.map((section, si) => (
           <div key={si}>
             {/* Section divider with label */}
             {si > 0 && (
@@ -372,6 +389,14 @@ function SidebarLink({
 
       <span className="relative z-10 flex-shrink-0">
         <Icon size={18} strokeWidth={isActive ? 2.2 : 1.8} />
+        {item.badge && collapsed && (
+          <span
+            className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full ring-2 ring-white"
+            style={{
+              background: 'var(--gradient-accent)',
+            }}
+          />
+        )}
       </span>
 
       <AnimatePresence>

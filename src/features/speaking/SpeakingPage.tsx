@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   Mic,
@@ -79,6 +79,7 @@ export function SpeakingPage() {
   const [showFeedback, setShowFeedback] = useState(false);
   const [selfRating, setSelfRating] = useState<number | null>(null);
   const [results, setResults] = useState<{ exercise: SpeakingExercise; rating: number }[]>([]);
+  const [hasJpVoice, setHasJpVoice] = useState(true);
   const recognitionRef = useRef<any>(null);
 
   const currentExercise = exercises[currentIndex];
@@ -95,6 +96,25 @@ export function SpeakingPage() {
     const jpVoice = voices.find((v) => v.lang.startsWith('ja'));
     if (jpVoice) utt.voice = jpVoice;
     window.speechSynthesis.speak(utt);
+  }, []);
+
+  // Load voices and check for Japanese voice availability
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.speechSynthesis) {
+      setHasJpVoice(false);
+      return;
+    }
+
+    const checkJpVoice = () => {
+      const voices = window.speechSynthesis.getVoices();
+      const hasJp = voices.some((v) => v.lang.toLowerCase().startsWith('ja'));
+      setHasJpVoice(hasJp);
+    };
+
+    checkJpVoice();
+    
+    window.speechSynthesis.addEventListener('voiceschanged', checkJpVoice);
+    return () => window.speechSynthesis?.removeEventListener('voiceschanged', checkJpVoice);
   }, []);
 
   /* ── Speech Recognition ─────────────────────────────────────── */
@@ -241,6 +261,21 @@ export function SpeakingPage() {
             </h1>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', margin: '0.5rem 0' }}>会話練習</p>
           </div>
+
+          {/* TTS voice check warning */}
+          {!hasJpVoice && (
+            <Card padding="md" style={{ border: '1px solid var(--border-warning, #f59e0b)', background: 'var(--bg-warning, rgba(245, 158, 11, 0.05))', marginBottom: '1rem' }}>
+              <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
+                <span style={{ fontSize: '1.25rem' }}>🔊</span>
+                <div style={{ textAlign: 'left' }}>
+                  <h4 style={{ margin: 0, fontSize: '0.875rem', fontWeight: 700, color: '#d97706' }}>Japanese Voice Not Detected</h4>
+                  <p style={{ margin: '0.25rem 0 0', fontSize: '0.75rem', color: 'var(--text-secondary)', lineHeight: 1.4 }}>
+                    To ensure high-quality listening practice, please install or enable a Japanese text-to-speech voice in your device settings (e.g., Siri, Google Japanese, or Microsoft Language Pack).
+                  </p>
+                </div>
+              </div>
+            </Card>
+          )}
 
           {/* Level selector */}
           <Card padding="lg" hover={false}>
@@ -414,6 +449,21 @@ export function SpeakingPage() {
   /* ── Practice Screen ─────────────────────────────────────────── */
   return (
     <div style={{ padding: '2rem', maxWidth: '650px', margin: '0 auto' }}>
+      {/* TTS voice check warning */}
+      {!hasJpVoice && (
+        <Card padding="md" style={{ border: '1px solid var(--border-warning, #f59e0b)', background: 'var(--bg-warning, rgba(245, 158, 11, 0.05))', marginBottom: '1.5rem' }}>
+          <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
+            <span style={{ fontSize: '1.25rem' }}>🔊</span>
+            <div style={{ textAlign: 'left' }}>
+              <h4 style={{ margin: 0, fontSize: '0.875rem', fontWeight: 700, color: '#d97706' }}>Japanese Voice Not Detected</h4>
+              <p style={{ margin: '0.25rem 0 0', fontSize: '0.75rem', color: 'var(--text-secondary)', lineHeight: 1.4 }}>
+                Please install or enable a Japanese text-to-speech voice in your device settings to hear standard pronunciation.
+              </p>
+            </div>
+          </div>
+        </Card>
+      )}
+
       {/* Top bar */}
       <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
