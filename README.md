@@ -125,8 +125,8 @@ Whether you're learning your first hiragana or grinding for the N1 exam, TrioLin
 
 ```bash
 # Clone the repository
-git clone https://github.com/Mayank3613/TrioLingo-.git
-cd TrioLingo-
+git clone https://github.com/Mayank3613/TrioLingo.git
+cd TrioLingo
 
 # Install dependencies
 npm install

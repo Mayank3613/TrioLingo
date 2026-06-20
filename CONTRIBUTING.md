@@ -7,8 +7,8 @@ Thank you for your interest in contributing to TrioLingo++! We want to make cont
 1. **Fork the Repository**: Create a fork of this repository to your own GitHub account.
 2. **Clone the Repository**: Clone your fork to your local machine:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/TrioLingo-.git
-   cd TrioLingo-
+   git clone https://github.com/YOUR_USERNAME/TrioLingo.git
+   cd TrioLingo
    ```
 3. **Install Dependencies**: Install the project dependencies using npm:
    ```bash

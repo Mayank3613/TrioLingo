@@ -51,40 +51,54 @@ function ThemeCard({
 
   return (
     <motion.button
-      whileHover={isUnlocked ? { scale: 1.03, y: -4 } : {}}
+      whileHover={isUnlocked ? { scale: 1.03, y: -4 } : { scale: 1.01 }}
       whileTap={isUnlocked ? { scale: 0.97 } : {}}
       onClick={isUnlocked ? onSelect : undefined}
-      className="relative rounded-2xl overflow-hidden cursor-pointer"
+      className="relative rounded-2xl overflow-hidden cursor-pointer group"
       style={{
         border: isActive ? `2px solid ${colors.accent}` : '2px solid var(--border-primary)',
         boxShadow: isActive ? `0 0 20px ${colors.accent}40` : 'var(--shadow-md)',
-        opacity: isUnlocked ? 1 : 0.5,
       }}
     >
       {/* Theme Preview */}
-      <div className="p-3" style={{ background: colors.bg }}>
-        {/* Mini sidebar + content preview */}
-        <div className="flex gap-2 h-20">
-          <div className="w-8 rounded-lg" style={{ background: colors.card, border: `1px solid ${colors.accent}20` }}>
-            <div className="flex flex-col gap-1.5 p-1.5 mt-2">
-              {[1, 2, 3].map((i) => (
-                <div key={i} className="w-full h-1 rounded-full" style={{ background: colors.accent, opacity: i === 1 ? 1 : 0.3 }} />
-              ))}
+      <div className="p-3 relative" style={{ background: colors.bg }}>
+        {/* Blurry wrapper if locked */}
+        <div style={{ filter: !isUnlocked ? 'blur(3.5px)' : 'none', transition: 'filter 0.3s' }}>
+          {/* Mini sidebar + content preview */}
+          <div className="flex gap-2 h-20">
+            <div className="w-8 rounded-lg" style={{ background: colors.card, border: `1px solid ${colors.accent}20` }}>
+              <div className="flex flex-col gap-1.5 p-1.5 mt-2">
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="w-full h-1 rounded-full" style={{ background: colors.accent, opacity: i === 1 ? 1 : 0.3 }} />
+                ))}
+              </div>
             </div>
-          </div>
-          <div className="flex-1 flex flex-col gap-1.5">
-            <div className="h-4 rounded" style={{ background: colors.card }} />
-            <div className="flex-1 rounded-lg" style={{ background: colors.card }}>
-              <div className="p-2 flex gap-1.5">
-                <div className="w-6 h-6 rounded" style={{ background: colors.accent }} />
-                <div className="flex-1 flex flex-col gap-1">
-                  <div className="h-1.5 w-3/4 rounded-full" style={{ background: colors.text, opacity: 0.3 }} />
-                  <div className="h-1 w-1/2 rounded-full" style={{ background: colors.text, opacity: 0.15 }} />
+            <div className="flex-1 flex flex-col gap-1.5">
+              <div className="h-4 rounded" style={{ background: colors.card }} />
+              <div className="flex-1 rounded-lg" style={{ background: colors.card }}>
+                <div className="p-2 flex gap-1.5">
+                  <div className="w-6 h-6 rounded" style={{ background: colors.accent }} />
+                  <div className="flex-1 flex flex-col gap-1">
+                    <div className="h-1.5 w-3/4 rounded-full" style={{ background: colors.text, opacity: 0.3 }} />
+                    <div className="h-1 w-1/2 rounded-full" style={{ background: colors.text, opacity: 0.15 }} />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+        {/* Lock Overlay in center if locked */}
+        {!isUnlocked && (
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/15 backdrop-blur-[1px] p-2">
+            <div className="w-8 h-8 rounded-full bg-black/60 text-white flex items-center justify-center shadow-md border border-white/10">
+              <Lock size={12} />
+            </div>
+            <span className="text-[9px] font-bold text-white mt-1 bg-black/70 px-1.5 py-0.5 rounded shadow-sm">
+              Unlock at Lv.{theme.requiredLevel}
+            </span>
+          </div>
+        )}
       </div>
 
       {/* Theme Name */}
@@ -108,6 +122,16 @@ function ThemeCard({
           </div>
         )}
       </div>
+
+      {/* Tooltip on hover if locked */}
+      {!isUnlocked && (
+        <div 
+          className="absolute bottom-[44px] left-1/2 -translate-x-1/2 px-2.5 py-1 rounded text-[10px] font-bold text-white bg-slate-900 border border-slate-700 shadow-xl opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-30"
+          style={{ boxShadow: '0 4px 12px rgba(0,0,0,0.5)' }}
+        >
+          🔒 Reach Level {theme.requiredLevel} to unlock this theme!
+        </div>
+      )}
     </motion.button>
   );
 }
@@ -283,15 +307,18 @@ export function SettingsPage() {
           Choose your theme. Unlock more by leveling up!
         </p>
         <div className="grid grid-cols-3 gap-3">
-          {THEMES.map((theme) => (
-            <ThemeCard
-              key={theme.id}
-              theme={theme}
-              isActive={currentTheme === theme.id}
-              isUnlocked={unlockedThemes.includes(theme.id)}
-              onSelect={() => setTheme(theme.id)}
-            />
-          ))}
+          {THEMES.map((theme) => {
+            const isUnlocked = unlockedThemes.includes(theme.id) || (theme.requiredLevel !== undefined && profile.currentLevel >= theme.requiredLevel);
+            return (
+              <ThemeCard
+                key={theme.id}
+                theme={theme}
+                isActive={currentTheme === theme.id}
+                isUnlocked={isUnlocked}
+                onSelect={() => setTheme(theme.id)}
+              />
+            );
+          })}
         </div>
       </SettingSection>
 
