@@ -27,7 +27,30 @@
   <a href="#-getting-started">Getting Started</a> •
   <a href="#-themes">Themes</a> •
   <a href="#-project-structure">Structure</a> •
-  <a href="#-roadmap">Roadmap</a>
+  <a href="#-roadmap">Roadmap</a> •
+  <a href="changelogmd">Changelog</a>
+</p>
+
+---
+
+## 📸 Screenshots
+
+<p align="center">
+  <img src="docs/screenshots/dashboard.png" alt="TrioLingo++ Dashboard" width="700"/>
+  <br/>
+  <em>Dashboard — XP ring, streak counter, JLPT readiness radar, and quick-action cards</em>
+</p>
+
+<p align="center">
+  <img src="docs/screenshots/flashcards.png" alt="Flashcard Review Session" width="700"/>
+  <br/>
+  <em>Flashcard Review — FSRS-powered spaced repetition with 3D card flip</em>
+</p>
+
+<p align="center">
+  <img src="docs/screenshots/themes.png" alt="Theme Showcase" width="700"/>
+  <br/>
+  <em>6 Premium Themes — Light, Dark, AMOLED, Sakura, Cyber Tokyo, Traditional</em>
 </p>
 
 ---
@@ -53,14 +76,14 @@ Whether you're learning your first hiragana or grinding for the N1 exam, TrioLin
 | **Reading** | 15 graded passages (N5–N1) with comprehension quizzes & translation toggle | ✅ Built |
 | **Listening** | TTS-powered audio exercises with dictation mode, speed controls, JLPT levels | ✅ Built |
 | **Speaking** | Pronunciation practice with Web Speech API, self-rating, session results | ✅ Built |
-| **Writing** | Canvas stroke practice for hiragana (46), katakana (46), kanji (20) with undo | ✅ Built |
+| **Writing** | Canvas stroke practice for hiragana (46), katakana (46), kanji (100 N5) with undo | ✅ Built |
 
 ### 🧠 Study Tools
 - **🃏 Flashcards** — ✅ FSRS-powered spaced repetition with 3D card flip, rating buttons (Again/Hard/Good/Easy), session stats
 - **⚡ Quick Quizzes** — ✅ Adaptive quizzes with multiple-choice & type-answer, JLPT level/category selection, results breakdown
 - **👤 Profile** — ✅ Editable avatar, XP progress, study heatmap (16 weeks), flashcard category breakdown
 - **🎓 Mock Exams** — ✅ Full JLPT simulation with 30 timed questions across vocab/kanji/grammar sections, animated score reveal, pass/fail with confetti
-- **🤖 AI Tutor** — ✅ Simulated chat interface with 6 conversation topics, typing indicators, guided dialogue with XP rewards
+- **🤖 AI Tutor** — ✅ Dual-mode chat: Demo conversations (6 topics) + live Gemini 2.0 Flash integration (bring your own API key), typing indicators, XP rewards
 - **📊 Analytics** — ✅ Study analytics dashboard with XP chart, category pie chart, JLPT progress bars, GitHub-style heatmap
 - **🔍 Search** — ✅ Unified search across all data sets with category filters, type-specific result cards, debounced filtering
 - **🎮 Mini Games** — ✅ 3 playable games: Word Match, Kanji Memory, Speed Type
@@ -118,8 +141,10 @@ Whether you're learning your first hiragana or grinding for the N1 exam, TrioLin
 ### Prerequisites
 
 - **Node.js** ≥ 18
-- **Rust** (install via [rustup](https://rustup.rs))
-- **MSVC Build Tools** (Windows) or **Xcode** (macOS)
+- **Rust** (install via [rustup](https://rustup.rs)) — *only needed for desktop builds*
+- **MSVC Build Tools** (Windows) or **Xcode** (macOS) — *only needed for desktop builds*
+
+> 💡 **Web-only Development Mode:** If you only want to work on the frontend UI (React/TypeScript), you **do not** need Rust, MSVC, or Xcode. Just run `npm run dev` and open the app in your browser. All study features, themes, and pages work in the browser — only native filesystem persistence and Tauri-specific APIs require the desktop build.
 
 ### Installation
 
@@ -131,11 +156,11 @@ cd TrioLingo
 # Install dependencies
 npm install
 
-# Run in browser (frontend only)
+# Run in browser (frontend only — no Rust required!)
 npm run dev
 # → Opens at http://localhost:1420
 
-# Run as desktop app (Tauri)
+# Run as desktop app (requires Rust + platform toolchain)
 npm run tauri dev
 # → First build compiles Rust (~3-5 min), then instant
 ```
