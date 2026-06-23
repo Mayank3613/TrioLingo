@@ -475,46 +475,68 @@ export default function Dashboard() {
           transition={{ delay: 0.35 }}
         >
           <Card padding="lg">
-            <h2 className="text-base font-bold mb-1" style={{ color: 'var(--text-primary)' }}>
+            <h2 className="text-base font-bold mb-1 text-white">
               JLPT {profile.currentJLPTLevel} Readiness
             </h2>
-            <p className="text-xs mb-2" style={{ color: 'var(--text-tertiary)' }}>
+            <p className="text-xs mb-2" style={{ color: 'var(--color-text-muted)' }}>
               スキル分析
             </p>
 
-            <ResponsiveContainer width="100%" height={220}>
-              <RadarChart cx="50%" cy="50%" outerRadius="70%" data={RADAR_DATA}>
-                <PolarGrid stroke="var(--border-primary)" />
-                <PolarAngleAxis
-                  dataKey="skill"
-                  tick={{ fill: 'var(--text-secondary)', fontSize: 11, fontWeight: 500 }}
-                />
-                <Radar
-                  name="Skills"
-                  dataKey="value"
-                  stroke="var(--accent-primary)"
-                  fill="var(--accent-primary)"
-                  fillOpacity={0.2}
-                  strokeWidth={2.5}
-                  dot={{ r: 3.5, fill: 'var(--accent-primary)', strokeWidth: 1.5, stroke: 'var(--bg-card)' }}
-                />
-              </RadarChart>
-            </ResponsiveContainer>
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
+            >
+              <ResponsiveContainer width="100%" height={220}>
+                <RadarChart cx="50%" cy="50%" outerRadius="70%" data={[
+                  { skill: 'Vocabulary', value: Math.min(100, Math.max(15, Math.round((profile.vocabularyMastered / 400) * 100))), fullMark: 100 },
+                  { skill: 'Kanji', value: Math.min(100, Math.max(10, Math.round((profile.kanjiMastered / 100) * 100))), fullMark: 100 },
+                  { skill: 'Grammar', value: Math.min(100, Math.max(20, Math.round((profile.grammarCompleted / 100) * 100))), fullMark: 100 },
+                  { skill: 'Reading', value: Math.min(100, Math.max(25, Math.round(((profile.careerProgress ? Object.values(profile.careerProgress).reduce((a, b) => a + b, 0) : 0) / 40) * 100))), fullMark: 100 },
+                  { skill: 'Listening', value: Math.min(100, Math.max(15, Math.round((profile.totalStudyMinutes / 120) * 100))), fullMark: 100 },
+                  { skill: 'Speaking', value: Math.min(100, Math.max(10, Math.round((profile.totalXP / 2000) * 100))), fullMark: 100 },
+                ]}>
+                  <PolarGrid stroke="rgba(255,255,255,0.15)" />
+                  <PolarAngleAxis
+                    dataKey="skill"
+                    tick={{ fill: 'var(--color-text-secondary)', fontSize: 11, fontWeight: 500 }}
+                  />
+                  <Radar
+                    name="Skills"
+                    dataKey="value"
+                    stroke="#7c3aed"
+                    fill="#7c3aed"
+                    fillOpacity={0.3}
+                    strokeWidth={2.5}
+                    dot={{ r: 3.5, fill: '#7c3aed', strokeWidth: 1.5, stroke: 'var(--color-bg-card)' }}
+                  />
+                </RadarChart>
+              </ResponsiveContainer>
+            </motion.div>
 
-            {/* Mini Skill Grid for exact numeric breakdown */}
-            <div className="grid grid-cols-3 gap-3 mt-5 pt-4 border-t border-[var(--border-secondary)]">
-              {RADAR_DATA.map((item) => (
+            {/* 6 skill progress bars in 2 columns (3 each) */}
+            <div className="grid grid-cols-2 gap-x-6 gap-y-3 mt-5 pt-4 border-t border-[var(--color-border)]">
+              {[
+                { skill: 'Vocabulary', value: Math.min(100, Math.max(15, Math.round((profile.vocabularyMastered / 400) * 100))) },
+                { skill: 'Kanji', value: Math.min(100, Math.max(10, Math.round((profile.kanjiMastered / 100) * 100))) },
+                { skill: 'Grammar', value: Math.min(100, Math.max(20, Math.round((profile.grammarCompleted / 100) * 100))) },
+                { skill: 'Reading', value: Math.min(100, Math.max(25, Math.round(((profile.careerProgress ? Object.values(profile.careerProgress).reduce((a, b) => a + b, 0) : 0) / 40) * 100))) },
+                { skill: 'Listening', value: Math.min(100, Math.max(15, Math.round((profile.totalStudyMinutes / 120) * 100))) },
+                { skill: 'Speaking', value: Math.min(100, Math.max(10, Math.round((profile.totalXP / 2000) * 100))) },
+              ].map((item) => (
                 <div key={item.skill} className="flex flex-col min-w-0">
-                  <span className="text-[10px] font-semibold text-[var(--text-tertiary)] uppercase tracking-wider truncate">
-                    {item.skill}
-                  </span>
-                  <span className="text-sm font-bold text-[var(--text-primary)] mt-0.5">
-                    {item.value}%
-                  </span>
+                  <div className="flex justify-between items-center text-[11px] font-semibold">
+                    <span className="text-slate-400">
+                      {item.skill}
+                    </span>
+                    <span className="text-white">
+                      {item.value}%
+                    </span>
+                  </div>
                   {/* progress micro-bar */}
-                  <div className="w-full bg-[var(--bg-tertiary)] h-1 rounded-full mt-1.5 overflow-hidden">
+                  <div className="w-full bg-slate-800/80 h-1 rounded-full mt-1.5 overflow-hidden">
                     <div 
-                      className="bg-[var(--accent-primary)] h-full rounded-full transition-all duration-500 ease-out"
+                      className="bg-[#7c3aed] h-full rounded-full transition-all duration-500 ease-out"
                       style={{ width: `${item.value}%` }}
                     />
                   </div>
