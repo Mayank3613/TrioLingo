@@ -233,6 +233,18 @@ export default function Dashboard() {
   const completedGoals = dailyGoals.filter((g) => g.current >= g.target).length;
   const dailyPct = dailyGoals.length > 0 ? Math.round((completedGoals / dailyGoals.length) * 100) : 0;
 
+  const welcomeActivity = {
+    id: 'welcome-mascot',
+    type: 'lesson' as const,
+    title: 'Welcome to TrioLingo++',
+    description: 'Master Japanese with your owl companion 🦉',
+    xpEarned: 0,
+    timestamp: new Date().toISOString(),
+    icon: '🦉',
+  };
+
+  const activitiesToRender = [welcomeActivity, ...recentActivity.filter(a => a.id !== '1')].slice(0, 6);
+
   React.useEffect(() => {
     if (dailyPct === 100) {
       const duration = 2 * 1000;
@@ -606,38 +618,37 @@ export default function Dashboard() {
         transition={{ delay: 0.75 }}
       >
         <Card padding="lg">
-          <h2 className="text-base font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
+          <h2 className="text-base font-extrabold mb-4 text-white">
             Recent Activity
           </h2>
           <div className="space-y-3">
-            {recentActivity.slice(0, 6).map((act, i) => (
+            {activitiesToRender.map((act, i) => (
               <motion.div
                 key={act.id}
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.8 + i * 0.05 }}
                 whileHover={{ x: 4 }}
-                className="flex items-center gap-3 py-2 border-b last:border-b-0 px-2 -mx-2 rounded-lg hover:bg-[var(--bg-hover)] transition-colors duration-150"
-                style={{ borderColor: 'var(--border-secondary)' }}
+                className="flex items-center gap-3.5 p-3 rounded-xl border border-[var(--color-border)] hover:border-slate-500/20 transition-all duration-150"
+                style={{ background: 'var(--color-bg-card)' }}
               >
                 <div
-                  className="w-9 h-9 rounded-lg flex items-center justify-center text-lg flex-shrink-0"
-                  style={{ background: 'var(--bg-tertiary)' }}
+                  className="w-9 h-9 rounded-full flex items-center justify-center text-lg flex-shrink-0 bg-white/5 border border-white/5"
                 >
                   {act.icon}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>
+                  <div className="text-sm font-bold text-white">
                     {act.title}
                   </div>
-                  <div className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
+                  <div className="text-xs text-slate-400 mt-0.5">
                     {act.description}
                   </div>
                 </div>
-                <div className="flex items-center gap-2 flex-shrink-0">
+                <div className="flex items-center gap-2.5 flex-shrink-0">
                   {act.xpEarned > 0 && <Badge variant="xp">+{act.xpEarned} XP</Badge>}
-                  <span className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
-                    {timeAgo(act.timestamp)}
+                  <span className="text-xs font-semibold text-slate-500">
+                    {act.id === 'welcome-mascot' ? 'Just now' : timeAgo(act.timestamp)}
                   </span>
                 </div>
               </motion.div>
