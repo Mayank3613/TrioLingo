@@ -39,12 +39,13 @@ function ThemeCard({
   onSelect: () => void;
 }) {
   const previewColors: Record<ThemeId, { bg: string; card: string; accent: string; text: string }> = {
+    'premium-dark': { bg: '#0f1117', card: '#1e2138', accent: '#7c3aed', text: '#ffffff' },
     light: { bg: '#f8fafc', card: '#ffffff', accent: '#6366f1', text: '#0f172a' },
     dark: { bg: '#0f172a', card: '#1e293b', accent: '#818cf8', text: '#f1f5f9' },
     amoled: { bg: '#000000', card: '#0a0a0a', accent: '#818cf8', text: '#fafafa' },
-    sakura: { bg: '#fdf2f8', card: '#ffffff', accent: '#ec4899', text: '#831843' },
+    sakura: { bg: '#150d14', card: '#221521', accent: '#ec4899', text: '#fdf2f8' },
     'cyber-tokyo': { bg: '#0a0e1a', card: '#111827', accent: '#06ffa5', text: '#06ffa5' },
-    traditional: { bg: '#faf7f2', card: '#f5f0e8', accent: '#b8860b', text: '#3b240e' },
+    traditional: { bg: '#15110d', card: '#251e18', accent: '#d4a017', text: '#faf7f2' },
   };
 
   const colors = previewColors[theme.id];

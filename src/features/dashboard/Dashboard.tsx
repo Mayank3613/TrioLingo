@@ -94,45 +94,44 @@ function StatCard({
   label,
   value,
   suffix,
-  gradient,
   delay,
 }: {
   icon: React.ReactNode;
   label: string;
   value: number | string;
   suffix?: string;
-  gradient?: string;
   delay: number;
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay, type: 'spring', stiffness: 260, damping: 20 }}
+      transition={{ delay, duration: 0.3 }}
+      whileHover={{ y: -2 }}
+      className="p-5 rounded-xl border border-[var(--color-border)] hover:border-slate-500/30 transition-all duration-200"
+      style={{
+        background: 'var(--color-bg-card)',
+        boxShadow: '0 4px 24px rgba(0,0,0,0.4)',
+      }}
     >
-      <Card hover padding="md">
-        <div className="flex items-center gap-3 min-w-0">
-          <div
-            className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-            style={{ background: gradient || 'var(--bg-tertiary)' }}
-          >
-            {icon}
+      <div className="flex items-center gap-3.5 min-w-0">
+        <div className="flex-shrink-0">
+          {icon}
+        </div>
+        <div className="min-w-0 flex-1">
+          <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+            {label}
           </div>
-          <div className="min-w-0 flex-1">
-            <div className="text-[11px] font-medium truncate" style={{ color: 'var(--text-tertiary)' }}>
-              {label}
-            </div>
-            <div className="text-lg font-bold flex items-baseline gap-1 truncate" style={{ color: 'var(--text-primary)' }}>
-              {value}
-              {suffix && (
-                <span className="text-[11px] font-medium" style={{ color: 'var(--text-tertiary)' }}>
-                  {suffix}
-                </span>
-              )}
-            </div>
+          <div className="text-xl font-extrabold flex items-baseline gap-1 mt-0.5 text-white">
+            {value}
+            {suffix && (
+              <span className="text-xs font-semibold text-slate-400 ml-0.5">
+                {suffix}
+              </span>
+            )}
           </div>
         </div>
-      </Card>
+      </div>
     </motion.div>
   );
 }
@@ -331,32 +330,28 @@ export default function Dashboard() {
       {/* ── Stat Cards ── */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         <StatCard
-          icon={<Flame size={20} className="text-orange-500 dark:text-orange-400" />}
+          icon={<Flame size={20} className="text-orange-500 fill-orange-500" />}
           label="Study Streak"
           value={profile.currentStreak}
           suffix="days"
-          gradient="linear-gradient(135deg, rgba(249,115,22,0.15), rgba(234,88,12,0.08))"
           delay={0.15}
         />
         <StatCard
-          icon={<Sparkles size={20} className="text-amber-500 dark:text-amber-400" />}
+          icon={<Sparkles size={20} className="text-amber-400" />}
           label="XP Today"
           value={profile.currentXP}
-          gradient="linear-gradient(135deg, rgba(245,158,11,0.15), rgba(217,119,6,0.08))"
           delay={0.2}
         />
         <StatCard
-          icon={<Clock size={20} className="text-blue-500 dark:text-blue-400" />}
+          icon={<Clock size={20} className="text-rose-400" />}
           label="Reviews Due"
           value={reviewsDue}
-          gradient="linear-gradient(135deg, rgba(59,130,246,0.15), rgba(37,99,235,0.08))"
           delay={0.25}
         />
         <StatCard
-          icon={<BookOpen size={20} className="text-emerald-500 dark:text-emerald-400" />}
+          icon={<BookOpen size={20} className="text-emerald-400" />}
           label="Lessons Available"
           value={lessonsAvailable}
-          gradient="linear-gradient(135deg, rgba(16,185,129,0.15), rgba(5,150,105,0.08))"
           delay={0.3}
         />
       </div>

@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { tauriStorage } from '../services/tauriStorage';
 
-export type ThemeId = 'light' | 'dark' | 'amoled' | 'sakura' | 'cyber-tokyo' | 'traditional';
+export type ThemeId = 'light' | 'dark' | 'premium-dark' | 'amoled' | 'sakura' | 'cyber-tokyo' | 'traditional';
 
 export interface ThemeInfo {
   id: ThemeId;
@@ -14,6 +14,7 @@ export interface ThemeInfo {
 }
 
 export const THEMES: ThemeInfo[] = [
+  { id: 'premium-dark', name: 'Premium Dark', nameJp: 'プレミアムダーク', icon: '✨', unlocked: true },
   { id: 'light', name: 'Light', nameJp: 'ライト', icon: '☀️', unlocked: true },
   { id: 'dark', name: 'Dark', nameJp: 'ダーク', icon: '🌙', unlocked: true },
   { id: 'amoled', name: 'AMOLED', nameJp: 'アモレッド', icon: '⚫', unlocked: true },
@@ -32,8 +33,8 @@ interface ThemeState {
 export const useThemeStore = create<ThemeState>()(
   persist(
     (set) => ({
-      currentTheme: 'dark',
-      unlockedThemes: ['light', 'dark', 'amoled'],
+      currentTheme: 'premium-dark',
+      unlockedThemes: ['light', 'dark', 'premium-dark', 'amoled'],
       setTheme: (theme) => {
         document.documentElement.setAttribute('data-theme', theme);
         set({ currentTheme: theme });
