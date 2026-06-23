@@ -142,6 +142,7 @@ function ActionCard({
   title,
   subtitle,
   gradient,
+  glowColor,
   delay,
   onClick,
 }: {
@@ -149,6 +150,7 @@ function ActionCard({
   title: string;
   subtitle: string;
   gradient: string;
+  glowColor: string;
   delay: number;
   onClick?: () => void;
 }) {
@@ -157,17 +159,17 @@ function ActionCard({
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ delay, type: 'spring', stiffness: 260, damping: 20 }}
-      whileHover={{ scale: 1.04, y: -4 }}
+      whileHover={{ scale: 1.02, y: -2, boxShadow: `0 8px 32px ${glowColor}` }}
       whileTap={{ scale: 0.97 }}
-      className="rounded-2xl p-4 text-left text-white cursor-pointer w-full overflow-hidden relative"
-      style={{ background: gradient, boxShadow: 'var(--shadow-lg)' }}
+      className="rounded-xl p-4 text-left text-white cursor-pointer w-full overflow-hidden relative transition-all duration-200"
+      style={{ background: gradient }}
       onClick={onClick}
     >
       {/* Shimmer sweep overlay */}
       <div className="absolute inset-0 animate-shimmer pointer-events-none" />
 
       <div className="relative z-10">
-        <div className="w-9 h-9 rounded-xl flex items-center justify-center mb-2 bg-white/20 flex-shrink-0">
+        <div className="w-9 h-9 rounded-lg flex items-center justify-center mb-2.5 bg-white/20 flex-shrink-0">
           {icon}
         </div>
         <div className="text-sm font-bold truncate">{title}</div>
@@ -550,8 +552,7 @@ export default function Dashboard() {
       {/* ── Quick Actions ── */}
       <div>
         <motion.h2
-          className="text-base font-bold mb-3"
-          style={{ color: 'var(--text-primary)' }}
+          className="text-base font-extrabold mb-3 text-white"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
@@ -563,7 +564,8 @@ export default function Dashboard() {
             icon={<Play size={20} />}
             title="Continue Lesson"
             subtitle="JLPT N5 · Verbs"
-            gradient="var(--gradient-primary)"
+            gradient="linear-gradient(135deg, #4f46e5, #7c3aed)"
+            glowColor="rgba(124, 58, 237, 0.35)"
             delay={0.55}
             onClick={() => navigate('/vocabulary')}
           />
@@ -571,7 +573,8 @@ export default function Dashboard() {
             icon={<Layers size={20} />}
             title="Review Flashcards"
             subtitle={`${reviewsDue} cards due`}
-            gradient="var(--gradient-accent)"
+            gradient="linear-gradient(135deg, #ec4899, #f43f5e)"
+            glowColor="rgba(236, 72, 153, 0.35)"
             delay={0.6}
             onClick={() => navigate('/flashcards')}
           />
@@ -579,7 +582,8 @@ export default function Dashboard() {
             icon={<Zap size={20} />}
             title="Take a Quiz"
             subtitle="5 min quick quiz"
-            gradient="var(--gradient-success)"
+            gradient="linear-gradient(135deg, #10b981, #059669)"
+            glowColor="rgba(16, 185, 129, 0.35)"
             delay={0.65}
             onClick={() => navigate('/quiz')}
           />
@@ -587,7 +591,8 @@ export default function Dashboard() {
             icon={<PenTool size={20} />}
             title="Practice Kanji"
             subtitle="Stroke order drill"
-            gradient="var(--gradient-xp)"
+            gradient="linear-gradient(135deg, #f59e0b, #f97316)"
+            glowColor="rgba(245, 158, 11, 0.35)"
             delay={0.7}
             onClick={() => navigate('/kanji')}
           />
