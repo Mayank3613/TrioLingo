@@ -9,13 +9,13 @@ import { useSidebarStore } from '../../stores/sidebarStore';
 export function MainLayout() {
   const location = useLocation();
   const collapsed = useSidebarStore((s) => s.collapsed);
-  const sidebarWidth = collapsed ? 72 : 260;
+  const sidebarWidth = collapsed ? 72 : 240;
 
   const isTauri = typeof window !== 'undefined' && '__TAURI__' in window;
   const [showWebBanner, setShowWebBanner] = useState(!isTauri);
 
   return (
-    <div className="flex h-screen w-screen overflow-hidden">
+    <div className="flex h-screen w-screen overflow-hidden" style={{ background: 'var(--color-bg-primary)' }}>
       {/* Sidebar */}
       <Sidebar />
 
@@ -34,7 +34,7 @@ export function MainLayout() {
               className="flex items-center justify-between gap-4 px-4 py-2 text-xs font-semibold border-b shrink-0 transition-all"
               style={{
                 background: 'var(--bg-card)',
-                borderColor: 'var(--border-primary)',
+                borderColor: 'var(--color-border)',
                 color: 'var(--text-primary)',
                 backdropFilter: 'blur(8px)',
               }}
@@ -45,23 +45,7 @@ export function MainLayout() {
                   <strong>Web Showcase Mode</strong> — This is a browser preview of the <strong>TrioLingo++</strong> desktop app. Install the native desktop application for offline speech synthesis, automatic filesystem backups, and maximum performance.
                 </span>
               </div>
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => {
-                    if (typeof localStorage !== 'undefined') {
-                      localStorage.removeItem('entered_preview');
-                    }
-                    window.location.reload();
-                  }}
-                  className="px-3 py-1.5 rounded-lg text-xs font-bold border hover:opacity-90 active:scale-98 transition-all cursor-pointer"
-                  style={{
-                    background: 'var(--bg-tertiary)',
-                    borderColor: 'var(--border-primary)',
-                    color: 'var(--text-primary)',
-                  }}
-                >
-                  🖥️ View Showcase
-                </button>
+              <div className="flex items-center gap-3">
                 <a
                   href="https://github.com/Mayank3613/TrioLingo/releases"
                   target="_blank"
@@ -76,7 +60,7 @@ export function MainLayout() {
                 <button
                   onClick={() => setShowWebBanner(false)}
                   className="p-1 rounded-full hover:bg-black/10 dark:hover:bg-white/10 transition-colors cursor-pointer"
-                  style={{ color: 'var(--text-secondary)' }}
+                  style={{ color: 'var(--color-text-secondary)' }}
                 >
                   <X size={14} />
                 </button>
@@ -94,10 +78,10 @@ export function MainLayout() {
           <AnimatePresence mode="wait">
             <motion.div
               key={location.pathname}
-              initial={{ opacity: 0, y: 16, scale: 0.995 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -8, scale: 0.998 }}
-              transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
               className="h-full"
             >
               <Outlet />

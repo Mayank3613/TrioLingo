@@ -36,12 +36,10 @@ export function Header() {
 
   return (
     <header
-      className="flex items-center justify-between px-6 h-14 flex-shrink-0 relative z-20"
+      className="flex items-center justify-between px-6 h-14 flex-shrink-0 relative"
       style={{
-        background: 'var(--bg-glass)',
-        backdropFilter: 'blur(16px)',
-        WebkitBackdropFilter: 'blur(16px)',
-        borderBottom: '1px solid var(--border-primary)',
+        background: 'var(--color-bg-secondary)',
+        borderBottom: '1px solid var(--color-border)',
       }}
     >
       {/* Left — Page Title */}
@@ -51,8 +49,7 @@ export function Header() {
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.25 }}
-          className="text-base font-bold tracking-tight"
-          style={{ color: 'var(--text-primary)' }}
+          className="text-lg font-extrabold tracking-tight text-white"
         >
           {page.title}
         </motion.h2>
@@ -62,11 +59,11 @@ export function Header() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.1, duration: 0.2 }}
-            className="text-[11px] font-medium px-2 py-0.5 rounded-full"
+            className="text-[12px] font-medium px-1 py-0.5 rounded-full"
             style={{
-              color: 'var(--text-tertiary)',
+              color: 'var(--color-text-muted)',
               fontFamily: 'var(--font-japanese)',
-              background: 'var(--bg-hover)',
+              background: 'transparent',
             }}
           >
             {page.titleJp}

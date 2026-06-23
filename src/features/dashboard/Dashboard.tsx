@@ -47,7 +47,7 @@ function XPRing({ current, max, level }: { current: number; max: number; level: 
           cy="60"
           r={radius}
           fill="none"
-          stroke="url(#xpGrad)"
+          stroke="url(#xpGradWhite)"
           strokeWidth="8"
           strokeLinecap="round"
           strokeDasharray={circumference}
@@ -62,7 +62,7 @@ function XPRing({ current, max, level }: { current: number; max: number; level: 
           cy="60"
           r={radius}
           fill="none"
-          stroke="url(#xpGrad)"
+          stroke="url(#xpGradWhite)"
           strokeWidth="6"
           strokeLinecap="round"
           strokeDasharray={circumference}
@@ -71,9 +71,9 @@ function XPRing({ current, max, level }: { current: number; max: number; level: 
           transition={{ duration: 1.2, ease: 'easeOut' }}
         />
         <defs>
-          <linearGradient id="xpGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="var(--accent-primary)" />
-            <stop offset="100%" stopColor="var(--accent-secondary)" />
+          <linearGradient id="xpGradWhite" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="rgba(255,255,255,0.95)" />
+            <stop offset="100%" stopColor="rgba(255,255,255,0.6)" />
           </linearGradient>
         </defs>
       </svg>
@@ -206,6 +206,15 @@ export default function Dashboard() {
   const fsrs = useFSRSStore();
   const navigate = useNavigate();
 
+  const [barWidth, setBarWidth] = React.useState(0);
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setBarWidth(Math.min((profile.currentXP / profile.xpToNextLevel) * 100, 100));
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [profile.currentXP, profile.xpToNextLevel]);
+
   const reviewsDue = fsrs.getDueCount() + fsrs.getNewCards().length;
   const completedGoals = dailyGoals.filter((g) => g.current >= g.target).length;
   const dailyPct = dailyGoals.length > 0 ? Math.round((completedGoals / dailyGoals.length) * 100) : 0;
@@ -248,8 +257,8 @@ export default function Dashboard() {
         transition={{ duration: 0.5 }}
         className="rounded-2xl p-5 flex items-center gap-5 relative overflow-hidden"
         style={{
-          background: 'var(--gradient-hero)',
-          boxShadow: 'var(--shadow-xl), var(--shadow-glow)',
+          background: 'linear-gradient(135deg, #4c1d95, #7c3aed, #a855f7)',
+          boxShadow: '0 4px 24px rgba(0, 0, 0, 0.4)',
         }}
       >
         {/* Shimmer sweep overlay */}
@@ -268,20 +277,20 @@ export default function Dashboard() {
 
         <div className="text-white relative z-10 min-w-0 flex-1">
           <motion.h1
-            className="text-2xl font-bold"
+            className="text-2xl font-black text-white"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
           >
-            Welcome back, {profile.displayName}! 👋
+            Welcome back, {profile.displayName || 'New Student'}! 👋
           </motion.h1>
           <motion.p
-            className="text-white/70 text-sm mt-1"
+            className="text-purple-200/80 text-sm mt-1 font-medium"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3 }}
           >
-            おかえりなさい · {getLevelTitle(profile.currentLevel)}
+            おかえりなさい · {profile.displayName || 'New Student'}
           </motion.p>
 
           {/* Level Progress Indicator */}
@@ -293,12 +302,12 @@ export default function Dashboard() {
           >
             <div className="flex justify-between text-[10px] text-white/85 font-semibold mb-1 uppercase tracking-wider">
               <span>Next Level Progress</span>
-              <span>{Math.round((profile.currentXP / profile.xpToNextLevel) * 100)}%</span>
+              <span>{Math.round(barWidth)}%</span>
             </div>
             <div className="w-full bg-white/20 h-1.5 rounded-full overflow-hidden border border-white/5">
               <div 
-                className="bg-white h-full rounded-full transition-all duration-700 ease-out"
-                style={{ width: `${Math.min((profile.currentXP / profile.xpToNextLevel) * 100, 100)}%` }}
+                className="bg-white h-full rounded-full transition-all duration-1000 ease-out"
+                style={{ width: `${barWidth}%` }}
               />
             </div>
           </motion.div>
@@ -309,13 +318,11 @@ export default function Dashboard() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
           >
-            <div className="flex items-center gap-1.5 bg-white/15 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/10">
-              <Star size={13} />
-              <span className="text-xs font-semibold">{profile.currentXP} / {profile.xpToNextLevel} XP</span>
+            <div className="flex items-center gap-1.5 bg-white/15 backdrop-blur-sm rounded-full px-3 py-1 border border-white/10 text-xs font-semibold">
+              <span>⭐ {profile.currentXP} / {profile.xpToNextLevel} XP</span>
             </div>
-            <div className="flex items-center gap-1.5 bg-white/15 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/10">
-              <TrendingUp size={13} />
-              <span className="text-xs font-semibold">{profile.totalXP} Total XP</span>
+            <div className="flex items-center gap-1.5 bg-white/15 backdrop-blur-sm rounded-full px-3 py-1 border border-white/10 text-xs font-semibold">
+              <span>📈 {profile.totalXP} Total XP</span>
             </div>
           </motion.div>
         </div>
