@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MainLayout } from './components/layout';
 import RouteErrorBoundary from './components/RouteErrorBoundary';
 import NotFoundPage from './components/NotFoundPage';
+import { ShowcasePage } from './features/showcase/ShowcasePage';
 
 /* ——— React Query Client ——— */
 const queryClient = new QueryClient();
@@ -94,35 +95,53 @@ function withErrorBoundary(Component: React.LazyExoticComponent<React.ComponentT
   );
 }
 
+const isTauri = typeof window !== 'undefined' && '__TAURI__' in window;
+
 /* ——— App Root ——— */
 export default function App() {
+  const [enteredPreview, setEnteredPreview] = React.useState(() => {
+    if (isTauri) return true;
+    return typeof localStorage !== 'undefined' && localStorage.getItem('entered_preview') === 'true';
+  });
+
+  const handleEnterApp = () => {
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem('entered_preview', 'true');
+    }
+    setEnteredPreview(true);
+  };
+
   return (
     <QueryClientProvider client={queryClient}>
       <Suspense fallback={<PageLoader />}>
-        <Routes>
-          <Route element={<MainLayout />}>
-            <Route index element={<Dashboard />} />
-            <Route path="vocabulary" element={withErrorBoundary(VocabularyPage)} />
-            <Route path="kanji" element={withErrorBoundary(KanjiPage)} />
-            <Route path="grammar" element={withErrorBoundary(GrammarPage)} />
-            <Route path="reading" element={withErrorBoundary(ReadingPage)} />
-            <Route path="listening" element={withErrorBoundary(ListeningPage)} />
-            <Route path="speaking" element={withErrorBoundary(SpeakingPage)} />
-            <Route path="writing" element={withErrorBoundary(WritingPage)} />
-            <Route path="flashcards" element={withErrorBoundary(FlashcardsPage)} />
-            <Route path="quiz" element={withErrorBoundary(QuizPage)} />
-            <Route path="mock-exam" element={withErrorBoundary(MockExamPage)} />
-            <Route path="career" element={withErrorBoundary(CareerPage)} />
-            <Route path="mini-games" element={withErrorBoundary(MiniGamesPage)} />
-            <Route path="ai-tutor" element={withErrorBoundary(AITutorPage)} />
-            <Route path="achievements" element={withErrorBoundary(AchievementsPage)} />
-            <Route path="analytics" element={withErrorBoundary(AnalyticsPage)} />
-            <Route path="search" element={withErrorBoundary(SearchPage)} />
-            <Route path="settings" element={withErrorBoundary(SettingsPage)} />
-            <Route path="profile" element={withErrorBoundary(ProfilePage)} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Route>
-        </Routes>
+        {!enteredPreview ? (
+          <ShowcasePage onEnterApp={handleEnterApp} />
+        ) : (
+          <Routes>
+            <Route element={<MainLayout />}>
+              <Route index element={<Dashboard />} />
+              <Route path="vocabulary" element={withErrorBoundary(VocabularyPage)} />
+              <Route path="kanji" element={withErrorBoundary(KanjiPage)} />
+              <Route path="grammar" element={withErrorBoundary(GrammarPage)} />
+              <Route path="reading" element={withErrorBoundary(ReadingPage)} />
+              <Route path="listening" element={withErrorBoundary(ListeningPage)} />
+              <Route path="speaking" element={withErrorBoundary(SpeakingPage)} />
+              <Route path="writing" element={withErrorBoundary(WritingPage)} />
+              <Route path="flashcards" element={withErrorBoundary(FlashcardsPage)} />
+              <Route path="quiz" element={withErrorBoundary(QuizPage)} />
+              <Route path="mock-exam" element={withErrorBoundary(MockExamPage)} />
+              <Route path="career" element={withErrorBoundary(CareerPage)} />
+              <Route path="mini-games" element={withErrorBoundary(MiniGamesPage)} />
+              <Route path="ai-tutor" element={withErrorBoundary(AITutorPage)} />
+              <Route path="achievements" element={withErrorBoundary(AchievementsPage)} />
+              <Route path="analytics" element={withErrorBoundary(AnalyticsPage)} />
+              <Route path="search" element={withErrorBoundary(SearchPage)} />
+              <Route path="settings" element={withErrorBoundary(SettingsPage)} />
+              <Route path="profile" element={withErrorBoundary(ProfilePage)} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Route>
+          </Routes>
+        )}
       </Suspense>
     </QueryClientProvider>
   );

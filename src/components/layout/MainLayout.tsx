@@ -45,7 +45,23 @@ export function MainLayout() {
                   <strong>Web Showcase Mode</strong> — This is a browser preview of the <strong>TrioLingo++</strong> desktop app. Install the native desktop application for offline speech synthesis, automatic filesystem backups, and maximum performance.
                 </span>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => {
+                    if (typeof localStorage !== 'undefined') {
+                      localStorage.removeItem('entered_preview');
+                    }
+                    window.location.reload();
+                  }}
+                  className="px-3 py-1.5 rounded-lg text-xs font-bold border hover:opacity-90 active:scale-98 transition-all cursor-pointer"
+                  style={{
+                    background: 'var(--bg-tertiary)',
+                    borderColor: 'var(--border-primary)',
+                    color: 'var(--text-primary)',
+                  }}
+                >
+                  🖥️ View Showcase
+                </button>
                 <a
                   href="https://github.com/Mayank3613/TrioLingo/releases"
                   target="_blank"
