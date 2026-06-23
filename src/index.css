@@ -559,15 +559,18 @@ button:focus-visible {
   border-radius: var(--radius-full);
   font-size: 0.75rem;
   font-weight: 600;
-  background: var(--bg-hover);
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   color: var(--text-primary);
-  border: 1px solid var(--border-subtle);
-  transition: transform 0.15s ease, background 0.2s ease;
+  border: 1px solid var(--border-primary);
+  transition: transform 0.15s ease, border-color 0.2s ease, background-color 0.2s ease;
   cursor: default;
   user-select: none;
 }
 
 .stat-pill:hover {
   transform: scale(1.04);
-  background: var(--bg-active);
+  background: var(--bg-hover);
+  border-color: var(--accent-primary);
 }

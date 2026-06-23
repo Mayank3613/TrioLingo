@@ -37,7 +37,9 @@ export function Card({
         className
       )}
       style={{
-        background: 'var(--bg-card)',
+        background: 'var(--bg-glass)',
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
         border: '1px solid var(--border-primary)',
         boxShadow: 'var(--shadow-md)',
         borderRadius: 'var(--radius-xl)',

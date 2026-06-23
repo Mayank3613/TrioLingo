@@ -123,7 +123,9 @@ export function Sidebar() {
     <motion.aside
       className="fixed left-0 top-0 h-screen z-40 flex flex-col select-none"
       style={{
-        background: 'var(--gradient-sidebar)',
+        background: 'var(--bg-glass)',
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
         borderRight: '1px solid var(--border-primary)',
       }}
       animate={{ width: sidebarWidth }}
