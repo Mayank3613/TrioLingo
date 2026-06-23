@@ -2,15 +2,13 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
 import confetti from 'canvas-confetti';
-import { useUserStore, getLevelTitle } from '../../stores/userStore';
+import { useUserStore } from '../../stores/userStore';
 import { useStudyStore } from '../../stores/studyStore';
 import { useFSRSStore } from '../../stores/fsrsStore';
 import { Card } from '../../components/ui/Card';
-import { ProgressBar } from '../../components/ui/ProgressBar';
 import { Badge } from '../../components/ui/Badge';
 import {
   Flame,
-  Star,
   Clock,
   BookOpen,
   Play,
@@ -18,7 +16,6 @@ import {
   Zap,
   PenTool,
   CheckCircle2,
-  TrendingUp,
   Sparkles,
 } from 'lucide-react';
 import {
@@ -190,15 +187,7 @@ function timeAgo(iso: string): string {
   return `${Math.floor(hrs / 24)}d ago`;
 }
 
-/* ──────────── RADAR DATA ──────────── */
-const RADAR_DATA = [
-  { skill: 'Vocabulary', value: 65, fullMark: 100 },
-  { skill: 'Kanji', value: 45, fullMark: 100 },
-  { skill: 'Grammar', value: 70, fullMark: 100 },
-  { skill: 'Reading', value: 55, fullMark: 100 },
-  { skill: 'Listening', value: 40, fullMark: 100 },
-  { skill: 'Speaking', value: 30, fullMark: 100 },
-];
+
 
 /* ──────────── DASHBOARD ──────────── */
 export default function Dashboard() {
