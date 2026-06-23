@@ -206,6 +206,7 @@ export default function Dashboard() {
   const navigate = useNavigate();
 
   const [barWidth, setBarWidth] = React.useState(0);
+  const [animatedGoals, setAnimatedGoals] = React.useState<Record<string, number>>({});
 
   React.useEffect(() => {
     const timer = setTimeout(() => {
@@ -213,6 +214,18 @@ export default function Dashboard() {
     }, 100);
     return () => clearTimeout(timer);
   }, [profile.currentXP, profile.xpToNextLevel]);
+
+  React.useEffect(() => {
+    const timers = dailyGoals.map((goal, idx) => {
+      return setTimeout(() => {
+        setAnimatedGoals(prev => ({
+          ...prev,
+          [goal.id]: Math.min((goal.current / goal.target) * 100, 100)
+        }));
+      }, (idx + 1) * 100);
+    });
+    return () => timers.forEach(clearTimeout);
+  }, [dailyGoals]);
 
   const reviewsDue = fsrs.getDueCount() + fsrs.getNewCards().length;
   const completedGoals = dailyGoals.filter((g) => g.current >= g.target).length;
@@ -367,59 +380,86 @@ export default function Dashboard() {
           <Card padding="lg">
             <div className="flex items-center justify-between mb-4">
               <div>
-                <h2 className="text-base font-bold" style={{ color: 'var(--text-primary)' }}>
+                <h2 className="text-base font-bold text-white">
                   Daily Goals
                 </h2>
-                <p className="text-xs mt-0.5" style={{ color: 'var(--text-tertiary)' }}>
+                <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
                   今日の目標
                 </p>
               </div>
-              <Badge variant={dailyPct === 100 ? 'success' : 'primary'} size="md">
-                {dailyPct}%
-              </Badge>
+              
+              {/* SVG Circular Badge */}
+              <div className="relative w-10 h-10 flex-shrink-0">
+                <svg viewBox="0 0 36 36" className="w-full h-full -rotate-90">
+                  <path
+                    className="text-slate-800"
+                    strokeWidth="3.5"
+                    stroke="currentColor"
+                    fill="none"
+                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                  />
+                  <path
+                    className="text-[var(--color-accent-purple)]"
+                    strokeDasharray={`${dailyPct}, 100`}
+                    strokeWidth="3.5"
+                    strokeLinecap="round"
+                    stroke="currentColor"
+                    fill="none"
+                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                  />
+                </svg>
+                <div className="absolute inset-0 flex items-center justify-center text-[10px] font-black text-white">
+                  {dailyPct}%
+                </div>
+              </div>
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-4">
               {dailyGoals.map((goal, i) => {
                 const done = goal.current >= goal.target;
+                const percent = animatedGoals[goal.id] || 0;
                 return (
                   <motion.div
                     key={goal.id}
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.4 + i * 0.06 }}
-                    className="flex items-center gap-3"
+                    className="flex flex-col gap-2 pb-3 border-b border-[var(--color-border)] last:border-b-0 last:pb-0"
                   >
-                    <div
-                      className="w-8 h-8 rounded-lg flex items-center justify-center text-base flex-shrink-0"
-                      style={{
-                        background: done ? 'var(--gradient-success)' : 'var(--bg-tertiary)',
-                      }}
-                    >
-                      {done ? <CheckCircle2 size={16} className="text-white" /> : goal.icon}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between gap-2">
-                        <span
-                          className="text-sm font-medium truncate"
-                          style={{
-                            color: done ? 'var(--text-tertiary)' : 'var(--text-primary)',
-                            textDecoration: done ? 'line-through' : 'none',
-                          }}
-                        >
-                          {goal.title}
-                        </span>
-                        <span className="text-xs font-mono flex-shrink-0" style={{ color: 'var(--text-tertiary)' }}>
-                          {goal.current}/{goal.target}
-                        </span>
+                    <div className="flex items-center gap-3">
+                      <div
+                        className="w-8 h-8 rounded-lg flex items-center justify-center text-base flex-shrink-0"
+                        style={{
+                          background: done ? 'var(--gradient-success)' : 'rgba(255,255,255,0.04)',
+                        }}
+                      >
+                        {done ? <CheckCircle2 size={16} className="text-white" /> : goal.icon}
                       </div>
-                      <ProgressBar
-                        value={goal.current}
-                        max={goal.target}
-                        size="sm"
-                        gradient={done ? 'var(--gradient-success)' : 'var(--gradient-primary)'}
-                        className="mt-1"
-                      />
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center justify-between gap-2">
+                          <span
+                            className="text-sm font-medium truncate"
+                            style={{
+                              color: done ? 'var(--color-text-muted)' : '#ffffff',
+                              textDecoration: done ? 'line-through' : 'none',
+                            }}
+                          >
+                            {goal.title}
+                          </span>
+                          <span className="text-xs font-mono flex-shrink-0" style={{ color: 'var(--color-text-muted)' }}>
+                            {goal.current}/{goal.target}
+                          </span>
+                        </div>
+                        <div className="w-full bg-slate-800/80 h-1.5 rounded-full overflow-hidden border border-white/5 mt-1.5">
+                          <div 
+                            className="h-full rounded-full transition-all duration-700 ease-out"
+                            style={{
+                              width: `${percent}%`,
+                              background: done ? 'var(--gradient-success)' : 'var(--gradient-primary)'
+                            }}
+                          />
+                        </div>
+                      </div>
                     </div>
                   </motion.div>
                 );
