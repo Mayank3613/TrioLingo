@@ -344,7 +344,7 @@ export default function Dashboard() {
       </motion.div>
 
       {/* ── Stat Cards ── */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
         <StatCard
           icon={<Flame size={20} className="text-orange-500 fill-orange-500" />}
           label="Study Streak"
@@ -373,7 +373,7 @@ export default function Dashboard() {
       </div>
 
       {/* ── Two-Column: Daily Goals + Radar Chart ── */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-1 md:grid-cols-2 gap-4">
         {/* Daily Goals */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -518,7 +518,7 @@ export default function Dashboard() {
             </motion.div>
 
             {/* 6 skill progress bars in 2 columns (3 each) */}
-            <div className="grid grid-cols-2 gap-x-6 gap-y-3 mt-5 pt-4 border-t border-[var(--color-border)]">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3 mt-5 pt-4 border-t border-[var(--color-border)]">
               {[
                 { skill: 'Vocabulary', value: Math.min(100, Math.max(15, Math.round((profile.vocabularyMastered / 400) * 100))) },
                 { skill: 'Kanji', value: Math.min(100, Math.max(10, Math.round((profile.kanjiMastered / 100) * 100))) },
@@ -560,7 +560,7 @@ export default function Dashboard() {
         >
           Quick Actions
         </motion.h2>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
           <ActionCard
             icon={<Play size={20} />}
             title="Continue Lesson"

@@ -302,7 +302,7 @@ export function SettingsPage() {
         <p className="text-sm mb-4" style={{ color: 'var(--text-secondary)' }}>
           Choose your theme. Unlock more by leveling up!
         </p>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {THEMES.map((theme) => {
             const isUnlocked = unlockedThemes.includes(theme.id) || (theme.requiredLevel !== undefined && profile.currentLevel >= theme.requiredLevel);
             return (

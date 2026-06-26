@@ -825,7 +825,7 @@ export function CareerPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.9, duration: 0.5 }}
-        className="mt-14 grid grid-cols-1 sm:grid-cols-2 gap-4"
+        className="mt-14 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4"
       >
         <Card padding="md">
           <div className="flex items-center gap-3">

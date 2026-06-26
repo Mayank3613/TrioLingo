@@ -93,7 +93,7 @@ export function GrammarPage() {
       </motion.div>
 
       {/* Stats Bar */}
-      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="grid grid-cols-3 gap-3 mb-5">
+      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-5">
         {[
           { label: 'Total', value: levelGrammar.length, color: 'var(--text-primary)' },
           { label: 'In Deck', value: addedCount, color: '#22c55e' },

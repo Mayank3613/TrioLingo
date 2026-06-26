@@ -1,8 +1,10 @@
 import { useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { Bell, Search, Sparkles } from 'lucide-react';
+import { Bell, Search, Sparkles, Menu } from 'lucide-react';
 import { useUserStore } from '../../stores/userStore';
+import { useSidebarStore } from '../../stores/sidebarStore';
+import { useIsMobile } from '../../hooks/useIsMobile';
 
 const PAGE_TITLES: Record<string, { title: string; titleJp: string; icon?: string }> = {
   '/': { title: 'Dashboard', titleJp: 'ダッシュボード', icon: '🏠' },
@@ -29,6 +31,8 @@ const PAGE_TITLES: Record<string, { title: string; titleJp: string; icon?: strin
 export function Header() {
   const location = useLocation();
   const profile = useUserStore((s) => s.profile);
+  const setCollapsed = useSidebarStore((s) => s.setCollapsed);
+  const isMobile = useIsMobile();
 
   const page = useMemo(() => {
     return PAGE_TITLES[location.pathname] ?? { title: 'TrioLingo++', titleJp: '' };
@@ -44,6 +48,15 @@ export function Header() {
     >
       {/* Left — Page Title */}
       <div className="flex items-center gap-2.5 min-w-0 flex-1">
+        {isMobile && (
+          <button
+            onClick={() => setCollapsed(false)}
+            className="p-1.5 -ml-2 mr-1 rounded-lg text-white hover:bg-white/10 transition-colors"
+            aria-label="Open Menu"
+          >
+            <Menu size={20} />
+          </button>
+        )}
         <motion.h2
           key={page.title}
           initial={{ opacity: 0, y: 6 }}

@@ -90,7 +90,7 @@ export function KanjiPage() {
       </motion.div>
 
       {/* Stats Bar */}
-      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="grid grid-cols-3 gap-3 mb-5">
+      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-5">
         {[
           { label: 'Total', value: levelKanji.length, color: 'var(--text-primary)' },
           { label: 'In Deck', value: addedCount, color: '#a855f7' },
@@ -130,7 +130,7 @@ export function KanjiPage() {
           <p className="text-sm" style={{ color: 'var(--text-tertiary)' }}>No kanji match your search</p>
         </motion.div>
       ) : (
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 md:grid-cols-3 gap-3">
           {filtered.map((kanji, i) => {
             const isExpanded = expandedId === kanji.id;
             const isAdded = isCardAdded('kanji', kanji.id);

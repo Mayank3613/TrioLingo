@@ -234,7 +234,7 @@ export function AnalyticsPage() {
       </motion.div>
 
       {/* ── Top Stats Row ── */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
         <StatCard
           icon={<Clock size={20} className="text-blue-500" />}
           label="Total Study Time"
@@ -326,7 +326,7 @@ export function AnalyticsPage() {
       </motion.div>
 
       {/* ── Two-column: Category Breakdown + JLPT Progress ── */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-1 md:grid-cols-2 gap-4">
         {/* Category Breakdown */}
         <motion.div {...fadeUp(0.38)}>
           <Card padding="lg">
@@ -370,7 +370,7 @@ export function AnalyticsPage() {
             </div>
 
             {/* Legend */}
-            <div className="grid grid-cols-2 gap-2 mt-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2">
               {CATEGORY_DATA.map((cat, idx) => (
                 <div key={cat.name} className="flex items-center gap-2 min-w-0">
                   <div

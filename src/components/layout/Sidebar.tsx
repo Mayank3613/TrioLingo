@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import {
@@ -27,6 +27,7 @@ import {
 import { useUserStore } from '../../stores/userStore';
 import { useSidebarStore } from '../../stores/sidebarStore';
 import { useFSRSStore } from '../../stores/fsrsStore';
+import { useIsMobile } from '../../hooks/useIsMobile';
 
 interface NavItem {
   label: string;
@@ -94,10 +95,18 @@ const BOTTOM_NAV: NavItem = {
 };
 
 export function Sidebar() {
-  const { collapsed, toggle } = useSidebarStore();
+  const { collapsed, toggle, setCollapsed } = useSidebarStore();
   const location = useLocation();
   const profile = useUserStore((s) => s.profile);
   const dueCount = useFSRSStore((s) => s.getDueCount());
+  const isMobile = useIsMobile();
+
+  // Close sidebar on mobile when navigating
+  useEffect(() => {
+    if (isMobile && !collapsed) {
+      setCollapsed(true);
+    }
+  }, [location.pathname, isMobile, setCollapsed]);
 
   const mappedSections = React.useMemo(() => {
     return NAV_SECTIONS.map((section) => ({
@@ -114,22 +123,40 @@ export function Sidebar() {
     }));
   }, [dueCount]);
 
-  const sidebarWidth = collapsed ? 72 : 240;
+  const sidebarWidth = (collapsed && !isMobile) ? 72 : 240;
   const xpPercent = profile.xpToNextLevel > 0
     ? Math.round((profile.currentXP / profile.xpToNextLevel) * 100)
     : 0;
 
   return (
-    <motion.aside
-      className="fixed left-0 top-0 h-screen z-40 flex flex-col select-none"
-      style={{
-        background: 'var(--color-bg-secondary)',
-        boxShadow: '4px 0 24px rgba(0,0,0,0.4)',
-        borderRight: 'none',
-      }}
-      animate={{ width: sidebarWidth }}
-      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-    >
+    <>
+      {/* Mobile Backdrop */}
+      <AnimatePresence>
+        {isMobile && !collapsed && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setCollapsed(true)}
+            className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
+          />
+        )}
+      </AnimatePresence>
+
+      <motion.aside
+        className="fixed left-0 top-0 h-screen z-50 flex flex-col select-none"
+        style={{
+          background: 'var(--color-bg-secondary)',
+          boxShadow: '4px 0 24px rgba(0,0,0,0.4)',
+          borderRight: 'none',
+        }}
+        initial={false}
+        animate={{ 
+          width: sidebarWidth,
+          x: isMobile && collapsed ? -240 : 0
+        }}
+        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+      >
       {/* Logo */}
       <div className="flex items-center gap-3 px-4 pt-5 pb-3 min-h-[60px]">
         <motion.div
@@ -308,6 +335,7 @@ export function Sidebar() {
           whileTap={{ scale: 0.97 }}
           className="w-full flex items-center justify-center gap-2 py-2 mt-1 rounded-lg text-xs font-medium cursor-pointer transition-colors duration-150"
           style={{ color: 'var(--color-text-muted)' }}
+          aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
           onMouseEnter={(e) => {
             e.currentTarget.style.background = 'var(--bg-hover)';
           }}
@@ -326,6 +354,7 @@ export function Sidebar() {
         </motion.button>
       </div>
     </motion.aside>
+    </>
   );
 }
 

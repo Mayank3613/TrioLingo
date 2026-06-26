@@ -110,7 +110,7 @@ export function VocabularyPage() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.15 }}
-        className="grid grid-cols-3 gap-3 mb-5"
+        className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-5"
       >
         {[
           { label: 'Total', value: levelWords.length, color: 'var(--text-primary)' },
@@ -194,7 +194,7 @@ export function VocabularyPage() {
           <p className="text-sm" style={{ color: 'var(--text-tertiary)' }}>No words match your search</p>
         </motion.div>
       ) : (
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {filtered.map((word, i) => {
             const isExpanded = expandedId === word.id;
             const isAdded = isCardAdded('vocab', word.id);

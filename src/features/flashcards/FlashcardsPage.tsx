@@ -254,7 +254,7 @@ export default function FlashcardsPage() {
             </div>
 
             {/* Stats cards */}
-            <div className="grid grid-cols-3 gap-4 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
               {[
                 { label: 'Due Now', value: dueCount, icon: Zap, color: '#f97316' },
                 { label: 'New Cards', value: newCount, icon: Sparkles, color: '#3b82f6' },
@@ -311,9 +311,32 @@ export default function FlashcardsPage() {
             </motion.button>
 
             {totalCards === 0 && (
-              <p className="text-center mt-4 text-sm" style={{ color: 'var(--text-tertiary)' }}>
-                💡 Visit the Vocabulary, Kanji, or Grammar pages and click "Add to Flashcards" to build your deck.
-              </p>
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="mt-6 p-8 rounded-2xl text-center border-2 border-dashed"
+                style={{ 
+                  borderColor: 'var(--border-primary)',
+                  background: 'var(--bg-card)'
+                }}
+              >
+                <div 
+                  className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center bg-mesh"
+                >
+                  <BookOpen size={32} style={{ color: 'var(--text-tertiary)' }} />
+                </div>
+                <h3 className="text-lg font-bold mb-2" style={{ color: 'var(--text-primary)' }}>
+                  Your Deck is Empty
+                </h3>
+                <p className="text-sm max-w-md mx-auto mb-6" style={{ color: 'var(--text-secondary)' }}>
+                  To start studying, visit the Vocabulary, Kanji, or Grammar pages and click the "Add to Flashcards" button on any item.
+                </p>
+                <div className="flex justify-center gap-3">
+                  <div className="stat-pill">📚 Vocabulary</div>
+                  <div className="stat-pill">✍️ Kanji</div>
+                  <div className="stat-pill">📖 Grammar</div>
+                </div>
+              </motion.div>
             )}
           </>
         )}
@@ -443,7 +466,7 @@ export default function FlashcardsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
-            className="grid grid-cols-4 gap-3"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3"
           >
             {RATINGS.map((r) => (
               <motion.button
