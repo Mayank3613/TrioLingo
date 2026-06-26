@@ -144,8 +144,7 @@ function TypingIndicator() {
         <Bot size={16} className="text-white" />
       </div>
       <div
-        className="rounded-2xl rounded-tl-sm px-4 py-3 flex items-center gap-1.5"
-        style={{ background: 'var(--bg-card)', border: '1px solid var(--border-primary)' }}
+        className="card-premium rounded-tl-sm px-4 py-3 flex items-center gap-1.5"
       >
         {[0, 1, 2].map((i) => (
           <motion.span
@@ -358,12 +357,7 @@ function MessageBubble({
       <div className={`max-w-[80%] ${!isTutor ? 'order-first' : ''}`}>
         {isTutor ? (
           <div
-            className="rounded-2xl rounded-tl-sm px-4 py-3"
-            style={{
-              background: 'var(--bg-card)',
-              border: '1px solid var(--border-primary)',
-              boxShadow: 'var(--shadow-sm)',
-            }}
+            className="card-premium rounded-tl-sm px-4 py-3"
           >
             <p className="text-sm leading-relaxed whitespace-pre-wrap" style={{ color: 'var(--text-primary)' }}>
               {msg.text}
@@ -446,12 +440,7 @@ function CompletionCard({ xp, onBack }: { xp: number; onBack: () => void }) {
       initial={{ opacity: 0, scale: 0.9, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-      className="rounded-2xl p-6 text-center mt-4"
-      style={{
-        background: 'var(--bg-card)',
-        border: '1px solid var(--border-primary)',
-        boxShadow: 'var(--shadow-lg)',
-      }}
+      className="card-premium p-6 text-center mt-4"
     >
       <motion.div
         initial={{ scale: 0 }}

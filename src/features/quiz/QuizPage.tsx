@@ -146,7 +146,7 @@ export default function QuizPage() {
 
         <div className="space-y-6">
           {/* JLPT Level */}
-          <div className="rounded-xl p-5" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-primary)' }}>
+          <div className="card-premium p-5">
             <label className="text-sm font-medium mb-3 block" style={{ color: 'var(--text-secondary)' }}>
               JLPT Level
             </label>
@@ -168,7 +168,7 @@ export default function QuizPage() {
           </div>
 
           {/* Categories */}
-          <div className="rounded-xl p-5" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-primary)' }}>
+          <div className="card-premium p-5">
             <label className="text-sm font-medium mb-3 block" style={{ color: 'var(--text-secondary)' }}>
               Categories
             </label>
@@ -199,7 +199,7 @@ export default function QuizPage() {
           </div>
 
           {/* Question count */}
-          <div className="rounded-xl p-5" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-primary)' }}>
+          <div className="card-premium p-5">
             <label className="text-sm font-medium mb-3 block" style={{ color: 'var(--text-secondary)' }}>
               Number of Questions
             </label>
@@ -248,8 +248,7 @@ export default function QuizPage() {
         className="p-6 max-w-3xl mx-auto"
       >
         <motion.div
-          className="rounded-2xl p-8 text-center mb-8"
-          style={{ background: 'var(--bg-card)', border: '1px solid var(--border-primary)' }}
+          className="card-premium p-8 text-center mb-8"
         >
           <motion.div
             initial={{ scale: 0 }}
@@ -368,7 +367,7 @@ export default function QuizPage() {
           exit={{ opacity: 0, x: -30 }}
           transition={{ duration: 0.3 }}
         >
-          <div className="rounded-2xl p-6 mb-6" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-primary)' }}>
+          <div className="card-premium p-6 mb-6">
             <div className="text-xs font-medium mb-3 flex items-center gap-2" style={{ color: 'var(--text-tertiary)' }}>
               <Target size={12} />
               {currentQuestion.category.charAt(0).toUpperCase() + currentQuestion.category.slice(1)} · {currentQuestion.type === 'multiple-choice' ? 'Multiple Choice' : 'Type Answer'}

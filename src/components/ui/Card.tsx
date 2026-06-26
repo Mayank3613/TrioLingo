@@ -28,26 +28,24 @@ export function Card({
     lg: 'p-7',
   };
 
+  const gradientStyle = gradient
+    ? {
+        borderTop: '3px solid transparent',
+        borderImage: 'var(--gradient-primary) 1',
+        borderImageSlice: '1 1 0 0',
+      }
+    : {};
+
   return (
     <motion.div
       className={clsx(
-        'rounded-2xl transition-all duration-200',
+        'card-premium rounded-2xl transition-all duration-200',
         paddingClasses[padding],
         onClick && 'cursor-pointer',
-        className
+        className,
+        hover && 'hover:scale-[1.02] hover:shadow-xl'
       )}
-      style={{
-        background: 'var(--bg-card)',
-        border: '1px solid var(--border-primary)',
-        boxShadow: 'var(--shadow-md)',
-        borderRadius: 'var(--radius-xl)',
-        ...(gradient && {
-          borderTop: '3px solid transparent',
-          borderImage: 'var(--gradient-primary) 1',
-          borderImageSlice: '1 1 0 0',
-        }),
-        ...style,
-      }}
+      style={{ ...gradientStyle, ...style }}
       onClick={onClick}
       whileHover={hover ? { y: -4, boxShadow: 'var(--shadow-xl)' } : undefined}
       transition={hover ? { type: 'spring' as const, stiffness: 300, damping: 20 } : undefined}

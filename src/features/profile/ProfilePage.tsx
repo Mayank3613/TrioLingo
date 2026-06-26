@@ -78,8 +78,7 @@ export default function ProfilePage() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="rounded-2xl p-8 mb-6 relative overflow-hidden"
-        style={{ background: 'var(--bg-card)', border: '1px solid var(--border-primary)' }}
+        className="card-premium p-8 mb-6 relative overflow-hidden"
       >
         {/* Gradient accent */}
         <div className="absolute top-0 left-0 right-0 h-1" style={{ background: 'var(--gradient-primary)' }} />
@@ -176,8 +175,7 @@ export default function ProfilePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 + i * 0.05 }}
-            className="rounded-xl p-4"
-            style={{ background: 'var(--bg-card)', border: '1px solid var(--border-primary)' }}
+            className="card-premium p-4"
           >
             <stat.icon size={20} className="mb-2" style={{ color: stat.color }} />
             <div className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>{stat.value}</div>
@@ -191,8 +189,7 @@ export default function ProfilePage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="rounded-xl p-5 mb-6"
-        style={{ background: 'var(--bg-card)', border: '1px solid var(--border-primary)' }}
+        className="card-premium p-5 mb-6"
       >
         <div className="flex items-center gap-2 mb-4">
           <Calendar size={16} style={{ color: 'var(--text-secondary)' }} />
@@ -222,8 +219,7 @@ export default function ProfilePage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
-        className="rounded-xl p-5"
-        style={{ background: 'var(--bg-card)', border: '1px solid var(--border-primary)' }}
+        className="card-premium p-5"
       >
         <h3 className="text-sm font-semibold mb-4" style={{ color: 'var(--text-primary)' }}>
           Flashcard Breakdown

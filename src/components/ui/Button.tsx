@@ -30,17 +30,14 @@ export function Button({
   };
 
   const variantClasses = {
-    primary: 'text-white font-semibold',
+    primary: 'btn-primary',
     secondary: 'font-medium',
     ghost: 'font-medium',
     danger: 'text-white font-semibold',
   };
 
   const variantStyles: Record<string, React.CSSProperties> = {
-    primary: {
-      background: 'var(--gradient-primary)',
-      boxShadow: 'var(--shadow-md)',
-    },
+    primary: {},
     secondary: {
       background: 'var(--bg-card)',
       border: '1px solid var(--border-primary)',

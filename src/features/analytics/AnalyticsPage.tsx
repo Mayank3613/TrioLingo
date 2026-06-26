@@ -157,13 +157,7 @@ function ChartTooltip({ active, payload, label }: any) {
   if (!active || !payload?.length) return null;
   return (
     <div
-      className="rounded-xl px-3 py-2 text-xs font-semibold"
-      style={{
-        background: 'var(--bg-card)',
-        border: '1px solid var(--border-primary)',
-        boxShadow: 'var(--shadow-lg)',
-        color: 'var(--text-primary)',
-      }}
+      className="card-premium px-3 py-2 text-xs font-semibold"
     >
       <div style={{ color: 'var(--text-tertiary)' }}>{label}</div>
       <div className="mt-0.5">{payload[0].value} XP</div>

@@ -192,8 +192,7 @@ export default function FlashcardsPage() {
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-            className="rounded-2xl p-8 text-center"
-            style={{ background: 'var(--bg-card)', border: '1px solid var(--border-primary)' }}
+            className="card-premium p-8 text-center"
           >
             <motion.div
               initial={{ scale: 0 }}
@@ -235,8 +234,7 @@ export default function FlashcardsPage() {
               </button>
               <button
                 onClick={startSession}
-                className="px-6 py-2.5 rounded-xl font-medium text-white transition-all duration-200 cursor-pointer"
-                style={{ background: 'var(--gradient-primary)' }}
+                className="btn-primary px-6 py-2.5"
               >
                 Review More
               </button>
@@ -267,8 +265,7 @@ export default function FlashcardsPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }}
-                  className="rounded-xl p-5 text-center"
-                  style={{ background: 'var(--bg-card)', border: '1px solid var(--border-primary)' }}
+                  className="card-premium p-5 text-center"
                 >
                   <stat.icon size={24} className="mx-auto mb-2" style={{ color: stat.color }} />
                   <div className="text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>{stat.value}</div>
@@ -278,7 +275,7 @@ export default function FlashcardsPage() {
             </div>
 
             {/* Card limit */}
-            <div className="rounded-xl p-5 mb-6" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-primary)' }}>
+            <div className="card-premium p-5 mb-6">
               <label className="text-sm font-medium mb-3 block" style={{ color: 'var(--text-secondary)' }}>
                 Cards per session
               </label>
@@ -305,8 +302,7 @@ export default function FlashcardsPage() {
               whileTap={{ scale: 0.98 }}
               onClick={startSession}
               disabled={totalCards === 0}
-              className="w-full py-4 rounded-xl text-white font-semibold text-lg transition-all duration-200 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
-              style={{ background: 'var(--gradient-primary)' }}
+              className="btn-primary w-full py-4 text-lg disabled:opacity-40 disabled:cursor-not-allowed"
             >
               {totalCards === 0
                 ? 'Add cards from Vocabulary, Kanji, or Grammar pages'

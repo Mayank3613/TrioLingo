@@ -148,12 +148,7 @@ function SettingSection({ title, icon, children }: SettingSectionProps) {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="rounded-2xl p-5"
-      style={{
-        background: 'var(--bg-card)',
-        border: '1px solid var(--border-primary)',
-        boxShadow: 'var(--shadow-md)',
-      }}
+      className="card-premium p-5"
     >
       <div className="flex items-center gap-2.5 mb-4">
         <div className="p-2 rounded-lg" style={{ background: 'var(--bg-tertiary)', color: 'var(--text-secondary)' }}>

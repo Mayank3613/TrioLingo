@@ -212,7 +212,7 @@ export default function ReadingPage() {
       </div>
 
       {/* Passage text */}
-      <div className="rounded-xl p-6 mb-4" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-primary)' }}>
+      <div className="card-premium p-6 mb-4">
         <div
           className="text-lg leading-relaxed"
           style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-japanese)', lineHeight: 2 }}
@@ -270,8 +270,7 @@ export default function ReadingPage() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: qi * 0.1 }}
-              className="rounded-xl p-5"
-              style={{ background: 'var(--bg-card)', border: '1px solid var(--border-primary)' }}
+              className="card-premium p-5"
             >
               <p className="font-medium mb-1" style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-japanese)' }}>
                 {qi + 1}. {q.question}
@@ -333,8 +332,7 @@ export default function ReadingPage() {
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="rounded-xl p-6 text-center"
-              style={{ background: 'var(--bg-card)', border: '1px solid var(--border-primary)' }}
+              className="card-premium p-6 text-center"
             >
               <Trophy size={32} className="mx-auto mb-2" style={{ color: '#f59e0b' }} />
               <h3 className="text-xl font-bold mb-1" style={{ color: 'var(--text-primary)' }}>

@@ -96,7 +96,7 @@ export function KanjiPage() {
           { label: 'In Deck', value: addedCount, color: '#a855f7' },
           { label: 'Showing', value: filtered.length, color: 'var(--text-tertiary)' },
         ].map((s) => (
-          <div key={s.label} className="rounded-xl p-3 text-center overflow-hidden" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-primary)' }}>
+          <div key={s.label} className="card-premium p-3 text-center overflow-hidden">
             <div className="text-xl font-bold truncate" style={{ color: s.color }}>{s.value}</div>
             <div className="text-[11px] truncate" style={{ color: 'var(--text-tertiary)' }}>{s.label}</div>
           </div>
