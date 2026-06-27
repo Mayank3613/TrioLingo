@@ -6,9 +6,15 @@ import {
   ChevronDown,
   ChevronUp,
   Check,
-
+  MessageCircle,
+  Heart,
+  User,
+  Globe,
+  Star
 } from 'lucide-react';
 import { Badge } from '../../components/ui/Badge';
+
+const ICONS = [MessageCircle, Heart, User, Globe, Star];
 import { ProgressBar } from '../../components/ui/ProgressBar';
 import { useGrammarByLevel } from '../../services/dataService';
 import { useFSRSStore } from '../../stores/fsrsStore';
@@ -133,10 +139,11 @@ export function GrammarPage() {
           <p className="text-sm" style={{ color: 'var(--text-tertiary)' }}>No grammar points match your search</p>
         </motion.div>
       ) : (
-        <div className="space-y-3">
+        <div className="grid grid-cols-1 gap-3">
           {filtered.map((grammar, i) => {
             const isExpanded = expandedId === grammar.id;
             const isAdded = isCardAdded('grammar', grammar.id);
+            const Icon = ICONS[i % ICONS.length];
             return (
               <motion.div
                 key={grammar.id}
@@ -144,35 +151,40 @@ export function GrammarPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: Math.min(0.04 * i, 0.5) }}
-                className="rounded-xl overflow-hidden cursor-pointer transition-shadow"
+                className="rounded-2xl overflow-hidden cursor-pointer transition-shadow"
                 style={{
                   background: 'var(--bg-card)',
                   border: `1px solid ${isAdded ? 'rgba(34, 197, 94, 0.4)' : 'var(--border-primary)'}`,
-                  boxShadow: isExpanded ? 'var(--shadow-lg)' : 'var(--shadow-sm)',
+                  boxShadow: isExpanded 
+                    ? 'var(--shadow-lg), var(--shadow-glow)' 
+                    : 'var(--shadow-card), var(--shadow-inset)',
                 }}
                 onClick={() => setExpandedId(isExpanded ? null : grammar.id)}
               >
-                <div className="p-4">
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex-1 min-w-0">
-                      <div className="text-xl font-bold" style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-japanese)' }}>
-                        {grammar.pattern}
-                      </div>
-                      <div className="text-sm mt-1" style={{ color: 'var(--text-primary)' }}>
-                        {grammar.meaning}
-                      </div>
-                      <div className="text-xs mt-1" style={{ color: 'var(--text-tertiary)' }}>
-                        {grammar.formation}
-                      </div>
+                <div className="p-4 flex items-center gap-4">
+                  {/* Left Icon */}
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center" style={{ background: 'var(--bg-tertiary)', color: 'var(--accent-primary)' }}>
+                    <Icon size={20} />
+                  </div>
+                  
+                  {/* Stacked Text */}
+                  <div className="flex-1 min-w-0">
+                    <div className="text-xl font-bold truncate" style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-japanese)' }}>
+                      {grammar.pattern}
                     </div>
-                    <div className="flex flex-col items-end gap-1 flex-shrink-0">
-                      {isAdded && <Badge variant="success">added</Badge>}
-                      {isExpanded ? (
-                        <ChevronUp size={14} style={{ color: 'var(--text-tertiary)' }} />
-                      ) : (
-                        <ChevronDown size={14} style={{ color: 'var(--text-tertiary)' }} />
-                      )}
+                    <div className="text-sm truncate" style={{ color: 'var(--text-secondary)' }}>
+                      {grammar.meaning}
                     </div>
+                  </div>
+
+                  {/* Right Actions / Info */}
+                  <div className="flex flex-col items-end gap-1 flex-shrink-0">
+                    {isAdded && <Badge variant="success">added</Badge>}
+                    {isExpanded ? (
+                      <ChevronUp size={16} style={{ color: 'var(--text-tertiary)' }} />
+                    ) : (
+                      <ChevronDown size={16} style={{ color: 'var(--text-tertiary)' }} />
+                    )}
                   </div>
                 </div>
 

@@ -4,19 +4,16 @@ import { useNavigate } from 'react-router-dom';
 import confetti from 'canvas-confetti';
 import { useUserStore } from '../../stores/userStore';
 import { useStudyStore } from '../../stores/studyStore';
-import { useFSRSStore } from '../../stores/fsrsStore';
 import { Card } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
 import {
   Flame,
   Clock,
   BookOpen,
-  Play,
   Layers,
   Zap,
-  PenTool,
   CheckCircle2,
-  Sparkles,
+  Map,
 } from 'lucide-react';
 import {
   RadarChart,
@@ -69,8 +66,8 @@ function XPRing({ current, max, level }: { current: number; max: number; level: 
         />
         <defs>
           <linearGradient id="xpGradWhite" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="rgba(255,255,255,0.95)" />
-            <stop offset="100%" stopColor="rgba(255,255,255,0.6)" />
+            <stop offset="0%" stopColor="#38bdf8" />
+            <stop offset="100%" stopColor="#34d399" />
           </linearGradient>
         </defs>
       </svg>
@@ -158,7 +155,7 @@ function ActionCard({
       transition={{ delay, type: 'spring', stiffness: 260, damping: 20 }}
       whileHover={{ scale: 1.02, y: -2, boxShadow: `0 8px 32px ${glowColor}` }}
       whileTap={{ scale: 0.97 }}
-      className="rounded-xl p-4 text-left text-white cursor-pointer w-full overflow-hidden relative transition-all duration-200"
+      className="rounded-3xl p-6 text-left text-white cursor-pointer w-full overflow-hidden relative transition-all duration-200"
       style={{ background: gradient }}
       onClick={onClick}
     >
@@ -166,11 +163,11 @@ function ActionCard({
       <div className="absolute inset-0 animate-shimmer pointer-events-none" />
 
       <div className="relative z-10">
-        <div className="w-9 h-9 rounded-lg flex items-center justify-center mb-2.5 bg-white/20 flex-shrink-0">
+        <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 bg-white/20 flex-shrink-0 shadow-lg" style={{ backdropFilter: 'blur(10px)' }}>
           {icon}
         </div>
-        <div className="text-sm font-bold truncate">{title}</div>
-        <div className="text-[11px] opacity-80 mt-0.5 truncate">{subtitle}</div>
+        <div className="text-lg font-bold truncate tracking-tight">{title}</div>
+        <div className="text-xs opacity-80 mt-1 truncate" style={{ fontFamily: 'var(--font-japanese)' }}>{subtitle}</div>
       </div>
     </motion.button>
   );
@@ -192,19 +189,10 @@ function timeAgo(iso: string): string {
 /* ──────────── DASHBOARD ──────────── */
 export default function Dashboard() {
   const { profile } = useUserStore();
-  const { dailyGoals, recentActivity, lessonsAvailable } = useStudyStore();
-  const fsrs = useFSRSStore();
+  const { dailyGoals, recentActivity } = useStudyStore();
   const navigate = useNavigate();
 
-  const [barWidth, setBarWidth] = React.useState(0);
   const [animatedGoals, setAnimatedGoals] = React.useState<Record<string, number>>({});
-
-  React.useEffect(() => {
-    const timer = setTimeout(() => {
-      setBarWidth(Math.min((profile.currentXP / profile.xpToNextLevel) * 100, 100));
-    }, 100);
-    return () => clearTimeout(timer);
-  }, [profile.currentXP, profile.xpToNextLevel]);
 
   React.useEffect(() => {
     const timers = dailyGoals.map((goal, idx) => {
@@ -218,7 +206,6 @@ export default function Dashboard() {
     return () => timers.forEach(clearTimeout);
   }, [dailyGoals]);
 
-  const reviewsDue = fsrs.getDueCount() + fsrs.getNewCards().length;
   const completedGoals = dailyGoals.filter((g) => g.current >= g.target).length;
   const dailyPct = dailyGoals.length > 0 ? Math.round((completedGoals / dailyGoals.length) * 100) : 0;
 
@@ -264,211 +251,43 @@ export default function Dashboard() {
   }, [dailyPct]);
 
   return (
-    <div className="p-6 overflow-y-auto h-full pb-20 space-y-5">
-      {/* ── Hero Welcome ── */}
-      <motion.div
-        initial={{ opacity: 0, y: -16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="rounded-2xl p-5 flex items-center gap-5 relative overflow-hidden"
-        style={{
-          background: 'linear-gradient(135deg, #4c1d95, #7c3aed, #a855f7)',
-          boxShadow: '0 4px 24px rgba(0, 0, 0, 0.4)',
-        }}
-      >
-        {/* Shimmer sweep overlay */}
-        <div className="absolute inset-0 animate-shimmer pointer-events-none" />
-
-        {/* Decorative elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full" style={{ background: 'rgba(255,255,255,0.06)' }} />
-          <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full" style={{ background: 'rgba(255,255,255,0.04)' }} />
-          <div className="absolute top-1/2 right-1/4 w-20 h-20 rounded-full" style={{ background: 'rgba(255,255,255,0.03)' }} />
-        </div>
-
-        <div className="relative z-10 flex-shrink-0">
-          <XPRing current={profile.currentXP} max={profile.xpToNextLevel} level={profile.currentLevel} />
-        </div>
-
-        <div className="text-white relative z-10 min-w-0 flex-1">
-          <motion.h1
-            className="text-2xl font-black text-white"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
-          >
-            Welcome back, {profile.displayName || 'New Student'}! 👋
-          </motion.h1>
-          <motion.p
-            className="text-purple-200/80 text-sm mt-1 font-medium"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3 }}
-          >
-            おかえりなさい · {profile.displayName || 'New Student'}
-          </motion.p>
-
-          {/* Level Progress Indicator */}
-          <motion.div
-            className="mt-3 max-w-[240px]"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.35 }}
-          >
-            <div className="flex justify-between text-[10px] text-white/85 font-semibold mb-1 uppercase tracking-wider">
-              <span>Next Level Progress</span>
-              <span>{Math.round(barWidth)}%</span>
-            </div>
-            <div className="w-full bg-white/20 h-1.5 rounded-full overflow-hidden border border-white/5">
-              <div 
-                className="bg-white h-full rounded-full transition-all duration-1000 ease-out"
-                style={{ width: `${barWidth}%` }}
-              />
-            </div>
-          </motion.div>
-
-          <motion.div
-            className="mt-4 flex items-center gap-2 flex-wrap"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-          >
-            <div className="flex items-center gap-1.5 bg-white/15 backdrop-blur-sm rounded-full px-3 py-1 border border-white/10 text-xs font-semibold">
-              <span>⭐ {profile.currentXP} / {profile.xpToNextLevel} XP</span>
-            </div>
-            <div className="flex items-center gap-1.5 bg-white/15 backdrop-blur-sm rounded-full px-3 py-1 border border-white/10 text-xs font-semibold">
-              <span>📈 {profile.totalXP} Total XP</span>
-            </div>
-          </motion.div>
-        </div>
-      </motion.div>
-
-      {/* ── Stat Cards ── */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
-        <StatCard
-          icon={<Flame size={20} className="text-orange-500 fill-orange-500" />}
-          label="Study Streak"
-          value={profile.currentStreak}
-          suffix="days"
-          delay={0.15}
-        />
-        <StatCard
-          icon={<Sparkles size={20} className="text-amber-400" />}
-          label="XP Today"
-          value={profile.currentXP}
-          delay={0.2}
-        />
-        <StatCard
-          icon={<Clock size={20} className="text-rose-400" />}
-          label="Reviews Due"
-          value={reviewsDue}
-          delay={0.25}
-        />
-        <StatCard
-          icon={<BookOpen size={20} className="text-emerald-400" />}
-          label="Lessons Available"
-          value={lessonsAvailable}
-          delay={0.3}
-        />
-      </div>
-
-      {/* ── Two-Column: Daily Goals + Radar Chart ── */}
-      <div className="grid grid-cols-1 lg:grid-cols-1 md:grid-cols-2 gap-4">
-        {/* Daily Goals */}
+    <div className="p-6 overflow-y-auto h-full pb-20 space-y-6">
+      
+      {/* ── TOP ROW: Welcome Card + Radar Chart ── */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        
+        {/* Welcome Card */}
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.35 }}
+          initial={{ opacity: 0, y: -16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="rounded-3xl p-8 flex flex-col justify-center relative overflow-hidden h-[340px]"
+          style={{
+            background: 'linear-gradient(135deg, #1f2937, #111827, #0f172a)',
+            border: '1px solid rgba(255,255,255,0.05)',
+            boxShadow: '0 10px 40px rgba(0, 0, 0, 0.5)',
+          }}
         >
-          <Card padding="lg">
-            <div className="flex items-center justify-between mb-4">
-              <div>
-                <h2 className="text-base font-bold text-white">
-                  Daily Goals
-                </h2>
-                <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
-                  今日の目標
-                </p>
+          <div className="absolute inset-0 animate-shimmer pointer-events-none" />
+          <div className="relative z-10">
+            <h2 className="text-2xl font-bold text-white/90" style={{ fontFamily: 'var(--font-japanese)' }}>ようこそ!</h2>
+            <h1 className="text-3xl font-extrabold text-white mt-1 tracking-tight">
+              Welcome back, {profile.displayName || 'Kenji'}!
+            </h1>
+            
+            <div className="flex items-center gap-8 mt-10">
+              <div className="flex flex-col items-center">
+                <XPRing current={profile.currentXP} max={profile.xpToNextLevel} level={profile.currentLevel} />
+                <span className="text-xs font-semibold text-white/70 mt-3 uppercase tracking-wider">Current XP</span>
               </div>
               
-              {/* SVG Circular Badge */}
-              <div className="relative w-10 h-10 flex-shrink-0">
-                <svg viewBox="0 0 36 36" className="w-full h-full -rotate-90">
-                  <path
-                    className="text-slate-800"
-                    strokeWidth="3.5"
-                    stroke="currentColor"
-                    fill="none"
-                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                  />
-                  <path
-                    className="text-[var(--color-accent-purple)]"
-                    strokeDasharray={`${dailyPct}, 100`}
-                    strokeWidth="3.5"
-                    strokeLinecap="round"
-                    stroke="currentColor"
-                    fill="none"
-                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                  />
-                </svg>
-                <div className="absolute inset-0 flex items-center justify-center text-[10px] font-black text-white">
-                  {dailyPct}%
-                </div>
+              <div className="flex flex-col items-center justify-center">
+                <Flame size={48} className="text-orange-500 fill-orange-500 drop-shadow-[0_0_15px_rgba(249,115,22,0.6)] animate-pulse" />
+                <span className="text-4xl font-black text-white mt-2">{profile.currentStreak}</span>
+                <span className="text-xs font-semibold text-white/70 mt-1 uppercase tracking-wider">Day Streak</span>
               </div>
             </div>
-
-            <div className="space-y-4">
-              {dailyGoals.map((goal, i) => {
-                const done = goal.current >= goal.target;
-                const percent = animatedGoals[goal.id] || 0;
-                return (
-                  <motion.div
-                    key={goal.id}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.4 + i * 0.06 }}
-                    className="flex flex-col gap-2 pb-3 border-b border-[var(--color-border)] last:border-b-0 last:pb-0"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div
-                        className="w-8 h-8 rounded-lg flex items-center justify-center text-base flex-shrink-0"
-                        style={{
-                          background: done ? 'var(--gradient-success)' : 'rgba(255,255,255,0.04)',
-                        }}
-                      >
-                        {done ? <CheckCircle2 size={16} className="text-white" /> : goal.icon}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center justify-between gap-2">
-                          <span
-                            className="text-sm font-medium truncate"
-                            style={{
-                              color: done ? 'var(--color-text-muted)' : '#ffffff',
-                              textDecoration: done ? 'line-through' : 'none',
-                            }}
-                          >
-                            {goal.title}
-                          </span>
-                          <span className="text-xs font-mono flex-shrink-0" style={{ color: 'var(--color-text-muted)' }}>
-                            {goal.current}/{goal.target}
-                          </span>
-                        </div>
-                        <div className="w-full bg-slate-800/80 h-1.5 rounded-full overflow-hidden border border-white/5 mt-1.5">
-                          <div 
-                            className="h-full rounded-full transition-all duration-700 ease-out"
-                            style={{
-                              width: `${percent}%`,
-                              background: done ? 'var(--gradient-success)' : 'var(--gradient-primary)'
-                            }}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </Card>
+          </div>
         </motion.div>
 
         {/* JLPT Radar */}
@@ -476,175 +295,165 @@ export default function Dashboard() {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.35 }}
+          className="rounded-3xl p-6 flex flex-col h-[340px] items-center justify-center relative"
+          style={{
+            background: 'var(--color-bg-card)',
+            border: '1px solid var(--color-border)',
+            boxShadow: '0 4px 24px rgba(0,0,0,0.4)',
+          }}
         >
-          <Card padding="lg">
-            <h2 className="text-base font-bold mb-1 text-white">
-              JLPT {profile.currentJLPTLevel} Readiness
-            </h2>
-            <p className="text-xs mb-2" style={{ color: 'var(--color-text-muted)' }}>
-              スキル分析
-            </p>
-
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5, ease: 'easeOut' }}
-            >
-              <ResponsiveContainer width="100%" height={220}>
-                <RadarChart cx="50%" cy="50%" outerRadius="70%" data={[
-                  { skill: 'Vocabulary', value: Math.min(100, Math.max(15, Math.round((profile.vocabularyMastered / 400) * 100))), fullMark: 100 },
-                  { skill: 'Kanji', value: Math.min(100, Math.max(10, Math.round((profile.kanjiMastered / 100) * 100))), fullMark: 100 },
-                  { skill: 'Grammar', value: Math.min(100, Math.max(20, Math.round((profile.grammarCompleted / 100) * 100))), fullMark: 100 },
-                  { skill: 'Reading', value: Math.min(100, Math.max(25, Math.round(((profile.careerProgress ? Object.values(profile.careerProgress).reduce((a, b) => a + b, 0) : 0) / 40) * 100))), fullMark: 100 },
-                  { skill: 'Listening', value: Math.min(100, Math.max(15, Math.round((profile.totalStudyMinutes / 120) * 100))), fullMark: 100 },
-                  { skill: 'Speaking', value: Math.min(100, Math.max(10, Math.round((profile.totalXP / 2000) * 100))), fullMark: 100 },
-                ]}>
-                  <PolarGrid stroke="rgba(255,255,255,0.15)" />
-                  <PolarAngleAxis
-                    dataKey="skill"
-                    tick={{ fill: 'var(--color-text-secondary)', fontSize: 11, fontWeight: 500 }}
-                  />
-                  <Radar
-                    name="Skills"
-                    dataKey="value"
-                    stroke="#7c3aed"
-                    fill="#7c3aed"
-                    fillOpacity={0.3}
-                    strokeWidth={2.5}
-                    dot={{ r: 3.5, fill: '#7c3aed', strokeWidth: 1.5, stroke: 'var(--color-bg-card)' }}
-                  />
-                </RadarChart>
-              </ResponsiveContainer>
-            </motion.div>
-
-            {/* 6 skill progress bars in 2 columns (3 each) */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3 mt-5 pt-4 border-t border-[var(--color-border)]">
-              {[
-                { skill: 'Vocabulary', value: Math.min(100, Math.max(15, Math.round((profile.vocabularyMastered / 400) * 100))) },
-                { skill: 'Kanji', value: Math.min(100, Math.max(10, Math.round((profile.kanjiMastered / 100) * 100))) },
-                { skill: 'Grammar', value: Math.min(100, Math.max(20, Math.round((profile.grammarCompleted / 100) * 100))) },
-                { skill: 'Reading', value: Math.min(100, Math.max(25, Math.round(((profile.careerProgress ? Object.values(profile.careerProgress).reduce((a, b) => a + b, 0) : 0) / 40) * 100))) },
-                { skill: 'Listening', value: Math.min(100, Math.max(15, Math.round((profile.totalStudyMinutes / 120) * 100))) },
-                { skill: 'Speaking', value: Math.min(100, Math.max(10, Math.round((profile.totalXP / 2000) * 100))) },
-              ].map((item) => (
-                <div key={item.skill} className="flex flex-col min-w-0">
-                  <div className="flex justify-between items-center text-[11px] font-semibold">
-                    <span className="text-slate-400">
-                      {item.skill}
-                    </span>
-                    <span className="text-white">
-                      {item.value}%
-                    </span>
-                  </div>
-                  {/* progress micro-bar */}
-                  <div className="w-full bg-slate-800/80 h-1 rounded-full mt-1.5 overflow-hidden">
-                    <div 
-                      className="bg-[#7c3aed] h-full rounded-full transition-all duration-500 ease-out"
-                      style={{ width: `${item.value}%` }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Card>
+          <ResponsiveContainer width="100%" height="100%">
+            <RadarChart cx="50%" cy="50%" outerRadius="75%" data={[
+              { skill: 'Vocabulary\n語彙', value: Math.min(100, Math.max(15, Math.round((profile.vocabularyMastered / 400) * 100))), fullMark: 100 },
+              { skill: 'Kanji\n漢字', value: Math.min(100, Math.max(10, Math.round((profile.kanjiMastered / 100) * 100))), fullMark: 100 },
+              { skill: 'Grammar\n文法', value: Math.min(100, Math.max(20, Math.round((profile.grammarCompleted / 100) * 100))), fullMark: 100 },
+              { skill: 'Reading\n読解', value: Math.min(100, Math.max(25, Math.round(((profile.careerProgress ? Object.values(profile.careerProgress).reduce((a, b) => a + b, 0) : 0) / 40) * 100))), fullMark: 100 },
+              { skill: 'Listening\n聴解', value: Math.min(100, Math.max(15, Math.round((profile.totalStudyMinutes / 120) * 100))), fullMark: 100 },
+              { skill: 'Speaking\n発話', value: Math.min(100, Math.max(10, Math.round((profile.totalXP / 2000) * 100))), fullMark: 100 },
+            ]}>
+              <PolarGrid stroke="rgba(255,255,255,0.1)" strokeDasharray="3 3" />
+              <PolarAngleAxis
+                dataKey="skill"
+                tick={({ x, y, payload }) => {
+                  const lines = payload.value.split('\n');
+                  return (
+                    <text x={x} y={y} textAnchor="middle" fill="var(--color-text-secondary)" fontSize={12} fontWeight={500}>
+                      <tspan x={x} dy={0}>{lines[0]}</tspan>
+                      <tspan x={x} dy={16} fill="var(--color-text-muted)" fontSize={11}>{lines[1]}</tspan>
+                    </text>
+                  );
+                }}
+              />
+              <Radar
+                name="Skills"
+                dataKey="value"
+                stroke="#38bdf8"
+                fill="url(#radarGradient)"
+                fillOpacity={0.6}
+                strokeWidth={2.5}
+                dot={{ r: 4, fill: '#38bdf8', strokeWidth: 0 }}
+              />
+              <defs>
+                <linearGradient id="radarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#34d399" />
+                  <stop offset="100%" stopColor="#38bdf8" />
+                </linearGradient>
+              </defs>
+            </RadarChart>
+          </ResponsiveContainer>
         </motion.div>
       </div>
 
-      {/* ── Quick Actions ── */}
-      <div>
-        <motion.h2
-          className="text-base font-extrabold mb-3 text-white"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-        >
-          Quick Actions
-        </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
-          <ActionCard
-            icon={<Play size={20} />}
-            title="Continue Lesson"
-            subtitle="JLPT N5 · Verbs"
-            gradient="linear-gradient(135deg, #4f46e5, #7c3aed)"
-            glowColor="rgba(124, 58, 237, 0.35)"
-            delay={0.55}
-            onClick={() => navigate('/vocabulary')}
-          />
-          <ActionCard
-            icon={<Layers size={20} />}
-            title="Review Flashcards"
-            subtitle={`${reviewsDue} cards due`}
-            gradient="linear-gradient(135deg, #ec4899, #f43f5e)"
-            glowColor="rgba(236, 72, 153, 0.35)"
-            delay={0.6}
-            onClick={() => navigate('/flashcards')}
-          />
-          <ActionCard
-            icon={<Zap size={20} />}
-            title="Take a Quiz"
-            subtitle="5 min quick quiz"
-            gradient="linear-gradient(135deg, #10b981, #059669)"
-            glowColor="rgba(16, 185, 129, 0.35)"
-            delay={0.65}
-            onClick={() => navigate('/quiz')}
-          />
-          <ActionCard
-            icon={<PenTool size={20} />}
-            title="Practice Kanji"
-            subtitle="Stroke order drill"
-            gradient="linear-gradient(135deg, #f59e0b, #f97316)"
-            glowColor="rgba(245, 158, 11, 0.35)"
-            delay={0.7}
-            onClick={() => navigate('/kanji')}
-          />
-        </div>
+      {/* ── MIDDLE ROW: Quick Actions ── */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <ActionCard
+          icon={<Zap size={24} className="text-white fill-white/20" />}
+          title="Start Quick Quiz"
+          subtitle="クイッククイズ"
+          gradient="linear-gradient(135deg, #34d399, #10b981, #059669)"
+          glowColor="rgba(16, 185, 129, 0.4)"
+          delay={0.4}
+          onClick={() => navigate('/quiz')}
+        />
+        <ActionCard
+          icon={<Layers size={24} className="text-white fill-white/20" />}
+          title="Review Flashcards"
+          subtitle="単語帳"
+          gradient="linear-gradient(135deg, #60a5fa, #3b82f6, #2563eb)"
+          glowColor="rgba(59, 130, 246, 0.4)"
+          delay={0.5}
+          onClick={() => navigate('/flashcards')}
+        />
+        <ActionCard
+          icon={<Map size={24} className="text-white fill-white/20" />}
+          title="Explore Career Mode"
+          subtitle="キャリアモード"
+          gradient="linear-gradient(135deg, #c084fc, #a855f7, #7e22ce)"
+          glowColor="rgba(168, 85, 247, 0.4)"
+          delay={0.6}
+          onClick={() => navigate('/career')}
+        />
       </div>
 
-      {/* ── Recent Activity ── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.75 }}
-      >
+      {/* ── BOTTOM ROW: Stats ── */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <StatCard
+          icon={<BookOpen size={28} className="text-orange-400 fill-orange-400/20" />}
+          label="Words Learned"
+          value={profile.vocabularyMastered || 1250}
+          suffix="WORDS"
+          delay={0.7}
+        />
+        <StatCard
+          icon={<CheckCircle2 size={28} className="text-yellow-400 fill-yellow-400/20" />}
+          label="Accuracy"
+          value="88%"
+          suffix="ACCURACY"
+          delay={0.8}
+        />
+        <StatCard
+          icon={<Clock size={28} className="text-cyan-400 fill-cyan-400/20" />}
+          label="Time Studied"
+          value={Math.round(profile.totalStudyMinutes / 60) || 120}
+          suffix="HOURS"
+          delay={0.9}
+        />
+      </div>
+
+      {/* ── EXTRA ROW: Daily Goals & Recent Activity ── */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-12 pt-8 border-t border-[var(--color-border)] opacity-80">
         <Card padding="lg">
-          <h2 className="text-base font-extrabold mb-4 text-white">
-            Recent Activity
-          </h2>
+          <h2 className="text-base font-bold text-white mb-4">Daily Goals</h2>
+          <div className="space-y-4">
+            {dailyGoals.map((goal) => {
+              const done = goal.current >= goal.target;
+              const percent = animatedGoals[goal.id] || 0;
+              return (
+                <div key={goal.id} className="flex flex-col gap-2 pb-3 border-b border-[var(--color-border)] last:border-b-0 last:pb-0">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg flex items-center justify-center text-base" style={{ background: done ? 'var(--gradient-success)' : 'rgba(255,255,255,0.04)' }}>
+                      {done ? <CheckCircle2 size={16} className="text-white" /> : goal.icon}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-sm font-medium truncate" style={{ color: done ? 'var(--color-text-muted)' : '#ffffff', textDecoration: done ? 'line-through' : 'none' }}>
+                          {goal.title}
+                        </span>
+                        <span className="text-xs font-mono" style={{ color: 'var(--color-text-muted)' }}>{goal.current}/{goal.target}</span>
+                      </div>
+                      <div className="w-full bg-slate-800/80 h-1.5 rounded-full overflow-hidden mt-1.5">
+                        <div className="h-full rounded-full transition-all duration-700 ease-out" style={{ width: `${percent}%`, background: done ? 'var(--gradient-success)' : 'var(--gradient-primary)' }} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </Card>
+
+        <Card padding="lg">
+          <h2 className="text-base font-extrabold mb-4 text-white">Recent Activity</h2>
           <div className="space-y-3">
-            {activitiesToRender.map((act, i) => (
-              <motion.div
-                key={act.id}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.8 + i * 0.05 }}
-                whileHover={{ x: 4 }}
-                className="flex items-center gap-3.5 p-3 rounded-xl border border-[var(--color-border)] hover:border-slate-500/20 transition-all duration-150"
-                style={{ background: 'var(--color-bg-card)' }}
-              >
-                <div
-                  className="w-9 h-9 rounded-full flex items-center justify-center text-lg flex-shrink-0 bg-white/5 border border-white/5"
-                >
+            {activitiesToRender.map((act) => (
+              <div key={act.id} className="flex items-center gap-3.5 p-3 rounded-xl border border-[var(--color-border)] hover:border-slate-500/20 transition-all duration-150" style={{ background: 'var(--color-bg-card)' }}>
+                <div className="w-9 h-9 rounded-full flex items-center justify-center text-lg bg-white/5 border border-white/5">
                   {act.icon}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="text-sm font-bold text-white">
-                    {act.title}
-                  </div>
-                  <div className="text-xs text-slate-400 mt-0.5">
-                    {act.description}
-                  </div>
+                  <div className="text-sm font-bold text-white">{act.title}</div>
+                  <div className="text-xs text-slate-400 mt-0.5">{act.description}</div>
                 </div>
-                <div className="flex items-center gap-2.5 flex-shrink-0">
+                <div className="flex items-center gap-2.5">
                   {act.xpEarned > 0 && <Badge variant="xp">+{act.xpEarned} XP</Badge>}
-                  <span className="text-xs font-semibold text-slate-500">
-                    {act.id === 'welcome-mascot' ? 'Just now' : timeAgo(act.timestamp)}
-                  </span>
+                  <span className="text-xs font-semibold text-slate-500">{act.id === 'welcome-mascot' ? 'Just now' : timeAgo(act.timestamp)}</span>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </Card>
-      </motion.div>
+      </div>
+
     </div>
   );
 }

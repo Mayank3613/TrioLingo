@@ -1,7 +1,6 @@
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
-
   Search,
   Volume2,
   Plus,
@@ -9,9 +8,16 @@ import {
   ChevronUp,
   Filter,
   Check,
+  MessageCircle,
+  Heart,
+  User,
+  Globe,
+  Star
 } from 'lucide-react';
 import { Badge } from '../../components/ui/Badge';
 import { ProgressBar } from '../../components/ui/ProgressBar';
+
+const ICONS = [MessageCircle, Heart, User, Globe, Star];
 import { useVocabByLevel } from '../../services/dataService';
 import { useFSRSStore } from '../../stores/fsrsStore';
 
@@ -194,10 +200,11 @@ export function VocabularyPage() {
           <p className="text-sm" style={{ color: 'var(--text-tertiary)' }}>No words match your search</p>
         </motion.div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 gap-3">
           {filtered.map((word, i) => {
             const isExpanded = expandedId === word.id;
             const isAdded = isCardAdded('vocab', word.id);
+            const Icon = ICONS[i % ICONS.length];
             return (
               <motion.div
                 key={word.id}
@@ -205,41 +212,41 @@ export function VocabularyPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: Math.min(0.05 * i, 0.5) }}
-                className="rounded-xl overflow-hidden cursor-pointer transition-shadow"
+                className="rounded-2xl overflow-hidden cursor-pointer transition-shadow"
                 style={{
                   background: 'var(--bg-card)',
                   border: `1px solid ${isAdded ? 'rgba(34, 197, 94, 0.4)' : 'var(--border-primary)'}`,
-                  boxShadow: isExpanded ? 'var(--shadow-lg)' : 'var(--shadow-sm)',
+                  boxShadow: isExpanded 
+                    ? 'var(--shadow-lg), var(--shadow-glow)' 
+                    : 'var(--shadow-card), var(--shadow-inset)',
                 }}
                 onClick={() => setExpandedId(isExpanded ? null : word.id)}
               >
-                <div className="p-4">
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <div className="text-2xl font-bold" style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-japanese)' }}>
-                        {word.word}
-                      </div>
-                      <div className="text-sm mt-0.5" style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-japanese)' }}>
-                        {word.reading}
-                      </div>
+                <div className="p-4 flex items-center gap-4">
+                  {/* Left Icon */}
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center" style={{ background: 'var(--bg-tertiary)', color: 'var(--accent-primary)' }}>
+                    <Icon size={20} />
+                  </div>
+                  
+                  {/* Stacked Text */}
+                  <div className="flex-1 min-w-0">
+                    <div className="text-xl font-bold truncate" style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-japanese)' }}>
+                      {word.word}
                     </div>
-                    <div className="flex flex-col items-end gap-1">
-                      {isAdded && (
-                        <Badge variant="success">added</Badge>
-                      )}
-                      <span className="text-[10px] px-1.5 py-0.5 rounded" style={{ background: 'var(--bg-tertiary)', color: 'var(--text-tertiary)' }}>
-                        {word.partOfSpeech}
-                      </span>
+                    <div className="text-sm truncate" style={{ color: 'var(--text-secondary)' }}>
+                      {word.meaning}
                     </div>
                   </div>
-                  <p className="text-sm mt-2" style={{ color: 'var(--text-primary)' }}>
-                    {word.meaning}
-                  </p>
-                  <div className="flex items-center justify-end mt-1">
+
+                  {/* Right Actions / Info */}
+                  <div className="flex flex-col items-end gap-1 flex-shrink-0">
+                    {isAdded && (
+                      <Badge variant="success">added</Badge>
+                    )}
                     {isExpanded ? (
-                      <ChevronUp size={14} style={{ color: 'var(--text-tertiary)' }} />
+                      <ChevronUp size={16} style={{ color: 'var(--text-tertiary)' }} />
                     ) : (
-                      <ChevronDown size={14} style={{ color: 'var(--text-tertiary)' }} />
+                      <ChevronDown size={16} style={{ color: 'var(--text-tertiary)' }} />
                     )}
                   </div>
                 </div>

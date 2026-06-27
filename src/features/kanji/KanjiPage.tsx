@@ -4,7 +4,17 @@ import {
   Search,
   Plus,
   Check,
+  ChevronDown,
+  ChevronUp,
+  MessageCircle,
+  Heart,
+  User,
+  Globe,
+  Star
 } from 'lucide-react';
+import { Badge } from '../../components/ui/Badge';
+
+const ICONS = [MessageCircle, Heart, User, Globe, Star];
 import { ProgressBar } from '../../components/ui/ProgressBar';
 import { useKanjiByLevel } from '../../services/dataService';
 import { useFSRSStore } from '../../stores/fsrsStore';
@@ -130,10 +140,11 @@ export function KanjiPage() {
           <p className="text-sm" style={{ color: 'var(--text-tertiary)' }}>No kanji match your search</p>
         </motion.div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 gap-3">
           {filtered.map((kanji, i) => {
             const isExpanded = expandedId === kanji.id;
             const isAdded = isCardAdded('kanji', kanji.id);
+            const Icon = ICONS[i % ICONS.length];
             return (
               <motion.div
                 key={kanji.id}
@@ -141,31 +152,43 @@ export function KanjiPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: Math.min(0.03 * i, 0.5) }}
-                className="rounded-xl overflow-hidden cursor-pointer transition-shadow"
+                className="rounded-2xl overflow-hidden cursor-pointer transition-shadow"
                 style={{
                   background: 'var(--bg-card)',
                   border: `1px solid ${isAdded ? 'rgba(168, 85, 247, 0.4)' : 'var(--border-primary)'}`,
-                  boxShadow: isExpanded ? 'var(--shadow-lg)' : 'var(--shadow-sm)',
+                  boxShadow: isExpanded 
+                    ? 'var(--shadow-lg), var(--shadow-glow)' 
+                    : 'var(--shadow-card), var(--shadow-inset)',
                 }}
                 onClick={() => setExpandedId(isExpanded ? null : kanji.id)}
               >
-                <div className="p-3 text-center">
-                  <div className="text-4xl font-bold mb-1" style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-japanese)' }}>
-                    {kanji.character}
+                <div className="p-4 flex items-center gap-4">
+                  {/* Left Icon */}
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center" style={{ background: 'var(--bg-tertiary)', color: 'var(--accent-primary)' }}>
+                    <Icon size={20} />
                   </div>
-                  <div className="text-xs font-medium mb-1" style={{ color: 'var(--text-primary)' }}>
-                    {kanji.meaning}
-                  </div>
-                  <div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>
-                    {kanji.strokeCount} strokes
-                  </div>
-                  {isAdded && (
-                    <div className="mt-1">
-                      <span className="text-[9px] px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(168,85,247,0.15)', color: '#a855f7' }}>
-                        in deck
-                      </span>
+                  
+                  {/* Stacked Text */}
+                  <div className="flex-1 min-w-0">
+                    <div className="text-xl font-bold truncate" style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-japanese)' }}>
+                      {kanji.character}
                     </div>
-                  )}
+                    <div className="text-sm truncate" style={{ color: 'var(--text-secondary)' }}>
+                      {kanji.meaning}
+                    </div>
+                  </div>
+
+                  {/* Right Actions / Info */}
+                  <div className="flex flex-col items-end gap-1 flex-shrink-0">
+                    {isAdded && (
+                      <Badge variant="success">added</Badge>
+                    )}
+                    {isExpanded ? (
+                      <ChevronUp size={16} style={{ color: 'var(--text-tertiary)' }} />
+                    ) : (
+                      <ChevronDown size={16} style={{ color: 'var(--text-tertiary)' }} />
+                    )}
+                  </div>
                 </div>
 
                 <AnimatePresence>

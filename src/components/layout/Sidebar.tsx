@@ -394,18 +394,8 @@ function SidebarLink({
           layoutId="sidebar-active"
           className="absolute inset-0 rounded-xl"
           style={{
-            background: 'rgba(124, 58, 237, 0.15)',
+            background: 'var(--gradient-primary)', // Use gradient or solid color
           }}
-          transition={{ type: 'spring', stiffness: 350, damping: 30 }}
-        />
-      )}
-
-      {/* Active indicator bar */}
-      {isActive && (
-        <motion.div
-          layoutId="sidebar-indicator"
-          className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-5 rounded-r-full"
-          style={{ background: 'var(--color-accent-purple)', marginLeft: '0px' }}
           transition={{ type: 'spring', stiffness: 350, damping: 30 }}
         />
       )}

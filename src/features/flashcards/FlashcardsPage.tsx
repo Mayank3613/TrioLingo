@@ -176,7 +176,6 @@ export default function FlashcardsPage() {
   }, [sessionCards, currentIdx, reviewCard, addXP, addActivity, sessionResults]);
   const currentCard = sessionActive ? sessionCards[currentIdx] : null;
   const content = currentCard ? getCardContent(currentCard, vocabData, kanjiData, grammarData) : null;
-  const progress = sessionCards.length > 0 ? ((currentIdx) / sessionCards.length) * 100 : 0;
   // ── Pre-session screen ────────────────────────────────────
   if (!sessionActive || sessionComplete) {
     return (
@@ -349,141 +348,211 @@ export default function FlashcardsPage() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="p-6 max-w-2xl mx-auto"
+      className="p-6 max-w-5xl mx-auto flex flex-col lg:flex-row gap-8 items-start"
     >
-      {/* Header */}
-      <div className="flex items-center justify-between mb-6">
-        <button
-          onClick={() => setSessionActive(false)}
-          className="flex items-center gap-1.5 text-sm cursor-pointer"
-          style={{ color: 'var(--text-tertiary)' }}
-        >
-          <ArrowLeft size={16} /> Exit
-        </button>
-        <span className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>
-          {currentIdx + 1} / {sessionCards.length}
-        </span>
-      </div>
-
-      {/* Progress bar */}
-      <div className="h-1.5 rounded-full mb-8 overflow-hidden" style={{ background: 'var(--bg-tertiary)' }}>
-        <motion.div
-          className="h-full rounded-full"
-          style={{ background: 'var(--gradient-primary)' }}
-          animate={{ width: `${progress}%` }}
-          transition={{ duration: 0.4, ease: 'easeOut' }}
-        />
-      </div>
-
-      {/* Card */}
-      {content && (
-        <div className="perspective-[1200px] mb-8">
-          <motion.div
-            className="relative w-full cursor-pointer"
-            style={{ minHeight: 320, transformStyle: 'preserve-3d' }}
-            animate={{ rotateY: isFlipped ? 180 : 0 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            onClick={() => setIsFlipped(!isFlipped)}
+      <div className="flex-1 w-full max-w-2xl mx-auto">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-6">
+          <button
+            onClick={() => setSessionActive(false)}
+            className="flex items-center gap-1.5 text-sm cursor-pointer"
+            style={{ color: 'var(--text-tertiary)' }}
           >
-            {/* Front */}
+            <ArrowLeft size={16} /> Exit
+          </button>
+          <span className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>
+            {currentIdx + 1} / {sessionCards.length}
+          </span>
+        </div>
+
+        {/* Progress bar (Segmented Dashes) */}
+        <div className="flex gap-1.5 mb-8">
+          {sessionCards.map((_, idx) => (
             <div
-              className="absolute inset-0 rounded-2xl p-8 flex flex-col items-center justify-center"
+              key={idx}
+              className="h-1.5 flex-1 rounded-full transition-colors duration-300"
               style={{
-                background: 'var(--bg-card)',
-                border: `2px solid ${content.color}`,
-                backfaceVisibility: 'hidden',
-                boxShadow: `0 0 40px ${content.color}15`,
+                background: idx < currentIdx 
+                  ? 'var(--gradient-primary)' 
+                  : idx === currentIdx 
+                    ? 'var(--accent-primary)' 
+                    : 'var(--bg-tertiary)'
               }}
+            />
+          ))}
+        </div>
+
+        {/* Card (3D Stacked Glassmorphic) */}
+        {content && (
+          <div className="perspective-[1200px] mb-12 relative">
+            {/* Background stacked layers for 3D effect */}
+            <div 
+              className="absolute inset-0 rounded-2xl scale-[0.9] translate-y-6 opacity-30 blur-sm pointer-events-none"
+              style={{ background: content.color }}
+            />
+            <div 
+              className="absolute inset-0 rounded-2xl scale-[0.95] translate-y-3 opacity-60 pointer-events-none backdrop-blur-md"
+              style={{ background: 'var(--bg-card)', border: `1px solid ${content.color}40` }}
+            />
+            
+            <motion.div
+              className="relative w-full cursor-pointer z-10"
+              style={{ minHeight: 340, transformStyle: 'preserve-3d' }}
+              animate={{ rotateY: isFlipped ? 180 : 0 }}
+              transition={{ type: 'spring', stiffness: 260, damping: 25 }}
+              onClick={() => setIsFlipped(!isFlipped)}
             >
-              <div className="text-xs font-medium mb-4 px-3 py-1 rounded-full" style={{ background: `${content.color}20`, color: content.color }}>
-                {content.detail}
-              </div>
+              {/* Front */}
               <div
-                className="text-5xl font-bold mb-4"
-                style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-japanese)' }}
+                className="absolute inset-0 rounded-2xl p-8 flex flex-col items-center justify-center backdrop-blur-xl"
+                style={{
+                  background: 'rgba(20, 25, 35, 0.45)', // translucent dark
+                  border: `1px solid rgba(255, 255, 255, 0.1)`,
+                  backfaceVisibility: 'hidden',
+                  boxShadow: `inset 0 0 60px ${content.color}20, 0 10px 40px rgba(0,0,0,0.5)`, // inner glowing shadow
+                }}
               >
-                {content.front}
+                <div className="text-xs font-medium mb-6 px-4 py-1.5 rounded-full backdrop-blur-md" style={{ background: `${content.color}15`, color: content.color, border: `1px solid ${content.color}30` }}>
+                  {content.detail}
+                </div>
+                <div
+                  className="text-7xl font-bold mb-6 tracking-wide drop-shadow-2xl"
+                  style={{ color: '#fff', fontFamily: 'var(--font-japanese)' }}
+                >
+                  {content.front}
+                </div>
+                {showHint ? (
+                  <div className="text-xl" style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-japanese)' }}>
+                    {content.frontSub}
+                  </div>
+                ) : (
+                  <button
+                    onClick={(e) => { e.stopPropagation(); setShowHint(true); }}
+                    className="flex items-center gap-2 text-sm px-4 py-2 rounded-xl cursor-pointer transition-colors backdrop-blur-md hover:bg-white/10"
+                    style={{ color: 'var(--text-secondary)', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}
+                  >
+                    <Eye size={14} /> Show hint
+                  </button>
+                )}
+                <div className="absolute bottom-6 text-xs uppercase tracking-widest font-semibold opacity-60" style={{ color: 'var(--text-tertiary)' }}>
+                  Tap to flip
+                </div>
               </div>
-              {showHint ? (
-                <div className="text-lg" style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-japanese)' }}>
+
+              {/* Back */}
+              <div
+                className="absolute inset-0 rounded-2xl p-8 flex flex-col items-center justify-center backdrop-blur-xl"
+                style={{
+                  background: 'rgba(20, 25, 35, 0.45)', // translucent dark
+                  border: `1px solid rgba(255, 255, 255, 0.1)`,
+                  backfaceVisibility: 'hidden',
+                  transform: 'rotateY(180deg)',
+                  boxShadow: `inset 0 0 60px ${content.color}20, 0 10px 40px rgba(0,0,0,0.5)`, // inner glowing shadow
+                }}
+              >
+                <div className="text-xs font-medium mb-4 px-4 py-1.5 rounded-full backdrop-blur-md" style={{ background: `${content.color}15`, color: content.color, border: `1px solid ${content.color}30` }}>
+                  Answer
+                </div>
+                <div className="text-4xl font-bold mb-3 text-center drop-shadow-md" style={{ color: '#fff' }}>
+                  {content.back}
+                </div>
+                <div className="text-xl mb-6" style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-japanese)' }}>
                   {content.frontSub}
                 </div>
-              ) : (
-                <button
-                  onClick={(e) => { e.stopPropagation(); setShowHint(true); }}
-                  className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg cursor-pointer transition-colors"
-                  style={{ color: 'var(--text-tertiary)', background: 'var(--bg-hover)' }}
-                >
-                  <Eye size={12} /> Show hint
-                </button>
-              )}
-              <div className="absolute bottom-4 text-xs" style={{ color: 'var(--text-tertiary)' }}>
-                Tap to flip
-              </div>
-            </div>
-
-            {/* Back */}
-            <div
-              className="absolute inset-0 rounded-2xl p-8 flex flex-col items-center justify-center"
-              style={{
-                background: 'var(--bg-card)',
-                border: `2px solid ${content.color}`,
-                backfaceVisibility: 'hidden',
-                transform: 'rotateY(180deg)',
-                boxShadow: `0 0 40px ${content.color}15`,
-              }}
-            >
-              <div className="text-xs font-medium mb-4 px-3 py-1 rounded-full" style={{ background: `${content.color}20`, color: content.color }}>
-                Answer
-              </div>
-              <div className="text-3xl font-bold mb-2 text-center" style={{ color: 'var(--text-primary)' }}>
-                {content.back}
-              </div>
-              <div className="text-lg mb-4" style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-japanese)' }}>
-                {content.frontSub}
-              </div>
-              {content.example && (
-                <div className="text-center mt-2 p-3 rounded-lg" style={{ background: 'var(--bg-hover)' }}>
-                  <div className="text-sm mb-1" style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-japanese)' }}>
-                    {content.example}
-                  </div>
-                  {content.exampleEn && (
-                    <div className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
-                      {content.exampleEn}
+                {content.example && (
+                  <div className="text-center w-full mt-2 p-4 rounded-xl backdrop-blur-md" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.05)' }}>
+                    <div className="text-base mb-1" style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-japanese)' }}>
+                      {content.example}
                     </div>
-                  )}
-                </div>
-              )}
-            </div>
-          </motion.div>
-        </div>
-      )}
-
-      {/* Rating buttons */}
-      <AnimatePresence>
-        {isFlipped && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3"
-          >
-            {RATINGS.map((r) => (
-              <motion.button
-                key={r.label}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => handleRating(r.rating as Rating.Again | Rating.Hard | Rating.Good | Rating.Easy)}
-                className="py-3 rounded-xl font-medium text-sm flex flex-col items-center gap-1.5 cursor-pointer transition-colors"
-                style={{ background: `${r.color}15`, color: r.color, border: `1px solid ${r.color}30` }}
-              >
-                <r.icon size={18} />
-                {r.label}
-              </motion.button>
-            ))}
-          </motion.div>
+                    {content.exampleEn && (
+                      <div className="text-sm" style={{ color: 'var(--text-tertiary)' }}>
+                        {content.exampleEn}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </div>
         )}
-      </AnimatePresence>
+
+        {/* Rating buttons (Glowing neon borders on dark background) */}
+        <div className="h-[90px]">
+          <AnimatePresence>
+            {isFlipped && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                className="grid grid-cols-2 md:grid-cols-4 gap-4"
+              >
+                {RATINGS.map((r) => (
+                  <motion.button
+                    key={r.label}
+                    whileHover={{ scale: 1.05, boxShadow: `0 0 20px ${r.color}60, inset 0 0 10px ${r.color}30` }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => handleRating(r.rating as Rating.Again | Rating.Hard | Rating.Good | Rating.Easy)}
+                    className="py-4 rounded-2xl font-bold text-sm flex flex-col items-center gap-1.5 cursor-pointer transition-all duration-300 relative overflow-hidden group"
+                    style={{ 
+                      background: '#09090b', // dark background 
+                      color: r.color, 
+                      border: `1px solid ${r.color}`,
+                      boxShadow: `0 0 12px ${r.color}40, inset 0 0 6px ${r.color}20`,
+                      textShadow: `0 0 8px ${r.color}90`
+                    }}
+                  >
+                    <r.icon size={22} className="drop-shadow-md" />
+                    <span className="tracking-wide">{r.label}</span>
+                    {/* Key hint */}
+                    <div className="absolute top-2 right-2.5 opacity-40 text-[10px] font-mono group-hover:opacity-100 transition-opacity">
+                      {r.key}
+                    </div>
+                  </motion.button>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
+
+      {/* Floating Session Stats Panel */}
+      <div className="w-full lg:w-72 mt-8 lg:mt-0 shrink-0">
+        <div className="sticky top-24 card-premium p-6 rounded-2xl backdrop-blur-xl border border-white/5" style={{ background: 'rgba(20, 25, 35, 0.4)' }}>
+          <div className="flex items-center gap-2 mb-6 pb-4 border-b border-white/10">
+            <Trophy size={20} style={{ color: 'var(--accent-primary)' }} />
+            <h3 className="font-bold text-lg" style={{ color: 'var(--text-primary)' }}>Session Stats</h3>
+          </div>
+          
+          <div className="space-y-5">
+            <div className="flex justify-between items-center">
+              <span className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>Correct</span>
+              <span className="text-lg font-bold text-green-400">{sessionResults.correct}</span>
+            </div>
+            
+            <div className="flex justify-between items-center">
+              <span className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>Total</span>
+              <span className="text-lg font-bold" style={{ color: 'var(--text-primary)' }}>{sessionResults.total}</span>
+            </div>
+            
+            <div className="flex justify-between items-center">
+              <span className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>Accuracy</span>
+              <span className="text-lg font-bold" style={{ color: 'var(--accent-secondary)' }}>
+                {sessionResults.total > 0 ? Math.round((sessionResults.correct / sessionResults.total) * 100) : 0}%
+              </span>
+            </div>
+            
+            <div className="pt-5 border-t border-white/10 mt-2">
+              <div className="flex justify-between items-center">
+                <span className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>XP Earned</span>
+                <span className="text-xl font-bold flex items-center gap-1" style={{ color: 'var(--accent-primary)' }}>
+                  <Zap size={18} className="fill-current" />
+                  {sessionResults.correct * 5}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </motion.div>
   );
 }
