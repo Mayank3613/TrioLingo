@@ -69,7 +69,7 @@ export function KanjiPage() {
   }
 
   return (
-    <div className="p-6 overflow-y-auto h-full pb-20">
+    <div className="p-6 pb-20">
       {/* Header */}
       <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="mb-5">
         <h1 className="text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>

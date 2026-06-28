@@ -251,7 +251,7 @@ export default function Dashboard() {
   }, [dailyPct]);
 
   return (
-    <div className="p-6 overflow-y-auto h-full pb-20 space-y-6">
+    <div className="p-6 pb-20 space-y-6">
       
       {/* ── TOP ROW: Welcome Card + Radar Chart ── */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

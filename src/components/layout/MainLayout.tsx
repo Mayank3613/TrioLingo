@@ -39,13 +39,13 @@ export function MainLayout() {
       <Sidebar />
 
       <div
-        className="flex flex-col flex-1 min-w-0 transition-[margin-left] duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]"
+        className="flex flex-col flex-1 min-w-0 h-full overflow-y-auto overflow-x-hidden relative transition-[margin-left] duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] bg-mesh"
         style={{ marginLeft: sidebarWidth }}
       >
         <Header />
 
         <main
-          className="flex-1 overflow-y-auto overflow-x-hidden bg-mesh relative"
+          className="flex-1 relative"
         >
           <AnimatePresence mode="wait">
             <motion.div
@@ -54,7 +54,7 @@ export function MainLayout() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-              className="h-full"
+              className="h-full min-h-[calc(100vh-3.5rem)]"
             >
               <Outlet />
             </motion.div>

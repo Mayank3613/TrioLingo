@@ -40,10 +40,14 @@ export function Header() {
 
   return (
     <header
-      className="flex items-center justify-between px-6 h-14 flex-shrink-0 relative"
+      className="flex items-center justify-between px-6 h-14 flex-shrink-0 relative z-20"
       style={{
-        background: 'var(--color-bg-secondary)',
-        borderBottom: '1px solid var(--color-border)',
+        background: 'var(--bg-glass)',
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+        borderBottom: '1px solid var(--border-primary)',
+        position: 'sticky',
+        top: 0,
       }}
     >
       {/* Left — Page Title */}

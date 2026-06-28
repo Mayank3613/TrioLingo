@@ -198,7 +198,7 @@ export function AnalyticsPage() {
   const ranges: TimeRange[] = ['7d', '30d', '90d', 'All'];
 
   return (
-    <div className="p-6 overflow-y-auto h-full pb-20 space-y-6">
+    <div className="p-6 pb-20 space-y-6">
       {/* ── Header ── */}
       <motion.div {...fadeUp(0)} className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
         <div>
