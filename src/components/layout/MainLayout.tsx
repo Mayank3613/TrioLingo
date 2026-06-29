@@ -4,9 +4,13 @@ import { motion, AnimatePresence } from 'motion/react';
 import confetti from 'canvas-confetti';
 import { Sidebar } from './Sidebar';
 import { Header } from './Header';
+import { Footer } from './Footer';
+import { ScrollToTop } from '../ui/ScrollToTop';
+import { ToastContainer } from '../ui/ToastContainer';
 import { useSidebarStore } from '../../stores/sidebarStore';
 import { useUserStore } from '../../stores/userStore';
 import { useIsMobile } from '../../hooks/useIsMobile';
+import { useKeyboardShortcuts } from '../../hooks/useKeyboardShortcuts';
 
 function LevelUpEffect() {
   const currentLevel = useUserStore(s => s.profile.currentLevel);
@@ -32,6 +36,15 @@ export function MainLayout() {
   const collapsed = useSidebarStore((s) => s.collapsed);
   const isMobile = useIsMobile();
   const sidebarWidth = isMobile ? 0 : (collapsed ? 72 : 240);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  // Global keyboard shortcuts
+  useKeyboardShortcuts();
+
+  // Scroll to top on route change
+  useEffect(() => {
+    scrollRef.current?.scrollTo({ top: 0 });
+  }, [location.pathname]);
 
   return (
     <div className="flex h-screen w-screen overflow-hidden" style={{ background: 'var(--color-bg-primary)' }}>
@@ -39,14 +52,13 @@ export function MainLayout() {
       <Sidebar />
 
       <div
+        ref={scrollRef}
         className="flex flex-col flex-1 min-w-0 h-full overflow-y-auto overflow-x-hidden relative transition-[margin-left] duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] bg-mesh"
-        style={{ marginLeft: sidebarWidth }}
+        style={{ marginLeft: sidebarWidth, scrollBehavior: 'smooth' }}
       >
         <Header />
 
-        <main
-          className="flex-1 relative"
-        >
+        <main className="flex-1 relative">
           <AnimatePresence mode="wait">
             <motion.div
               key={location.pathname}
@@ -60,7 +72,12 @@ export function MainLayout() {
             </motion.div>
           </AnimatePresence>
         </main>
+
+        <Footer />
       </div>
+
+      <ScrollToTop containerRef={scrollRef} />
+      <ToastContainer />
     </div>
   );
 }

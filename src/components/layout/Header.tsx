@@ -114,10 +114,38 @@ export function Header() {
           style={{ background: 'var(--border-primary)' }}
         />
 
-        {/* Search */}
-        <IconButton ariaLabel="Search" path="/search">
-          <Search size={16} />
-        </IconButton>
+        {/* Search Bar Trigger */}
+        <Link
+          to="/search"
+          className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs cursor-pointer transition-all duration-150"
+          style={{
+            background: 'var(--bg-hover)',
+            color: 'var(--text-tertiary)',
+            border: '1px solid var(--border-primary)',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.borderColor = 'var(--border-focus)';
+            e.currentTarget.style.color = 'var(--text-secondary)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderColor = 'var(--border-primary)';
+            e.currentTarget.style.color = 'var(--text-tertiary)';
+          }}
+          aria-label="Search (⌘K)"
+        >
+          <Search size={14} />
+          <span className="hidden sm:inline">Search</span>
+          <kbd
+            className="hidden sm:inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-[10px] font-medium ml-2"
+            style={{
+              background: 'var(--bg-tertiary)',
+              color: 'var(--text-tertiary)',
+              border: '1px solid var(--border-primary)',
+            }}
+          >
+            ⌘K
+          </kbd>
+        </Link>
 
         {/* Notifications */}
         <IconButton ariaLabel="Notifications" badge>
@@ -127,9 +155,9 @@ export function Header() {
         {/* Avatar */}
         <Link
           to="/profile"
-          className="ml-1 w-8 h-8 rounded-full flex items-center justify-center text-base cursor-pointer transition-all duration-200 hover:scale-110"
+          className="ml-1 w-8 h-8 rounded-full flex items-center justify-center text-base cursor-pointer transition-all duration-200 hover:scale-110 ring-2 ring-transparent hover:ring-[var(--accent-primary)]"
           style={{
-            background: 'var(--bg-tertiary)',
+            background: 'var(--gradient-primary)',
           }}
           aria-label="Profile"
         >
