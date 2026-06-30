@@ -66,7 +66,8 @@ export function Header() {
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.25 }}
-          className="text-lg font-extrabold tracking-tight text-white"
+          className="text-lg font-extrabold tracking-tight"
+          style={{ color: 'var(--text-primary)' }}
         >
           {page.title}
         </motion.h2>
@@ -78,7 +79,7 @@ export function Header() {
             transition={{ delay: 0.1, duration: 0.2 }}
             className="text-[12px] font-medium px-1 py-0.5 rounded-full"
             style={{
-              color: 'var(--color-text-muted)',
+              color: 'var(--text-tertiary)',
               fontFamily: 'var(--font-japanese)',
               background: 'transparent',
             }}
@@ -205,9 +206,10 @@ function IconButton({
         {children}
         {badge && (
           <span
-            className="absolute top-0.5 right-0.5 w-2 h-2 rounded-full ring-2"
+            className="absolute top-0.5 right-0.5 w-2 h-2 rounded-full"
             style={{
               background: '#ef4444',
+              boxShadow: '0 0 0 2px var(--bg-glass)',
             }}
           />
         )}

@@ -146,9 +146,9 @@ export function Sidebar() {
       <motion.aside
         className="fixed left-0 top-0 h-screen z-50 flex flex-col select-none"
         style={{
-          background: 'var(--color-bg-secondary)',
-          boxShadow: '4px 0 24px rgba(0,0,0,0.4)',
-          borderRight: 'none',
+          background: 'var(--bg-sidebar)',
+          boxShadow: 'var(--shadow-xl)',
+          borderRight: '1px solid var(--border-primary)',
         }}
         initial={false}
         animate={{ 
@@ -179,14 +179,14 @@ export function Sidebar() {
             >
               <h1
                 className="text-base font-extrabold leading-tight tracking-tight"
-                style={{ color: '#ffffff' }}
+                style={{ color: 'var(--text-primary)' }}
               >
                 TrioLingo<span style={{ color: 'var(--color-accent-purple)' }}>++</span>
               </h1>
               <span
                 className="text-[10px] tracking-widest block mt-0.5"
                 style={{
-                  color: 'var(--color-text-secondary)',
+                  color: 'var(--text-tertiary)',
                   fontFamily: 'var(--font-japanese)',
                 }}
               >
@@ -204,7 +204,7 @@ export function Sidebar() {
           className="rounded-xl p-2.5 flex items-center gap-2.5 transition-all duration-200 relative overflow-hidden group"
           style={{
             background: 'rgba(255, 255, 255, 0.03)',
-            border: '1px solid var(--color-border)',
+            border: '1px solid var(--border-primary)',
           }}
         >
           {/* Subtle gradient shimmer on hover */}
@@ -229,7 +229,7 @@ export function Sidebar() {
               >
                 <p
                   className="text-xs font-bold truncate"
-                  style={{ color: '#ffffff' }}
+                  style={{ color: 'var(--text-primary)' }}
                 >
                   {profile.displayName || 'New Student'}
                 </p>
@@ -254,7 +254,7 @@ export function Sidebar() {
                   </div>
                   <span
                     className="text-[9px] font-medium tabular-nums flex-shrink-0"
-                    style={{ color: 'var(--color-text-secondary)' }}
+                    style={{ color: 'var(--text-tertiary)' }}
                   >
                     {profile.currentXP}/{profile.xpToNextLevel}
                   </span>
@@ -282,14 +282,14 @@ export function Sidebar() {
                     >
                       <span
                         className="text-[9px] font-extrabold uppercase tracking-widest"
-                        style={{ color: 'var(--color-text-muted)' }}
+                        style={{ color: 'var(--text-tertiary)' }}
                       >
                         {section.title}
                       </span>
-                      <div className="flex-1 h-px" style={{ background: 'var(--color-border)' }} />
+                      <div className="flex-1 h-px" style={{ background: 'var(--border-primary)' }} />
                     </motion.div>
                   ) : (
-                    <div className="h-px" style={{ background: 'var(--color-border)' }} />
+                    <div className="h-px" style={{ background: 'var(--border-primary)' }} />
                   )}
                 </AnimatePresence>
               </div>
@@ -318,7 +318,7 @@ export function Sidebar() {
       {/* Bottom Section */}
       <div
         className="px-2.5 pb-2"
-        style={{ borderTop: '1px solid var(--color-border)' }}
+        style={{ borderTop: '1px solid var(--border-primary)' }}
       >
         <div className="pt-2">
           <SidebarLink
@@ -378,8 +378,8 @@ function SidebarLink({
       style={{
         padding: collapsed ? '9px 0' : '8px 12px',
         justifyContent: collapsed ? 'center' : 'flex-start',
-        background: isActive ? 'rgba(124, 58, 237, 0.15)' : 'transparent',
-        color: isActive ? '#ffffff' : 'var(--color-text-secondary)',
+        background: isActive ? 'var(--bg-active)' : 'transparent',
+        color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
       }}
       onMouseEnter={(e) => {
         if (!isActive) e.currentTarget.style.background = 'var(--bg-hover)';
@@ -404,9 +404,10 @@ function SidebarLink({
         <Icon size={18} strokeWidth={isActive ? 2.2 : 1.8} />
         {item.badge && collapsed && (
           <span
-            className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full ring-2 ring-[#1a1d2e]"
+            className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full"
             style={{
               background: 'var(--gradient-accent)',
+              boxShadow: '0 0 0 2px var(--bg-sidebar)',
             }}
           />
         )}
@@ -447,14 +448,14 @@ function SidebarLink({
           className="absolute left-full ml-2 px-3 py-2 rounded-xl text-xs font-semibold whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-150 z-50"
           style={{
             background: 'var(--bg-card)',
-            color: 'var(--color-text-primary)',
+            color: 'var(--text-primary)',
             boxShadow: 'var(--shadow-lg)',
-            border: '1px solid var(--color-border)',
+            border: '1px solid var(--border-primary)',
           }}
         >
           {item.label}
           {item.labelJp && (
-            <span className="block text-[10px] mt-0.5" style={{ color: 'var(--color-text-muted)', fontFamily: 'var(--font-japanese)' }}>
+            <span className="block text-[10px] mt-0.5" style={{ color: 'var(--text-tertiary)', fontFamily: 'var(--font-japanese)' }}>
               {item.labelJp}
             </span>
           )}

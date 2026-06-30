@@ -102,24 +102,20 @@ function StatCard({
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay, duration: 0.3 }}
       whileHover={{ y: -2 }}
-      className="p-5 rounded-xl border border-[var(--color-border)] hover:border-slate-500/30 transition-all duration-200"
-      style={{
-        background: 'var(--color-bg-card)',
-        boxShadow: '0 4px 24px rgba(0,0,0,0.4)',
-      }}
+      className="p-5 rounded-xl transition-all duration-200 card-premium"
     >
       <div className="flex items-center gap-3.5 min-w-0">
         <div className="flex-shrink-0">
           {icon}
         </div>
         <div className="min-w-0 flex-1">
-          <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+          <div className="text-[11px] font-bold uppercase tracking-wider" style={{ color: 'var(--text-tertiary)' }}>
             {label}
           </div>
-          <div className="text-xl font-extrabold flex items-baseline gap-1 mt-0.5 text-white">
+          <div className="text-xl font-extrabold flex items-baseline gap-1 mt-0.5" style={{ color: 'var(--text-primary)' }}>
             {value}
             {suffix && (
-              <span className="text-xs font-semibold text-slate-400 ml-0.5">
+              <span className="text-xs font-semibold ml-0.5" style={{ color: 'var(--text-tertiary)' }}>
                 {suffix}
               </span>
             )}
@@ -263,15 +259,15 @@ export default function Dashboard() {
           transition={{ duration: 0.5 }}
           className="rounded-3xl p-8 flex flex-col justify-center relative overflow-hidden h-[340px]"
           style={{
-            background: 'linear-gradient(135deg, #1f2937, #111827, #0f172a)',
-            border: '1px solid rgba(255,255,255,0.05)',
-            boxShadow: '0 10px 40px rgba(0, 0, 0, 0.5)',
+            background: 'var(--gradient-hero)',
+            border: '1px solid var(--border-primary)',
+            boxShadow: 'var(--shadow-xl)',
           }}
         >
           <div className="absolute inset-0 animate-shimmer pointer-events-none" />
           <div className="relative z-10">
-            <h2 className="text-2xl font-bold text-white/90" style={{ fontFamily: 'var(--font-japanese)' }}>ようこそ!</h2>
-            <h1 className="text-3xl font-extrabold text-white mt-1 tracking-tight">
+            <h2 className="text-2xl font-bold text-white/80" style={{ fontFamily: 'var(--font-japanese)' }}>ようこそ!</h2>
+            <h1 className="text-3xl font-extrabold text-white mt-1 tracking-tight leading-snug">
               Welcome back, {profile.displayName || 'Kenji'}!
             </h1>
             
@@ -295,12 +291,7 @@ export default function Dashboard() {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.35 }}
-          className="rounded-3xl p-6 flex flex-col h-[340px] items-center justify-center relative"
-          style={{
-            background: 'var(--color-bg-card)',
-            border: '1px solid var(--color-border)',
-            boxShadow: '0 4px 24px rgba(0,0,0,0.4)',
-          }}
+          className="rounded-3xl p-6 flex flex-col h-[340px] items-center justify-center relative card-premium"
         >
           <ResponsiveContainer width="100%" height="100%">
             <RadarChart cx="50%" cy="50%" outerRadius="75%" data={[
@@ -401,9 +392,9 @@ export default function Dashboard() {
       </div>
 
       {/* ── EXTRA ROW: Daily Goals & Recent Activity ── */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-12 pt-8 border-t border-[var(--color-border)] opacity-80">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-12 pt-8" style={{ borderTop: '1px solid var(--border-primary)' }}>
         <Card padding="lg">
-          <h2 className="text-base font-bold text-white mb-4">Daily Goals</h2>
+          <h2 className="text-base font-bold mb-4" style={{ color: 'var(--text-primary)' }}>Daily Goals</h2>
           <div className="space-y-4">
             {dailyGoals.map((goal) => {
               const done = goal.current >= goal.target;
@@ -416,10 +407,10 @@ export default function Dashboard() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between gap-2">
-                        <span className="text-sm font-medium truncate" style={{ color: done ? 'var(--color-text-muted)' : '#ffffff', textDecoration: done ? 'line-through' : 'none' }}>
+                        <span className="text-sm font-medium truncate" style={{ color: done ? 'var(--text-tertiary)' : 'var(--text-primary)', textDecoration: done ? 'line-through' : 'none' }}>
                           {goal.title}
                         </span>
-                        <span className="text-xs font-mono" style={{ color: 'var(--color-text-muted)' }}>{goal.current}/{goal.target}</span>
+                        <span className="text-xs font-mono" style={{ color: 'var(--text-tertiary)' }}>{goal.current}/{goal.target}</span>
                       </div>
                       <div className="w-full bg-slate-800/80 h-1.5 rounded-full overflow-hidden mt-1.5">
                         <div className="h-full rounded-full transition-all duration-700 ease-out" style={{ width: `${percent}%`, background: done ? 'var(--gradient-success)' : 'var(--gradient-primary)' }} />
@@ -433,20 +424,20 @@ export default function Dashboard() {
         </Card>
 
         <Card padding="lg">
-          <h2 className="text-base font-extrabold mb-4 text-white">Recent Activity</h2>
+          <h2 className="text-base font-extrabold mb-4" style={{ color: 'var(--text-primary)' }}>Recent Activity</h2>
           <div className="space-y-3">
             {activitiesToRender.map((act) => (
-              <div key={act.id} className="flex items-center gap-3.5 p-3 rounded-xl border border-[var(--color-border)] hover:border-slate-500/20 transition-all duration-150" style={{ background: 'var(--color-bg-card)' }}>
-                <div className="w-9 h-9 rounded-full flex items-center justify-center text-lg bg-white/5 border border-white/5">
+              <div key={act.id} className="flex items-center gap-3.5 p-3 rounded-xl transition-all duration-150 card-premium">
+                <div className="w-9 h-9 rounded-full flex items-center justify-center text-lg" style={{ background: 'var(--bg-hover)', border: '1px solid var(--border-secondary)' }}>
                   {act.icon}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="text-sm font-bold text-white">{act.title}</div>
-                  <div className="text-xs text-slate-400 mt-0.5">{act.description}</div>
+                  <div className="text-sm font-bold" style={{ color: 'var(--text-primary)' }}>{act.title}</div>
+                  <div className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>{act.description}</div>
                 </div>
                 <div className="flex items-center gap-2.5">
                   {act.xpEarned > 0 && <Badge variant="xp">+{act.xpEarned} XP</Badge>}
-                  <span className="text-xs font-semibold text-slate-500">{act.id === 'welcome-mascot' ? 'Just now' : timeAgo(act.timestamp)}</span>
+                  <span className="text-xs font-semibold" style={{ color: 'var(--text-tertiary)' }}>{act.id === 'welcome-mascot' ? 'Just now' : timeAgo(act.timestamp)}</span>
                 </div>
               </div>
             ))}
