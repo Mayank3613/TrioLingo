@@ -47,7 +47,7 @@ export function MainLayout() {
   }, [location.pathname]);
 
   return (
-    <div className="flex h-screen w-screen overflow-hidden" style={{ background: 'var(--color-bg-primary)' }}>
+    <div className="flex h-screen w-screen overflow-hidden" style={{ background: 'var(--bg-primary)' }}>
       <LevelUpEffect />
       <Sidebar />
 

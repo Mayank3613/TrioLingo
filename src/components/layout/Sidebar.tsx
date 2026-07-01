@@ -181,7 +181,7 @@ export function Sidebar() {
                 className="text-base font-extrabold leading-tight tracking-tight"
                 style={{ color: 'var(--text-primary)' }}
               >
-                TrioLingo<span style={{ color: 'var(--color-accent-purple)' }}>++</span>
+                TrioLingo<span style={{ color: 'var(--accent-primary)' }}>++</span>
               </h1>
               <span
                 className="text-[10px] tracking-widest block mt-0.5"
@@ -334,7 +334,7 @@ export function Sidebar() {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.97 }}
           className="w-full flex items-center justify-center gap-2 py-2 mt-1 rounded-lg text-xs font-medium cursor-pointer transition-colors duration-150"
-          style={{ color: 'var(--color-text-muted)' }}
+          style={{ color: 'var(--text-tertiary)' }}
           aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
           onMouseEnter={(e) => {
             e.currentTarget.style.background = 'var(--bg-hover)';

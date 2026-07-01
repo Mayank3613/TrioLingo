@@ -494,7 +494,7 @@ export default function FlashcardsPage() {
                     onClick={() => handleRating(r.rating as Rating.Again | Rating.Hard | Rating.Good | Rating.Easy)}
                     className="py-4 rounded-2xl font-bold text-sm flex flex-col items-center gap-1.5 cursor-pointer transition-all duration-300 relative overflow-hidden group"
                     style={{ 
-                      background: '#09090b', // dark background 
+                      background: 'var(--bg-primary)',
                       color: r.color, 
                       border: `1px solid ${r.color}`,
                       boxShadow: `0 0 12px ${r.color}40, inset 0 0 6px ${r.color}20`,

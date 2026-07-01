@@ -127,8 +127,8 @@ function ThemeCard({
       {/* Tooltip on hover if locked */}
       {!isUnlocked && (
         <div 
-          className="absolute bottom-[44px] left-1/2 -translate-x-1/2 px-2.5 py-1 rounded text-[10px] font-bold text-white bg-slate-900 border border-slate-700 shadow-xl opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-30"
-          style={{ boxShadow: '0 4px 12px rgba(0,0,0,0.5)' }}
+          className="absolute bottom-[44px] left-1/2 -translate-x-1/2 px-2.5 py-1 rounded text-[10px] font-bold opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-30"
+          style={{ background: 'var(--bg-card)', color: 'var(--text-primary)', border: '1px solid var(--border-primary)', boxShadow: 'var(--shadow-lg)' }}
         >
           🔒 Reach Level {theme.requiredLevel} to unlock this theme!
         </div>

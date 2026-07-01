@@ -308,9 +308,9 @@ export default function Dashboard() {
                 tick={({ x, y, payload }) => {
                   const lines = payload.value.split('\n');
                   return (
-                    <text x={x} y={y} textAnchor="middle" fill="var(--color-text-secondary)" fontSize={12} fontWeight={500}>
+                    <text x={x} y={y} textAnchor="middle" fill="var(--text-secondary)" fontSize={12} fontWeight={500}>
                       <tspan x={x} dy={0}>{lines[0]}</tspan>
-                      <tspan x={x} dy={16} fill="var(--color-text-muted)" fontSize={11}>{lines[1]}</tspan>
+                      <tspan x={x} dy={16} fill="var(--text-tertiary)" fontSize={11}>{lines[1]}</tspan>
                     </text>
                   );
                 }}
@@ -400,7 +400,7 @@ export default function Dashboard() {
               const done = goal.current >= goal.target;
               const percent = animatedGoals[goal.id] || 0;
               return (
-                <div key={goal.id} className="flex flex-col gap-2 pb-3 border-b border-[var(--color-border)] last:border-b-0 last:pb-0">
+                <div key={goal.id} className="flex flex-col gap-2 pb-3 last:pb-0" style={{ borderBottom: '1px solid var(--border-secondary)' }}>
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-lg flex items-center justify-center text-base" style={{ background: done ? 'var(--gradient-success)' : 'rgba(255,255,255,0.04)' }}>
                       {done ? <CheckCircle2 size={16} className="text-white" /> : goal.icon}
@@ -412,7 +412,7 @@ export default function Dashboard() {
                         </span>
                         <span className="text-xs font-mono" style={{ color: 'var(--text-tertiary)' }}>{goal.current}/{goal.target}</span>
                       </div>
-                      <div className="w-full bg-slate-800/80 h-1.5 rounded-full overflow-hidden mt-1.5">
+                      <div className="w-full h-1.5 rounded-full overflow-hidden mt-1.5" style={{ background: 'var(--bg-tertiary)' }}>
                         <div className="h-full rounded-full transition-all duration-700 ease-out" style={{ width: `${percent}%`, background: done ? 'var(--gradient-success)' : 'var(--gradient-primary)' }} />
                       </div>
                     </div>
