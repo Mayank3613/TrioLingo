@@ -200,21 +200,7 @@ export function AnalyticsPage() {
   return (
     <div className="p-6 pb-20 space-y-6">
       {/* ── Header ── */}
-      <motion.div {...fadeUp(0)} className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
-        <div>
-          <h1
-            className="text-2xl font-bold"
-            style={{ color: 'var(--text-primary)' }}
-          >
-            Study Analytics
-          </h1>
-          <p
-            className="text-sm mt-0.5"
-            style={{ color: 'var(--text-tertiary)', fontFamily: 'var(--font-japanese)' }}
-          >
-            学習分析
-          </p>
-        </div>
+      <motion.div {...fadeUp(0)} className="flex items-end justify-end gap-3">
 
         <div className="flex gap-1.5">
           {ranges.map((r) => (
@@ -234,7 +220,7 @@ export function AnalyticsPage() {
       </motion.div>
 
       {/* ── Top Stats Row ── */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         <StatCard
           icon={<Clock size={20} className="text-blue-500" />}
           label="Total Study Time"

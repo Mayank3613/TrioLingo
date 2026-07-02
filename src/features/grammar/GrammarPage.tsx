@@ -68,16 +68,7 @@ export function GrammarPage() {
   }
 
   return (
-    <div className="p-6 pb-20">
-      {/* Header */}
-      <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="mb-5">
-        <h1 className="text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>
-          Grammar
-        </h1>
-        <p className="text-sm mt-0.5" style={{ color: 'var(--text-secondary)' }}>
-          Master Japanese grammar patterns · 文法
-        </p>
-      </motion.div>
+    <div className="p-6 pb-20 space-y-5">
 
       {/* JLPT Level Tabs */}
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }} className="flex gap-2 mb-4">

@@ -76,16 +76,7 @@ export function VocabularyPage() {
   }
 
   return (
-    <div className="p-6 pb-20">
-      {/* Header */}
-      <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="mb-5">
-        <h1 className="text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>
-          Vocabulary
-        </h1>
-        <p className="text-sm mt-0.5" style={{ color: 'var(--text-secondary)' }}>
-          Master essential Japanese words · 単語
-        </p>
-      </motion.div>
+    <div className="p-6 pb-20 space-y-5">
 
       {/* JLPT Level Tabs */}
       <motion.div

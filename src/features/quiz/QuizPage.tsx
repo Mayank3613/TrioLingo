@@ -1,7 +1,6 @@
 import { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
-  Zap,
   CheckCircle2,
   XCircle,
   Trophy,
@@ -134,15 +133,8 @@ export default function QuizPage() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="p-6 max-w-3xl mx-auto"
+        className="p-6 max-w-3xl mx-auto space-y-6"
       >
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2" style={{ color: 'var(--text-primary)' }}>
-            <Zap className="inline mr-3 mb-1" size={28} />
-            Quiz
-          </h1>
-          <p style={{ color: 'var(--text-secondary)' }}>Test your knowledge with adaptive questions</p>
-        </div>
 
         <div className="space-y-6">
           {/* JLPT Level */}

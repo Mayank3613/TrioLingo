@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
-  BookMarked,
   ArrowLeft,
   CheckCircle2,
   XCircle,
@@ -100,15 +99,8 @@ export default function ReadingPage() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="p-6 max-w-4xl mx-auto"
+        className="p-6 max-w-4xl mx-auto space-y-6"
       >
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2" style={{ color: 'var(--text-primary)' }}>
-            <BookMarked className="inline mr-3 mb-1" size={28} />
-            Reading
-          </h1>
-          <p style={{ color: 'var(--text-secondary)' }}>Graded passages with comprehension questions</p>
-        </div>
 
         {/* Level filter */}
         <div className="flex flex-wrap gap-2 mb-6">

@@ -85,16 +85,7 @@ export function AchievementsPage() {
   const totalCount = MOCK_ACHIEVEMENTS.filter(a => !a.isHidden || a.isUnlocked).length;
 
   return (
-    <div className="p-6 max-w-5xl mx-auto overflow-y-auto h-full pb-20">
-      {/* Header */}
-      <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="mb-6">
-        <h1 className="text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>
-          Achievements
-        </h1>
-        <p className="text-sm mt-1" style={{ color: 'var(--text-secondary)' }}>
-          Track your progress and earn rewards · 実績
-        </p>
-      </motion.div>
+    <div className="p-6 max-w-5xl mx-auto pb-20 space-y-6">
 
       {/* Progress Overview */}
       <motion.div

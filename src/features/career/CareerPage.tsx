@@ -475,31 +475,18 @@ export function CareerPage() {
   const challengeData = activeChallenge ? getScenarioChallenge(activeChallenge.chapterId, activeChallenge.scenarioIndex, activeChallenge.scenarioName) : null;
 
   return (
-    <div className="p-6 max-w-4xl mx-auto overflow-y-auto h-full pb-24">
-      {/* Page Header */}
+    <div className="p-6 max-w-4xl mx-auto pb-24 space-y-6">
+      {/* Chapter Badge */}
       <motion.div
-        initial={{ opacity: 0, y: -15 }}
+        initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="mb-8"
+        transition={{ duration: 0.4 }}
+        className="flex items-center justify-end"
       >
-        <div className="flex items-center justify-between flex-wrap gap-4">
-          <div>
-            <h1 className="text-3xl font-bold" style={{ color: 'var(--text-primary)' }}>
-              Career Mode
-            </h1>
-            <p
-              className="text-base mt-1"
-              style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-japanese)' }}
-            >
-              キャリアモード
-            </p>
-          </div>
-          <Badge variant="primary" size="md">
-            <BookOpen size={14} />
-            Chapter {Math.min(activeIndex + 1, CHAPTERS.length)} / {CHAPTERS.length}
-          </Badge>
-        </div>
+        <Badge variant="primary" size="md">
+          <BookOpen size={14} />
+          Chapter {Math.min(activeIndex + 1, CHAPTERS.length)} / {CHAPTERS.length}
+        </Badge>
       </motion.div>
 
       {/* Progress Overview Banner */}

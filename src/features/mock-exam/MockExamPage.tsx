@@ -15,7 +15,6 @@ import {
   RotateCcw,
   Star,
   Zap,
-  Shield,
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { Card } from '../../components/ui/Card';
@@ -97,28 +96,8 @@ function ExamSetup({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
-      className="p-6 max-w-2xl mx-auto"
+      className="p-6 max-w-2xl mx-auto space-y-6"
     >
-      {/* Title */}
-      <motion.div
-        className="text-center mb-10"
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.1 }}
-      >
-        <div className="flex items-center justify-center gap-3 mb-2">
-          <Shield size={32} style={{ color: 'var(--accent-primary)' }} />
-          <h1 className="text-3xl font-bold" style={{ color: 'var(--text-primary)' }}>
-            JLPT Mock Exam
-          </h1>
-        </div>
-        <p
-          className="text-xl"
-          style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-japanese)' }}
-        >
-          模擬試験
-        </p>
-      </motion.div>
 
       {/* Level Selector */}
       <motion.div

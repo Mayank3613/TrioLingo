@@ -242,25 +242,8 @@ export function SpeakingPage() {
     }
 
     return (
-      <div style={{ padding: '2rem', maxWidth: '700px', margin: '0 auto' }}>
+      <div style={{ padding: '1.5rem', maxWidth: '700px', margin: '0 auto' }}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-            <motion.div
-              initial={{ scale: 0 }} animate={{ scale: 1 }}
-              transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-              style={{
-                width: 80, height: 80, borderRadius: '50%', margin: '0 auto 1rem',
-                background: 'var(--gradient-accent)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-              }}
-            >
-              <Mic size={36} color="white" />
-            </motion.div>
-            <h1 style={{ fontSize: '1.75rem', fontWeight: 700, color: 'var(--text-primary)', margin: 0 }}>
-              Speaking Practice
-            </h1>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', margin: '0.5rem 0' }}>会話練習</p>
-          </div>
 
           {/* TTS voice check warning */}
           {!hasJpVoice && (

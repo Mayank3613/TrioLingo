@@ -286,16 +286,7 @@ export function SettingsPage() {
   const { profile } = useUserStore();
 
   return (
-    <div className="p-6 max-w-4xl mx-auto space-y-6 overflow-y-auto h-full pb-20">
-      {/* Page Title */}
-      <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className="text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>
-          Settings
-        </h1>
-        <p className="text-sm mt-1" style={{ color: 'var(--text-secondary)' }}>
-          Customize your learning experience · 設定
-        </p>
-      </motion.div>
+    <div className="p-6 max-w-4xl mx-auto space-y-6 pb-20">
 
       {/* Theme Selection */}
       <SettingSection title="Appearance" icon={<Palette size={18} />}>

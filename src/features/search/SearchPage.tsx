@@ -154,26 +154,6 @@ export function SearchPage() {
           padding: '2.5rem 1.5rem 1.5rem',
         }}
       >
-        <h1
-          style={{
-            fontSize: '1.875rem',
-            fontWeight: 800,
-            color: 'var(--text-primary)',
-            marginBottom: '0.25rem',
-          }}
-        >
-          Search
-        </h1>
-        <p
-          style={{
-            fontFamily: 'var(--font-japanese)',
-            color: 'var(--text-tertiary)',
-            fontSize: '1rem',
-            marginBottom: '1.5rem',
-          }}
-        >
-          検索
-        </p>
 
         {/* Search Input */}
         <div

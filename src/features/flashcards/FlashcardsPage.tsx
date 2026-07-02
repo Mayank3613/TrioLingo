@@ -1,7 +1,6 @@
 import { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
-  Layers,
   RotateCcw,
   Zap,
   CheckCircle2,
@@ -242,16 +241,6 @@ export default function FlashcardsPage() {
         ) : (
           // Pre-session
           <>
-            <div className="mb-8">
-              <h1 className="text-3xl font-bold mb-2" style={{ color: 'var(--text-primary)' }}>
-                <Layers className="inline mr-3 mb-1" size={28} />
-                Flashcards
-              </h1>
-              <p style={{ color: 'var(--text-secondary)' }}>
-                Review your cards with spaced repetition
-              </p>
-            </div>
-
             {/* Stats cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
               {[

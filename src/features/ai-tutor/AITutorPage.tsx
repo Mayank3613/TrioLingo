@@ -207,33 +207,11 @@ function TopicSelection({ onSelect }: { onSelect: (topicId: string) => void }) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="p-6 max-w-3xl mx-auto"
+      className="p-6 max-w-3xl mx-auto space-y-6"
     >
-      {/* Header */}
-      <div className="text-center mb-10 relative">
-        {/* Mode indicator – top right */}
-        <div className="absolute top-0 right-0">
-          <ModeBadge live={isLive} />
-        </div>
-
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ type: 'spring', stiffness: 300, damping: 20, delay: 0.1 }}
-          className="w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center"
-          style={{ background: 'var(--gradient-primary)' }}
-        >
-          <Bot size={32} className="text-white" />
-        </motion.div>
-        <h1 className="text-3xl font-bold mb-1" style={{ color: 'var(--text-primary)' }}>
-          AI Tutor
-        </h1>
-        <p className="text-lg mb-1" style={{ color: 'var(--accent-primary)', fontFamily: 'var(--font-japanese)' }}>
-          AI先生
-        </p>
-        <p style={{ color: 'var(--text-secondary)' }}>
-          Choose a topic to practice with your AI sensei
-        </p>
+      {/* Mode Badge */}
+      <div className="flex justify-end">
+        <ModeBadge live={isLive} />
       </div>
 
       {/* Topic Grid */}

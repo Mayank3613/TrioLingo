@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
-  PenTool,
   RotateCcw,
   Eraser,
   ChevronRight,
@@ -486,36 +485,6 @@ export function WritingPage() {
       transition={{ duration: 0.4 }}
       style={{ minHeight: '100vh', padding: '24px 16px', maxWidth: 900, margin: '0 auto' }}
     >
-      {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="flex items-center gap-3 mb-6"
-      >
-        <div
-          className="flex items-center justify-center"
-          style={{
-            width: 48,
-            height: 48,
-            borderRadius: 'var(--radius-lg, 12px)',
-            background: 'var(--gradient-primary)',
-          }}
-        >
-          <PenTool size={24} color="white" />
-        </div>
-        <div>
-          <h1
-            className="text-2xl font-bold"
-            style={{ color: 'var(--text-primary)' }}
-          >
-            Writing Practice
-          </h1>
-          <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
-            Master stroke order through repetition
-          </p>
-        </div>
-      </motion.div>
 
       {/* Stats Bar */}
       <motion.div
